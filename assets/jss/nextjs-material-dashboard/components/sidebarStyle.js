@@ -63,13 +63,13 @@ const sidebarStyle = (theme) => ({
   logo: {
     position: "relative",
     padding: "15px 15px",
+    height: '3rem',
     zIndex: "4",
     "&:after": {
       content: '""',
       position: "absolute",
       bottom: "0",
 
-      height: "1px",
       right: "15px",
       width: "calc(100% - 30px)",
       backgroundColor: "rgba(" + hexToRgb(grayColor[6]) + ", 0.3)",
