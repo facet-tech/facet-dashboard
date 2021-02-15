@@ -1,5 +1,6 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
+import WebIcon from '@material-ui/icons/Web';
 
 const dashboardRoutes = [
   {
@@ -15,9 +16,9 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    icon: Dashboard,
+    path: "/projects",
+    name: "Projects",
+    icon: WebIcon,
     layout: "/admin",
   },
 ];
