@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Admin from "../../layouts/Admin.js";
 
 const Payment = () => {

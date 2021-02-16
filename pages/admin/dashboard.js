@@ -21,12 +21,6 @@ import Admin from "layouts/Admin.js";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
-import Table from "components/Table/Table.js";
-import Danger from "components/Typography/Danger.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardIcon from "components/Card/CardIcon.js";
-import CardFooter from "components/Card/CardFooter.js";
 
 import styles from "assets/jss/nextjs-material-dashboard/views/dashboardStyle.js";
 
@@ -35,10 +29,11 @@ function Dashboard() {
   const classes = useStyles();
   return (
     <div>
-      <GridContainer>
-        <GridItem xs={12} sm={6} md={3}>
-        </GridItem>
-      </GridContainer>
+      <h2>API Usage per Workspace domains</h2>
+      <h2></h2>
+      <ul>
+        <li> <a href='https://facet.run'>https://facet.run</a> : 1242 Requests</li>
+      </ul>
     </div>
   );
 }

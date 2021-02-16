@@ -33,12 +33,15 @@ export default function Admin({ children, ...rest }) {
   const [color, setColor] = React.useState("white");
   const [fixedClasses, setFixedClasses] = React.useState("dropdown show");
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
   const handleImageClick = (image) => {
     setImage(image);
   };
+
   const handleColorClick = (color) => {
     setColor(color);
   };
+
   const handleFixedClick = () => {
     if (fixedClasses === "dropdown") {
       setFixedClasses("dropdown show");
@@ -75,11 +78,11 @@ export default function Admin({ children, ...rest }) {
       window.removeEventListener("resize", resizeFunction);
     };
   }, [mainPanel]);
+
   return (
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"facet"}
         logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}

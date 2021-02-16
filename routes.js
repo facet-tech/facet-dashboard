@@ -17,12 +17,6 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
-    path: "/projects",
-    name: "Projects",
-    icon: WebIcon,
-    layout: "/admin",
-  },
-  {
     path: "/payment",
     name: "Payment",
     icon: PaymentIcon,
