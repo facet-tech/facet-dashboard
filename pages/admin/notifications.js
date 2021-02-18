@@ -123,30 +123,6 @@ function Notifications() {
   };
   return (
     <Card>
-      <CardHeader color="primary">
-        <h4 className={classes.cardTitleWhite}>Notifications</h4>
-        <p className={classes.cardCategoryWhite}>
-          Handcrafted by our friends from{" "}
-          <a
-            target="_blank"
-            href="https://material-ui-next.com/?ref=creativetime"
-          >
-            Material UI
-          </a>{" "}
-          and styled by{" "}
-          <a
-            target="_blank"
-            href="https://www.creative-tim.com/?ref=njsmd-notifications-page"
-          >
-            Creative Tim
-          </a>
-          . Please checkout the{" "}
-          <a href="#pablo" target="_blank">
-            full documentation
-          </a>
-          .
-        </p>
-      </CardHeader>
       <CardBody>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
