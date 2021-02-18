@@ -16,10 +16,12 @@ Router.events.on("routeChangeStart", (url) => {
     document.getElementById("page-transition")
   );
 });
+
 Router.events.on("routeChangeComplete", () => {
   ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
   document.body.classList.remove("body-page-transition");
 });
+
 Router.events.on("routeChangeError", () => {
   ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
   document.body.classList.remove("body-page-transition");
