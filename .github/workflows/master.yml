@@ -3,7 +3,7 @@ name: build and deploy
 on:
   push:
     # TODO change when bucket is ready
-    branches: [TODO]
+    branches: [master]
 
 jobs:
   build:
