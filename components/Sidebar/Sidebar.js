@@ -4,7 +4,6 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { useRouter } from "next/router";
-// @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
@@ -12,10 +11,9 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
-// core components
 import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.js";
 import RTLNavbarLinks from "components/Navbars/RTLNavbarLinks.js";
-
+import Button from "@material-ui/core/Button";
 import styles from "assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
 
 export default function Sidebar(props) {
@@ -87,7 +85,6 @@ export default function Sidebar(props) {
       <div className={classes.logoImage}>
         <img src={logo} alt="logo" className={classes.img} />
       </div>
-      {logoText}
     </div>
   );
   return (
@@ -109,14 +106,9 @@ export default function Sidebar(props) {
         >
           {brand}
           <div className={classes.sidebarWrapper}>
-             {links}
+            {props.rtlActive ? <RTLNavbarLinks /> : <AdminNavbarLinks />}
+            {links}
           </div>
-          {image !== undefined ? (
-            <div
-              className={classes.background}
-              style={{ backgroundImage: "url(" + image + ")" }}
-            />
-          ) : null}
         </Drawer>
       </Hidden>
       <Hidden smDown implementation="css">
@@ -131,7 +123,25 @@ export default function Sidebar(props) {
           }}
         >
           {brand}
-          <div className={classes.sidebarWrapper}>{links}</div>
+          <div className={classes.sidebarWrapper}>
+            {links}
+            <div style={{
+              width: '100%',
+              position: 'absolute',
+              bottom: '1rem',
+              left: 0,
+              color: 'white',
+              textAlign: 'center'
+            }}>
+              <Button style={{
+                width: '90%',
+              }}
+                variant="contained"
+                color="white">
+                Logout
+              </Button>
+            </div>
+          </div>
           {image !== undefined ? (
             <div
               className={classes.background}

@@ -11,8 +11,7 @@ import Menu from "@material-ui/icons/Menu";
 import styles from "assets/jss/nextjs-material-dashboard/components/headerStyle.js";
 
 export default function Header(props) {
-  // used for checking current route
-  const router = useRouter();
+
   // create styles for this component
   const useStyles = makeStyles(styles);
   const classes = useStyles();
