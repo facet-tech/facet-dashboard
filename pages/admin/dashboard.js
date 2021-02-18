@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Admin from "layouts/Admin.js";
+import Admin from "../../layouts/Admin.js";
 import styles from "assets/jss/nextjs-material-dashboard/views/dashboardStyle.js";
 
 function Dashboard() {

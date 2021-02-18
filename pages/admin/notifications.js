@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import AddAlert from "@material-ui/icons/AddAlert";
 // layout for this page
-import Admin from "layouts/Admin.js";
+import Admin from "../../layouts/Admin.js";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";

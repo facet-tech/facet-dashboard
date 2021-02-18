@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Admin from "layouts/Admin.js";
+import Admin from "../../layouts/Admin.js";
 
 const Projects = () => {
 
