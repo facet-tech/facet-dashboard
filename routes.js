@@ -8,19 +8,19 @@ const dashboardRoutes = [
     path: "/dashboard",
     name: "Dashboard",
     icon: Dashboard,
-    layout: "/admin",
+    layout: "",
   },
   {
     path: "/user-profile",
     name: "User Profile",
     icon: Person,
-    layout: "/admin",
+    layout: "",
   },
   {
     path: "/payment",
     name: "Payment",
     icon: PaymentIcon,
-    layout: "/admin",
+    layout: "",
   },
 ];
 
