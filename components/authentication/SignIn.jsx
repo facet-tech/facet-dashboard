@@ -4,19 +4,19 @@ import { useForm } from 'react-hook-form';
 import { Typography, makeStyles } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import {
-  authState as authStateConstant, isPluginEnabled, storage, api as apiConstant, color,
-} from '../shared/constant';
-import AppContext from '../AppContext';
-import triggerDOMReload from '../shared/popup/triggerDOMReload';
-import { setKeyInLocalStorage } from '../shared/loadLocalStorage';
-import { getOrCreateWorkspace } from '../services/facetApiService';
-import FacetInput from '../shared/FacetInput';
-import FacetLabel from '../shared/FacetLabel';
-import FacetButton from '../shared/FacetButton';
-import FacetLink from '../shared/FacetLink';
-import FacetFormError from '../shared/FacetFormError';
-import FacetFormContainer from '../shared/FacetFormContainer';
-import MarginTop from '../shared/MarginTop';
+  authState as authStateConstant, storage, api as apiConstant, color,
+} from '../../shared/constant';
+import AppContext from '../../context/AppContext';
+// import triggerDOMReload from '../shared/popup/triggerDOMReload';
+// import { setKeyInLocalStorage } from '../shared/loadLocalStorage';
+// import { getOrCreateWorkspace } from '../../services/facetApiService';
+import FacetInput from '../../shared/components/FacetInput';
+import FacetLabel from '../../shared/components/FacetLabel';
+import FacetButton from '../../shared/components/FacetButton';
+import FacetLink from '../../shared/components/FacetLink';
+import FacetFormError from '../../shared/components/FacetFormError';
+import FacetFormContainer from '../../shared/components/FacetFormContainer';
+import MarginTop from '../../shared/components/MarginTop';
 
 const useStyles = makeStyles(() => ({
   center: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
 
 export default () => {
   const classes = useStyles();
-  const { authObject, setAuthObject, setCurrAuthState, persistLogin } = React.useContext(AppContext);
+  const { setCurrAuthState } = React.useContext(AppContext);
   const { register, errors, handleSubmit, watch } = useForm({});
   const [submitting, setSubmitting] = useState(false);
   const [serverError, setServerError] = useState(undefined);
@@ -35,26 +35,26 @@ export default () => {
   password.current = watch('password', '');
 
   const onSubmit = async (data) => {
-    setSubmitting(true);
-    const { email, password } = data;
-    try {
-      await persistLogin(email, password);
-      triggerDOMReload();
-      setSubmitting(false);
-    } catch (error) {
-      console.log('[ERROR]][SignIn]', error);
-      if (error.code === 'UserNotConfirmedException') {
-        setAuthObject({
-          ...authObject,
-          email,
-          password
-        });
-        setCurrAuthState(authStateConstant.confirmingSignup);
-      } else {
-        setServerError(error.message);
-      }
-      setSubmitting(false);
-    }
+    // setSubmitting(true);
+    // const { email, password } = data;
+    // try {
+    //   await persistLogin(email, password);
+    //   triggerDOMReload();
+    //   setSubmitting(false);
+    // } catch (error) {
+    //   console.log('[ERROR]][SignIn]', error);
+    //   if (error.code === 'UserNotConfirmedException') {
+    //     setAuthObject({
+    //       ...authObject,
+    //       email,
+    //       password
+    //     });
+    //     setCurrAuthState(authStateConstant.confirmingSignup);
+    //   } else {
+    //     setServerError(error.message);
+    //   }
+    //   setSubmitting(false);
+    // }
   };
 
   return (

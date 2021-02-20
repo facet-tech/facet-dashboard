@@ -1,3 +1,5 @@
+import isDevelopment from "../utils/isDevelopment";
+
 const color = {
     electricA: '#5979D9',
     electricB: '#758EBF',
@@ -37,7 +39,23 @@ const color = {
 
 const mountainWalkColors = {
     gray: '#262626',
-}
+};
+
+const apiBaseURL = 'https://api.facet.run';
+const testBaseURL = 'https://test.api.facet.run';
+const localBaseURL = 'http://localhost:3002';
+const websiteURL = 'https://facet.run';
+
+const authState = {
+    notSignedIn: 'NOT_LOGGED_IN',
+    signedIn: 'LOGGED_IN',
+    signingIn: 'SIGNING_IN',
+    signUp: 'SIGN_UP',
+    signingUp: 'SIGNING_UP',
+    confirmingSignup: 'CONFIRMING_SIGNUP',
+    onForgotPassword: 'FORGOT_PASSWORD',
+    onPasswordReset: 'PASSWORD_RESET'
+};
 
 const snackbar = {
     success: {
@@ -116,7 +134,31 @@ const isMobileLg = (threshHoldValue) => {
     return threshHoldValue === responsiveThresholds.xs || threshHoldValue === responsiveThresholds.sm || threshHoldValue === responsiveThresholds.md;
 }
 
+const HTTPMethods = {
+    GET: 'GET',
+    POST: 'POST',
+    PUT: 'PUT',
+    DELETE: 'DELETE'
+};
+
+const api = {
+    domainId: 'domainId',
+    workspace: {
+        workspaceId: 'workspaceId'
+    },
+    facetObjectVersion: '0.0.1'// TODO ideally this matches the manifest version
+};
+
+const APIUrl = {
+    apiBaseURL,
+    testBaseURL,
+    localBaseURL,
+    activeBaseURL: isDevelopment() ? localBaseURL : apiBaseURL,
+    websiteURL
+};
+
+
 export {
-    color, fontSize, allFacets, mountainWalkColors, documentationIds,
-    snackbar, documentationText, responsiveThresholds, isMobile, isMobileLg
+    color, fontSize, allFacets, mountainWalkColors, documentationIds, authState, APIUrl, apiBaseURL,
+    snackbar, documentationText, responsiveThresholds, isMobile, isMobileLg, api, HTTPMethods
 };
