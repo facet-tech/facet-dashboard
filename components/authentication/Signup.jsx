@@ -1,17 +1,16 @@
 import React, { useRef, useState, useContext } from "react";
 import { Auth } from "aws-amplify";
 import { useForm } from "react-hook-form";
-import { authState as authStateConstant, color, storage, LoginTypes } from '../shared/constant';
-import AppContext from "../AppContext";
+import { authState as authStateConstant, color, storage, LoginTypes } from '../../shared/constant';
 import Alert from '@material-ui/lab/Alert';
-import FacetLink from "../shared/FacetLink";
-import FacetLabel from "../shared/FacetLabel";
-import FacetInput from "../shared/FacetInput";
-import FacetButton from "../shared/FacetButton";
-import FacetFormContainer from "../shared/FacetFormContainer";
-import FacetFormError from "../shared/FacetFormError";
-import MarginTop from "../shared/MarginTop";
-import { setKeyInLocalStorage } from "../shared/loadLocalStorage";
+import FacetLink from "../../shared/components/FacetLink";
+import FacetLabel from "../../shared/components/FacetLabel";
+import FacetInput from "../../shared/components/FacetInput";
+import FacetButton from "../../shared/components/FacetButton";
+import FacetFormContainer from "../../shared/components/FacetFormContainer";
+import FacetFormError from "../../shared/components/FacetFormError";
+import MarginTop from "../../shared/components/MarginTop";
+import AppContext from "../../context/AppContext";
 
 export default () => {
 
@@ -39,7 +38,7 @@ export default () => {
           email,
         }
       });
-      setKeyInLocalStorage(LoginTypes.email, email);
+      // setKeyInLocalStorage(LoginTypes.email, email);
       // await setKeyInLocalStorage(storage.username, email);
       // await setKeyInLocalStorage(storage.password, password);
       setCurrAuthState(authStateConstant.confirmingSignup);

@@ -1,11 +1,8 @@
 import { HTTPMethods, APIUrl, storage, snackbar, isPluginEnabled } from "../shared/constant";
-import { getKeyFromLocalStorage, setKeyInLocalStorage } from '../shared/loadLocalStorage';
 import { api } from '../shared/constant';
 import MockService from './MockService'
 import isDevelopment from "../utils/isDevelopment";
-import parsePath from "../shared/parsePath";
 import AmplifyService from "./AmplifyService";
-import triggerDOMReload from "../shared/popup/triggerDOMReload";
 
 /**
  * @param {domainId}
@@ -221,18 +218,6 @@ const getFacet = async (domainId, urlPath) => {
 }
 
 /**
- * @param {*} domElementArr domElement array
- */
-const convertDOMElement = (facet) => {
-    return (facet?.domElement?.map(domElement => {
-        return {
-            ...domElement,
-            path: parsePath(domElement.path, true),
-        }
-    })) || [];
-}
-
-/**
  * @param {*} responseBody
  * 
  * Parses the facet response and adds facets relevant to the page
@@ -279,16 +264,6 @@ const deleteFacet = async (body) => {
     return jsonResponse;
 }
 
-const generateDomElements = (domElements) => {
-    const result = (domElements && domElements.map(domElement => {
-        return {
-            name: domElement.name,
-            path: parsePath(domElement.path, false)
-        }
-    })) || [];
-    return result;
-}
-
 const extractFacetArray = (facetMap, nonRolledOutFacets, globalFacets) => {
     try {
         const facetArray = Array.from(facetMap, ([name, value]) => ({ name, value }));
@@ -325,8 +300,11 @@ const generateRequestBodyFromFacetMap = (facetMap, nonRolledOutFacets, domainId,
 const saveFacets = async (facetMap, nonRolledOutFacets, enqueueSnackbar, globalFacets) => {
     try {
         // check if domain exists
-        const workspaceId = await getKeyFromLocalStorage(api.workspace.workspaceId);
-        let getDomainRes = await getOrPostDomain(workspaceId);
+        // const workspaceId = await getKeyFromLocalStorage(api.workspace.workspaceId);
+        // let getDomainRes = await getOrPostDomain(workspaceId);
+        const workspaceId = 'TODO'
+        const getDomainRes = 'TODO';
+
         const body = generateRequestBodyFromFacetMap(facetMap, nonRolledOutFacets, getDomainRes.response.id, globalFacets);
         await triggerApiCall(HTTPMethods.POST, '/facet', body);
     } catch (e) {

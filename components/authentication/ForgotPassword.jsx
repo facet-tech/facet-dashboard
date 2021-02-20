@@ -1,17 +1,16 @@
 import { Auth } from "aws-amplify";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import PopupContext from "../popup/PopupContext";
-import { authState as authStateConstant, color } from '../shared/constant';
+import { authState as authStateConstant, color } from '../../shared/constant';
 import { Input, InputLabel, Button, Link } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import AppContext from "../AppContext";
-import FacetFormContainer from "../shared/FacetFormContainer";
-import FacetInput from "../shared/FacetInput";
-import FacetLabel from "../shared/FacetLabel";
-import FacetButton from "../shared/FacetButton";
-import FacetLink from "../shared/FacetLink";
-import FacetFormError from "../shared/FacetFormError";
+import FacetFormContainer from "../../shared/components/FacetFormContainer";
+import FacetInput from "../../shared/components/FacetInput";
+import FacetLabel from "../../shared/components/FacetLabel";
+import FacetButton from "../../shared/components/FacetButton";
+import FacetLink from "../../shared/components/FacetLink";
+import FacetFormError from "../../shared/components/FacetFormError";
+import AppContext from "../../shared/components/AppContext";
 
 export default () => {
     const { setCurrAuthState } = React.useContext(AppContext);

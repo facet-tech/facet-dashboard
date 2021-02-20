@@ -41,6 +41,14 @@ const mountainWalkColors = {
     gray: '#262626',
 };
 
+const ChromeRequestType = {
+    GET_LOGGED_IN_USER: 'GET_LOGGED_IN_USER',
+    OPEN_WELCOME_PAGE: 'OPEN_WELCOME_PAGE',
+    OPEN_PREVIEW_PAGE: 'OPEN_PREVIEW_PAGE',
+    GET_CURRENT_TAB: 'GET_CURRENT_TAB',
+    SET_COOKIE_VALUE: 'SET_COOKIE_VALUE'
+};
+
 const apiBaseURL = 'https://api.facet.run';
 const testBaseURL = 'https://test.api.facet.run';
 const localBaseURL = 'http://localhost:3002';
@@ -160,5 +168,5 @@ const APIUrl = {
 
 export {
     color, fontSize, allFacets, mountainWalkColors, documentationIds, authState, APIUrl, apiBaseURL,
-    snackbar, documentationText, responsiveThresholds, isMobile, isMobileLg, api, HTTPMethods
+    snackbar, documentationText, responsiveThresholds, isMobile, isMobileLg, api, HTTPMethods, ChromeRequestType
 };

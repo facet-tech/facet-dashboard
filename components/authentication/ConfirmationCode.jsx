@@ -1,18 +1,18 @@
 import { Auth } from "aws-amplify";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { authState as authStateConstant, color, snackbar } from '../shared/constant';
-import AppContext from "../AppContext";
+import { authState as authStateConstant, color, snackbar } from '../../shared/constant';
 import Alert from '@material-ui/lab/Alert';
 import { useSnackbar } from 'notistack';
-import FacetFormContainer from "../shared/FacetFormContainer";
-import FacetLink from "../shared/FacetLink";
-import FacetLabel from "../shared/FacetLabel";
-import FacetInput from "../shared/FacetInput";
-import FacetFormError from "../shared/FacetFormError";
-import FacetButton from "../shared/FacetButton";
-import MarginTop from "../shared/MarginTop";
-import { getOrCreateWorkspace } from "../services/facetApiService";
+import FacetFormContainer from "../../shared/components/FacetFormContainer";
+import FacetLink from "../../shared/components/FacetLink";
+import FacetLabel from "../../shared/components/FacetLabel";
+import FacetInput from "../../shared/components/FacetInput";
+import FacetFormError from "../../shared/components/FacetFormError";
+import FacetButton from "../../shared/components/FacetButton";
+import MarginTop from "../../shared/components/MarginTop";
+import { getOrCreateWorkspace } from "../../services/facetApiService";
+import AppContext from "../../context/AppContext";
 
 export default () => {
     const { enqueueSnackbar } = useSnackbar();

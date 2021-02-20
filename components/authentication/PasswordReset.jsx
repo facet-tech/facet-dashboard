@@ -5,15 +5,14 @@ import {
   Input, InputLabel, Button, Link,
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import PopupContext from '../popup/PopupContext';
-import { authState as authStateConstant, color, snackbar } from '../shared/constant';
-import AppContext from '../AppContext';
-import FacetLink from '../shared/FacetLink';
-import FacetInput from '../shared/FacetInput';
-import FacetLabel from '../shared/FacetLabel';
-import FacetButton from '../shared/FacetButton';
-import FacetFormContainer from '../shared/FacetFormContainer';
-import FacetFormError from '../shared/FacetFormError';
+import { authState as authStateConstant, color, snackbar } from '../../shared/constant';
+import FacetLink from '../../shared/components/FacetLink';
+import FacetInput from '../../shared/components/FacetInput';
+import FacetLabel from '../../shared/components/FacetLabel';
+import FacetButton from "../../shared/components/FacetButton";
+import FacetFormContainer from '../../shared/components/FacetFormContainer';
+import FacetFormError from '../../shared/components/FacetFormError';
+import AppContext from '../../shared/components/AppContext';
 
 export default () => {
   const { setCurrAuthState } = useContext(AppContext);
