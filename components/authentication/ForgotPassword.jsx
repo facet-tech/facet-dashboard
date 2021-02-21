@@ -62,7 +62,7 @@ export default () => {
                 <div>
                     <FacetButton disabled={submitting} text="Confirm email" style={{ width: "100%" }} variant="contained" color="primary" type="submit" onClick={handleSubmit(onSubmit)} />
                 </div>
-                <div>
+                <div style={{ textAlign: 'center' }}>
                     <br />
                     <b>
                         <FacetLink text="Login" color={color.electricB} onClick={() => setCurrAuthState(authStateConstant.signingIn)} />

@@ -35,26 +35,26 @@ export default () => {
   password.current = watch('password', '');
 
   const onSubmit = async (data) => {
-    // setSubmitting(true);
-    // const { email, password } = data;
-    // try {
-    //   await persistLogin(email, password);
-    //   triggerDOMReload();
-    //   setSubmitting(false);
-    // } catch (error) {
-    //   console.log('[ERROR]][SignIn]', error);
-    //   if (error.code === 'UserNotConfirmedException') {
-    //     setAuthObject({
-    //       ...authObject,
-    //       email,
-    //       password
-    //     });
-    //     setCurrAuthState(authStateConstant.confirmingSignup);
-    //   } else {
-    //     setServerError(error.message);
-    //   }
-    //   setSubmitting(false);
-    // }
+    console.log("@ONSUBMIT");
+    setSubmitting(true);
+    const { email, password } = data;
+    try {
+      await Auth.signIn(email, password);
+      setSubmitting(false);
+    } catch (error) {
+      console.log('[ERROR]][SignIn]', error);
+      if (error.code === 'UserNotConfirmedException') {
+        setAuthObject({
+          ...authObject,
+          email,
+          password
+        });
+        setCurrAuthState(authStateConstant.confirmingSignup);
+      } else {
+        setServerError(error.message);
+      }
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -104,7 +104,7 @@ export default () => {
             <Typography>
               <b>
                 <FacetLabel text='Not registered? ' />
-                <FacetLink color={color.electricB} text='Sign up.' href="#" onClick={() => {  console.log('SETTARW!',setCurrAuthState); setCurrAuthState(authStateConstant.signingUp) }} />
+                <FacetLink color={color.electricB} text='Sign up.' href="#" onClick={() => { setCurrAuthState(authStateConstant.signingUp) }} />
               </b>
               <br />
               <br />

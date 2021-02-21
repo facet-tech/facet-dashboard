@@ -4,6 +4,7 @@ import { SnackbarProvider } from 'notistack';
 import FacetSnackbar from '../shared/components/FacetSnackbar';
 import { Auth } from 'aws-amplify';
 import { authState as authStateConstant } from '../shared/constant';
+import useIsMounted from '../shared/hooks/useIsMounted';
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -13,18 +14,22 @@ const snackbarConfig = {
 
 export default function AppProvider({ children }) {
     const [currAuthState, setCurrAuthState] = useState(authStateConstant.signingIn);
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-    console.log('currAuthState',currAuthState)
+    const [isCurrentlyLoggedIn, setIsCurrentlyLoggedIn] = useState(false);
+
+    const isMounted = useIsMounted();
     useEffect(() => {
-        async function loadInitialState() {
-            const loggedIn = await Auth.currentUserInfo();
-            setIsUserLoggedIn(Boolean(loggedIn))
+        if (isMounted.current) {
+            (async () => {
+                const loggedIn = await Auth.currentUserInfo();
+                console.log("GG", loggedIn, Boolean(loggedIn));
+                setIsCurrentlyLoggedIn(Boolean(loggedIn));
+            })()
         }
-        loadInitialState();
-    }, [])
+    }, []);
 
     return <AppContext.Provider value={{
-        isUserLoggedIn, setIsUserLoggedIn, currAuthState, setCurrAuthState
+        currAuthState, setCurrAuthState,
+        isCurrentlyLoggedIn, setIsCurrentlyLoggedIn
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider
