@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import SignIn from '../../components/authentication/SignIn'
 import AppProvider from '../../context/AppProvider';
-import PageProvider from '../../shared/PageProvider';
 import { authState, authState as authStateConstant } from '../../shared/constant';
 import Admin from '../../layouts/Admin'
 import Signup from '../../components/authentication/Signup';

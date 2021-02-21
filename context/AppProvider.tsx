@@ -21,7 +21,6 @@ export default function AppProvider({ children }) {
         if (isMounted.current) {
             (async () => {
                 const loggedIn = await Auth.currentUserInfo();
-                console.log("GG", loggedIn, Boolean(loggedIn));
                 setIsCurrentlyLoggedIn(Boolean(loggedIn));
             })()
         }

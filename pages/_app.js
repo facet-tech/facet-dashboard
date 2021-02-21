@@ -7,7 +7,7 @@ import PageChange from "components/PageChange/PageChange.js";
 import "assets/css/nextjs-material-dashboard.css?v=1.1.0";
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Amplify from 'aws-amplify';
-import aws_exports from './aws-exports';
+import aws_exports from '../aws-exports';
 
 Amplify.configure(aws_exports);
 
