@@ -102,7 +102,7 @@ export default () => {
               },
             })}
             type="email"
-            value={authObject.email}
+            value={authObject?.email}
             onChange={(e) => setAuthObject({
               ...authObject,
               email: e.target.value

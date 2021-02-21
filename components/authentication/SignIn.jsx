@@ -104,7 +104,7 @@ export default () => {
             <Typography>
               <b>
                 <FacetLabel text='Not registered? ' />
-                <FacetLink color={color.electricB} text='Sign up.' href="#" onClick={() => { setCurrAuthState(authStateConstant.signingUp) }} />
+                <FacetLink color={color.electricB} text='Sign up.' href="#" onClick={() => {  console.log('SETTARW!',setCurrAuthState); setCurrAuthState(authStateConstant.signingUp) }} />
               </b>
               <br />
               <br />

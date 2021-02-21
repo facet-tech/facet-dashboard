@@ -14,7 +14,7 @@ const snackbarConfig = {
 export default function AppProvider({ children }) {
     const [currAuthState, setCurrAuthState] = useState(authStateConstant.signingIn);
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-
+    console.log('currAuthState',currAuthState)
     useEffect(() => {
         async function loadInitialState() {
             const loggedIn = await Auth.currentUserInfo();

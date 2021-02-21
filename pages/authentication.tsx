@@ -10,32 +10,14 @@ import ForgotPassword from '../components/authentication/ForgotPassword';
 import PasswordReset from '../components/authentication/PasswordReset';
 import Dashboard from './dashboard';
 import AppContext from '../context/AppContext';
+import AuthenticationComponent from '../shared/components/Authentication'
 
 const Authentication = () => {
-
-    const { currAuthState } = useContext(AppContext);
-
-    let displayElement;
-    if (currAuthState === authStateConstant.signedIn) {
-        displayElement = <Dashboard />;
-    } else if (currAuthState === authStateConstant.signingIn) {
-        displayElement = <SignIn />;
-    } else if (currAuthState === authStateConstant.signingUp) {
-        displayElement = <Signup />;
-    } else if (currAuthState === authStateConstant.confirmingSignup) {
-        displayElement = <ConfirmationCode />;
-    } else if (currAuthState === authStateConstant.onForgotPassword) {
-        displayElement = <ForgotPassword />;
-    } else if (currAuthState === authStateConstant.onPasswordReset) {
-        displayElement = <PasswordReset />;
-    } else {
-        displayElement = <SignIn />;
-    }
 
     return <>
         <AppProvider>
             <PageProvider>
-                <SignIn />
+                <AuthenticationComponent />
             </PageProvider>
         </AppProvider>
     </>

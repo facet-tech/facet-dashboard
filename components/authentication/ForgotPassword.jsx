@@ -10,7 +10,7 @@ import FacetLabel from "../../shared/components/FacetLabel";
 import FacetButton from "../../shared/components/FacetButton";
 import FacetLink from "../../shared/components/FacetLink";
 import FacetFormError from "../../shared/components/FacetFormError";
-import AppContext from "../../shared/components/AppContext";
+import AppContext from "../../context/AppContext";
 
 export default () => {
     const { setCurrAuthState } = React.useContext(AppContext);
