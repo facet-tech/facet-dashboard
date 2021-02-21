@@ -40,6 +40,7 @@ export default () => {
     const { email, password } = data;
     try {
       await Auth.signIn(email, password);
+      setCurrAuthState(authStateConstant.signedIn);
       setSubmitting(false);
     } catch (error) {
       console.log('[ERROR]][SignIn]', error);

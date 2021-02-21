@@ -9,13 +9,15 @@ import ForgotPassword from '../../components/authentication/ForgotPassword';
 import PasswordReset from '../../components/authentication/PasswordReset';
 import AppContext from '../../context/AppContext';
 import Dashboard from '../../pages/dashboard';
+import { useRouter } from 'next/router';
 
 const Authentication = () => {
-
+    const router = useRouter();
     const { currAuthState } = useContext(AppContext);
     let displayElement;
+    console.log('EEE!',currAuthState);
     if (currAuthState === authStateConstant.signedIn) {
-        displayElement = <Dashboard />;
+        router.push('/dashboard')
     } else if (currAuthState === authStateConstant.signingIn) {
         displayElement = <SignIn />;
     } else if (currAuthState === authStateConstant.signingUp) {
