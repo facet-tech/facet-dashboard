@@ -24,8 +24,8 @@ export default function AppProvider({ children }) {
             (async () => {
                 const loggedIn = await Auth.currentUserInfo();
                 const loggedInVal = Boolean(loggedIn);
-                if (!loggedInVal) {
-                    router.push('/authentication')
+                if (!loggedInVal && window.location.pathname !== '/authentication/') {
+                    router.push('/authentication/')
                 }
                 setIsCurrentlyLoggedIn(loggedInVal);
             })()
