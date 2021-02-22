@@ -17,6 +17,6 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS]], {
       '/payment': { page: '/payment' },
     }
   },
-  pageExtensions: ['mdx', 'jsx', 'js', 'ts', 'tsx'],
   trailingSlash: true,
+
 });
