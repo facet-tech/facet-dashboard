@@ -20,12 +20,9 @@ import Router from "next/router";
 import FacetButton from '../../shared/components/FacetButton';
 
 export default function Sidebar(props) {
-  // used for checking current route
   const router = useRouter();
-  // creates styles for this component
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  // verifies if routeName is the one active (in browser input)
   function activeRoute(routeName) {
     return router.route.indexOf(routeName) > -1 ? true : false;
   }

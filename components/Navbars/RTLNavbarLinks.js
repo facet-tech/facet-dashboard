@@ -13,17 +13,6 @@ export default function RTLNavbarLinks() {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const [open, setOpen] = React.useState(null);
-  const handleToggle = (event) => {
-    if (open && open.contains(event.target)) {
-      setOpen(null);
-    } else {
-      setOpen(event.currentTarget);
-    }
-  };
-
-  const handleClose = () => {
-    setOpen(null);
-  };
 
   return (
     <div>

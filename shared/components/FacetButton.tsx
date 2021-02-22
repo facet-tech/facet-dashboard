@@ -41,14 +41,6 @@ export const electricBtnColor = {
     border: `${defaultColorBtnStyle.border}`
 };
 
-// @deprecated
-export const greenBtnColor = {
-    color: color.black,
-    backgroundColor: color.green,
-    hoverBgColor: color.darkerGreen,
-    border: `${defaultColorBtnStyle.border}`
-}
-
 export const whiteBtnColor = {
     color: color.black,
     backgroundColor: color.white,

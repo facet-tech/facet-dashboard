@@ -5,7 +5,7 @@ import styles from "assets/jss/nextjs-material-dashboard/views/dashboardStyle.js
 
 function Dashboard() {
   const useStyles = makeStyles(styles);
-  const classes = useStyles();
+
   return (
     <div>
       <h2>API Usage per Workspace domains</h2>
