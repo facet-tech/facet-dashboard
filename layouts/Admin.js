@@ -33,7 +33,7 @@ export default function Admin({ children, ...rest }) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
+  
   const getRoute = () => {
     return router.pathname !== "/admin/maps";
   };
@@ -80,11 +80,15 @@ export default function Admin({ children, ...rest }) {
             handleDrawerToggle={handleDrawerToggle}
             {...rest}
           />
-          <div className={classes.content}>
-            <div className={classes.container}>{children}</div>
-          </div>
-          <div className={classes.map}>{children}</div>
-          <Footer />
+
+          {getRoute() ? (
+            <div className={classes.content}>
+              <div className={classes.container}>{children}</div>
+            </div>
+          ) : (
+              <div className={classes.map}>{children}</div>
+            )}
+          {getRoute() ? <Footer /> : null}
         </div>
       </div>
     </AppProvider>
