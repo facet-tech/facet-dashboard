@@ -15,7 +15,6 @@ const Authentication = () => {
     const router = useRouter();
     const { currAuthState } = useContext(AppContext);
     let displayElement;
-    console.log('EEE!',currAuthState);
     if (currAuthState === authStateConstant.signedIn) {
         router.push('/dashboard')
     } else if (currAuthState === authStateConstant.signingIn) {
@@ -33,7 +32,7 @@ const Authentication = () => {
     }
 
     return <>
-          {displayElement}
+        {displayElement}
     </>
 }
 

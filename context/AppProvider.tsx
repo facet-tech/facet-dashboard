@@ -5,6 +5,7 @@ import FacetSnackbar from '../shared/components/FacetSnackbar';
 import { Auth } from 'aws-amplify';
 import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
+import { useRouter } from 'next/router';
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -15,13 +16,18 @@ const snackbarConfig = {
 export default function AppProvider({ children }) {
     const [currAuthState, setCurrAuthState] = useState(authStateConstant.signingIn);
     const [isCurrentlyLoggedIn, setIsCurrentlyLoggedIn] = useState(false);
+    const router = useRouter();
 
     const isMounted = useIsMounted();
     useEffect(() => {
         if (isMounted.current) {
             (async () => {
                 const loggedIn = await Auth.currentUserInfo();
-                setIsCurrentlyLoggedIn(Boolean(loggedIn));
+                const loggedInVal = Boolean(loggedIn);
+                if (!loggedInVal) {
+                    router.push('/authentication')
+                }
+                setIsCurrentlyLoggedIn(loggedInVal);
             })()
         }
     }, []);

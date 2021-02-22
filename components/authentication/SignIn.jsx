@@ -35,7 +35,6 @@ export default () => {
   password.current = watch('password', '');
 
   const onSubmit = async (data) => {
-    console.log("@ONSUBMIT");
     setSubmitting(true);
     const { email, password } = data;
     try {

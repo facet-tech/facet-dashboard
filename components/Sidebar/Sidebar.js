@@ -15,6 +15,7 @@ import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.js";
 import RTLNavbarLinks from "components/Navbars/RTLNavbarLinks.js";
 import Button from "@material-ui/core/Button";
 import styles from "assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
+import { Auth } from 'aws-amplify';
 
 export default function Sidebar(props) {
   // used for checking current route
@@ -133,9 +134,9 @@ export default function Sidebar(props) {
               color: 'white',
               textAlign: 'center'
             }}>
-              <Button style={{
-                width: '90%',
-              }}
+              <Button
+                onClick={() => { Auth.signOut() }}
+                style={{ width: '90%' }}
                 variant="contained"
                 color="white">
                 Logout
