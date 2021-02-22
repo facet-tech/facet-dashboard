@@ -4,12 +4,9 @@ import { useForm } from 'react-hook-form';
 import { Typography, makeStyles } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import {
-  authState as authStateConstant, storage, api as apiConstant, color,
+  authState as authStateConstant, api as apiConstant, color,
 } from '../../shared/constant';
 import AppContext from '../../context/AppContext';
-// import triggerDOMReload from '../shared/popup/triggerDOMReload';
-// import { setKeyInLocalStorage } from '../shared/loadLocalStorage';
-// import { getOrCreateWorkspace } from '../../services/facetApiService';
 import FacetInput from '../../shared/components/FacetInput';
 import FacetLabel from '../../shared/components/FacetLabel';
 import FacetButton from '../../shared/components/FacetButton';

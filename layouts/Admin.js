@@ -33,9 +33,11 @@ export default function Admin({ children, ...rest }) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const getRoute = () => {
     return router.pathname !== "/admin/maps";
   };
+
   const resizeFunction = () => {
     if (window.innerWidth >= 960) {
       setMobileOpen(false);
@@ -78,15 +80,11 @@ export default function Admin({ children, ...rest }) {
             handleDrawerToggle={handleDrawerToggle}
             {...rest}
           />
-
-          {getRoute() ? (
-            <div className={classes.content}>
-              <div className={classes.container}>{children}</div>
-            </div>
-          ) : (
-              <div className={classes.map}>{children}</div>
-            )}
-          {getRoute() ? <Footer /> : null}
+          <div className={classes.content}>
+            <div className={classes.container}>{children}</div>
+          </div>
+          <div className={classes.map}>{children}</div>
+          <Footer />
         </div>
       </div>
     </AppProvider>
