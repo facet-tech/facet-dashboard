@@ -1,14 +1,11 @@
 import { useContext } from 'react'
 import SignIn from '../../components/authentication/SignIn'
-import AppProvider from '../../context/AppProvider';
-import { authState, authState as authStateConstant } from '../../shared/constant';
-import Admin from '../../layouts/Admin'
+import { authState as authStateConstant } from '../../shared/constant';
 import Signup from '../../components/authentication/Signup';
 import ConfirmationCode from '../../components/authentication/ConfirmationCode';
 import ForgotPassword from '../../components/authentication/ForgotPassword';
 import PasswordReset from '../../components/authentication/PasswordReset';
 import AppContext from '../../context/AppContext';
-import Dashboard from '../../pages/dashboard';
 import { useRouter } from 'next/router';
 
 const Authentication = () => {
