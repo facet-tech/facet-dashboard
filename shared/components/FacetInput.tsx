@@ -23,15 +23,14 @@ const CustomInput = withStyles(
                 transitionProperty: 'background-color, color',
             },
             '&::placeholder': {
-                // fontStyle: 'italic',
             },
         },
     }
 )(Input);
 
 const defaultColor = {
-    color: color.primaryGray,
-    backgroundColor: color.secondaryGray,
+    color: color.white,
+    backgroundColor: color.grayA,
     border: `.124rem solid ${color.black}`
 };
 
@@ -39,7 +38,6 @@ export const electricColor = {
     color: color.black,
     backgroundColor: color.white,
 };
-
 
 const FacetInput = ({
     width = '100%',
@@ -53,6 +51,7 @@ const FacetInput = ({
 
     const innerElement = <div>
         <CustomInput
+            type={type}
             id={id}
             name={name}
             disableUnderline={true}

@@ -13,6 +13,7 @@ import routes from "routes.js";
 import styles from "assets/jss/nextjs-material-dashboard/layouts/adminStyle.js";
 import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/facet_primary.svg";
+import AppProvider from "../context/AppProvider";
 
 let ps;
 
@@ -32,9 +33,11 @@ export default function Admin({ children, ...rest }) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  
   const getRoute = () => {
     return router.pathname !== "/admin/maps";
   };
+
   const resizeFunction = () => {
     if (window.innerWidth >= 960) {
       setMobileOpen(false);
@@ -60,32 +63,34 @@ export default function Admin({ children, ...rest }) {
   }, [mainPanel]);
 
   return (
-    <div className={classes.wrapper}>
-      <Sidebar
-        routes={routes}
-        logo={logo}
-        image={image}
-        handleDrawerToggle={handleDrawerToggle}
-        open={mobileOpen}
-        color={color}
-        {...rest}
-      />
-      <div className={classes.mainPanel} ref={mainPanel}>
-        <Navbar
+    <AppProvider>
+      <div className={classes.wrapper}>
+        <Sidebar
           routes={routes}
+          logo={logo}
+          image={image}
           handleDrawerToggle={handleDrawerToggle}
+          open={mobileOpen}
+          color={color}
           {...rest}
         />
+        <div className={classes.mainPanel} ref={mainPanel}>
+          <Navbar
+            routes={routes}
+            handleDrawerToggle={handleDrawerToggle}
+            {...rest}
+          />
 
-        {getRoute() ? (
-          <div className={classes.content}>
-            <div className={classes.container}>{children}</div>
-          </div>
-        ) : (
-            <div className={classes.map}>{children}</div>
-          )}
-        {getRoute() ? <Footer /> : null}
+          {getRoute() ? (
+            <div className={classes.content}>
+              <div className={classes.container}>{children}</div>
+            </div>
+          ) : (
+              <div className={classes.map}>{children}</div>
+            )}
+          {getRoute() ? <Footer /> : null}
+        </div>
       </div>
-    </div>
+    </AppProvider>
   );
 }

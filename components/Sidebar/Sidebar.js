@@ -15,14 +15,14 @@ import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.js";
 import RTLNavbarLinks from "components/Navbars/RTLNavbarLinks.js";
 import Button from "@material-ui/core/Button";
 import styles from "assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
+import { Auth } from 'aws-amplify';
+import Router from "next/router";
+import FacetButton from '../../shared/components/FacetButton';
 
 export default function Sidebar(props) {
-  // used for checking current route
   const router = useRouter();
-  // creates styles for this component
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  // verifies if routeName is the one active (in browser input)
   function activeRoute(routeName) {
     return router.route.indexOf(routeName) > -1 ? true : false;
   }
@@ -133,13 +133,18 @@ export default function Sidebar(props) {
               color: 'white',
               textAlign: 'center'
             }}>
-              <Button style={{
-                width: '90%',
-              }}
+              <FacetButton
+                onClick={async () => {
+                  await Auth.signOut();
+                  Router.push("/authentication");
+                }}
+                style={{ width: '90%' }}
                 variant="contained"
-                color="white">
-                Logout
-              </Button>
+                color="white"
+                text="Logout"
+              >
+
+              </FacetButton>
             </div>
           </div>
           {image !== undefined ? (

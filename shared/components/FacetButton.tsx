@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({ root: {} }));
 
 const defaultColorBtnStyle = {
     color: color.black,
-    backgroundColor: color.white,
+    backgroundColor: color.ice,
     hoverBgColor: color.electricB,
     border: 'none'
 };
@@ -40,14 +40,6 @@ export const electricBtnColor = {
     hoverBgColor: color.electricB,
     border: `${defaultColorBtnStyle.border}`
 };
-
-// @deprecated
-export const greenBtnColor = {
-    color: color.black,
-    backgroundColor: color.green,
-    hoverBgColor: color.darkerGreen,
-    border: `${defaultColorBtnStyle.border}`
-}
 
 export const whiteBtnColor = {
     color: color.black,
