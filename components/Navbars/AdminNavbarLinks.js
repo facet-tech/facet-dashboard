@@ -7,7 +7,7 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Poppers from "@material-ui/core/Popper";
-import styles from "assets/jss/nextjs-material-dashboard/components/headerLinksStyle.js";
+import styles from "../../assets/jss/nextjs-material-dashboard/components/headerLinksStyle.js";
 
 export default function AdminNavbarLinks() {
   const useStyles = makeStyles(styles);
