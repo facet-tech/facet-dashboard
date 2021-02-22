@@ -6,13 +6,13 @@ import "perfect-scrollbar/css/perfect-scrollbar.css";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
-import Navbar from "components/Navbars/Navbar.js";
-import Footer from "components/Footer/Footer.js";
-import Sidebar from "components/Sidebar/Sidebar.js";
-import routes from "routes.js";
-import styles from "assets/jss/nextjs-material-dashboard/layouts/adminStyle.js";
-import bgImage from "assets/img/sidebar-2.jpg";
-import logo from "assets/img/facet_primary.svg";
+import Navbar from "../components/Navbars/Navbar.js";
+import Footer from "../components/Footer/Footer.js";
+import Sidebar from "../components/Sidebar/Sidebar.js";
+import routes from "../routes.js";
+import styles from "../assets/jss/nextjs-material-dashboard/layouts/adminStyle.js";
+import bgImage from "../assets/img/sidebar-2.jpg";
+import logo from "../assets/img/facet_primary.svg";
 import AppProvider from "../context/AppProvider";
 
 let ps;
@@ -33,7 +33,7 @@ export default function Admin({ children, ...rest }) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  
+
   const getRoute = () => {
     return router.pathname !== "/admin/maps";
   };

@@ -6,8 +6,17 @@ const webpack = require("webpack");
 const path = require("path");
 
 module.exports = withPlugins([[withSass], [withImages], [withCSS]], {
-  webpack(config, options) {
-    config.resolve.modules.push(path.resolve("./"));
-    return config;
+  exportPathMap: async function (
+    defaultPathMap, { dev, dir, outDir, distDir, buildId }
+  ) {
+    return {
+      '/': { page: '/' },
+      '/authentication': { page: '/authentication' },
+      '/dashboard': { page: '/dashboard' },
+      '/user-profile': { page: '/user-profile' },
+      '/payment': { page: '/payment' },
+    }
   },
+  trailingSlash: true,
+
 });

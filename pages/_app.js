@@ -1,7 +1,7 @@
 import React from "react";
 import App from "next/app";
 import Head from "next/head";
-import "assets/css/nextjs-material-dashboard.css?v=1.1.0";
+import "../assets/css/nextjs-material-dashboard.css?v=1.1.0";
 import { createGlobalStyle } from 'styled-components'
 import Amplify from 'aws-amplify';
 import aws_exports from '../aws-exports';

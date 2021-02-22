@@ -2,11 +2,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Dashboard from "@material-ui/icons/Dashboard";
 import Search from "@material-ui/icons/Search";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "components/CustomButtons/Button.js";
-import useWindowSize from "components/Hooks/useWindowSize.js";
-
-import styles from "assets/jss/nextjs-material-dashboard/components/rtlHeaderLinksStyle.js";
+import CustomInput from "../../components/CustomInput/CustomInput.js";
+import Button from "../../components/CustomButtons/Button.js";
+import useWindowSize from "../../components/Hooks/useWindowSize.js";
+import styles from "../../assets/jss/nextjs-material-dashboard/components/rtlHeaderLinksStyle.js";
 
 export default function RTLNavbarLinks() {
   const size = useWindowSize();
