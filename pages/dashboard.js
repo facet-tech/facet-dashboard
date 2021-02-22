@@ -9,10 +9,6 @@ function Dashboard() {
   return (
     <div>
       <h2>API Usage per Workspace domains</h2>
-      <h2></h2>
-      <ul>
-        <li> <a href='https://facet.run'>https://facet.run</a> : 1242 Requests</li>
-      </ul>
     </div>
   );
 }

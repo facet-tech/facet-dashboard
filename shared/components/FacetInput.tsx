@@ -29,7 +29,7 @@ const CustomInput = withStyles(
 )(Input);
 
 const defaultColor = {
-    color: color.primaryGray,
+    color: color.white,
     backgroundColor: color.grayA,
     border: `.124rem solid ${color.black}`
 };

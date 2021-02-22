@@ -16,6 +16,8 @@ import RTLNavbarLinks from "components/Navbars/RTLNavbarLinks.js";
 import Button from "@material-ui/core/Button";
 import styles from "assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
 import { Auth } from 'aws-amplify';
+import Router from "next/router";
+import FacetButton from '../../shared/components/FacetButton';
 
 export default function Sidebar(props) {
   // used for checking current route
@@ -134,13 +136,18 @@ export default function Sidebar(props) {
               color: 'white',
               textAlign: 'center'
             }}>
-              <Button
-                onClick={() => { Auth.signOut() }}
+              <FacetButton
+                onClick={async () => {
+                  await Auth.signOut();
+                  Router.push("/authentication");
+                }}
                 style={{ width: '90%' }}
                 variant="contained"
-                color="white">
-                Logout
-              </Button>
+                color="white"
+                text="Logout"
+              >
+
+              </FacetButton>
             </div>
           </div>
           {image !== undefined ? (
