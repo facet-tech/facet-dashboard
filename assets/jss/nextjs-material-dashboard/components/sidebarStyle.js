@@ -1,3 +1,4 @@
+import { color } from "../../../../shared/constant.js";
 import {
   drawerWidth,
   transition,
@@ -17,6 +18,7 @@ import {
 
 const sidebarStyle = (theme) => ({
   drawerPaper: {
+    backgroundColor: color.black,
     border: "none",
     position: "fixed",
     top: "0",

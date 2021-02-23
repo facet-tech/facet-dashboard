@@ -68,7 +68,6 @@ export default function Admin({ children, ...rest }) {
         <Sidebar
           routes={routes}
           logo={logo}
-          image={image}
           handleDrawerToggle={handleDrawerToggle}
           open={mobileOpen}
           color={color}
