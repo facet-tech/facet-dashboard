@@ -13,7 +13,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Icon from "@material-ui/core/Icon";
 import AdminNavbarLinks from "../../components/Navbars/AdminNavbarLinks.js";
 import RTLNavbarLinks from "../../components/Navbars/RTLNavbarLinks.js";
-import Button from "@material-ui/core/Button";
 import styles from "../../assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
 import { Auth } from 'aws-amplify';
 import Router from "next/router";
@@ -80,13 +79,7 @@ export default function Sidebar(props) {
       })}
     </List>
   );
-  var brand = (
-    <div className={classes.logo}>
-      <div className={classes.logoImage}>
-        <img src={logo} alt="logo" className={classes.img} />
-      </div>
-    </div>
-  );
+
   return (
     <div>
       <Hidden mdUp implementation="css">
@@ -104,7 +97,6 @@ export default function Sidebar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
         >
-          {brand}
           <div className={classes.sidebarWrapper}>
             {props.rtlActive ? <RTLNavbarLinks /> : <AdminNavbarLinks />}
             {links}
@@ -122,7 +114,6 @@ export default function Sidebar(props) {
             }),
           }}
         >
-          {brand}
           <div className={classes.sidebarWrapper}>
             {links}
             <div style={{

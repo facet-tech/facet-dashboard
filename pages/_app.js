@@ -5,6 +5,7 @@ import "../assets/css/nextjs-material-dashboard.css?v=1.1.0";
 import { createGlobalStyle } from 'styled-components'
 import Amplify from 'aws-amplify';
 import aws_exports from '../aws-exports';
+import FacetHead from './FacetHead';
 
 Amplify.configure(aws_exports);
 
@@ -35,6 +36,7 @@ export default class MyApp extends App {
     return (
       <React.Fragment>
         <GlobalStyle />
+        <FacetHead />
         <Head>
           <meta
             name="viewport"
