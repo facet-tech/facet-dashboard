@@ -10,7 +10,6 @@ function Dashboard() {
   useEffect(() => {
     (async () => {
       const userResponse = await getUser();
-      console.log('CHECK', userResponse);
       const { whitelistedDomain } = userResponse?.response?.attribute || [];
       setWorkspaceDomains(whitelistedDomain);
     })()

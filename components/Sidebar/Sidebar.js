@@ -14,14 +14,15 @@ import Icon from "@material-ui/core/Icon";
 import AdminNavbarLinks from "../../components/Navbars/AdminNavbarLinks.js";
 import RTLNavbarLinks from "../../components/Navbars/RTLNavbarLinks.js";
 import styles from "../../assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
-import { Auth } from 'aws-amplify';
-import Router from "next/router";
-import FacetButton from '../../shared/components/FacetButton';
-
+import { Divider } from "@material-ui/core";
+import FacetDivider from '../../shared/components/FacetDivider';
 export default function Sidebar(props) {
+  // used for checking current route
   const router = useRouter();
+  // creates styles for this component
   const useStyles = makeStyles(styles);
   const classes = useStyles();
+  // verifies if routeName is the one active (in browser input)
   function activeRoute(routeName) {
     return router.route.indexOf(routeName) > -1 ? true : false;
   }
@@ -79,7 +80,22 @@ export default function Sidebar(props) {
       })}
     </List>
   );
-
+  var brand = (
+    <div className={classes.logo}>
+      <a
+        href="https://www.creative-tim.com?ref=njsmd-sidebar"
+        className={classNames(classes.logoLink, {
+          [classes.logoLinkRTL]: props.rtlActive,
+        })}
+        target="_blank"
+      >
+        <div className={classes.logoImage}>
+          <img src={logo} alt="logo" className={classes.img} />
+        </div>
+        {logoText}
+      </a>
+    </div>
+  );
   return (
     <div>
       <Hidden mdUp implementation="css">
@@ -97,10 +113,19 @@ export default function Sidebar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
         >
+          {brand}
+          <br/>
+          <Divider />
           <div className={classes.sidebarWrapper}>
             {props.rtlActive ? <RTLNavbarLinks /> : <AdminNavbarLinks />}
             {links}
           </div>
+          {image !== undefined ? (
+            <div
+              className={classes.background}
+              style={{ backgroundImage: "url(" + image + ")" }}
+            />
+          ) : null}
         </Drawer>
       </Hidden>
       <Hidden smDown implementation="css">
@@ -114,30 +139,10 @@ export default function Sidebar(props) {
             }),
           }}
         >
-          <div className={classes.sidebarWrapper}>
-            {links}
-            <div style={{
-              width: '100%',
-              position: 'absolute',
-              bottom: '1rem',
-              left: 0,
-              color: 'white',
-              textAlign: 'center'
-            }}>
-              <FacetButton
-                onClick={async () => {
-                  await Auth.signOut();
-                  Router.push("/authentication");
-                }}
-                style={{ width: '90%' }}
-                variant="contained"
-                color="white"
-                text="Logout"
-              >
-
-              </FacetButton>
-            </div>
-          </div>
+          {brand}
+          <br/>
+          <FacetDivider />
+          <div className={classes.sidebarWrapper}>{links}</div>
           {image !== undefined ? (
             <div
               className={classes.background}

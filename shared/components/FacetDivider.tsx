@@ -3,7 +3,7 @@ import { color } from "../constant";
 
 const useStyles = makeStyles(() => ({
     divider: {
-        backgroundColor: '#C0C0C0',
+        backgroundColor: color.lightGray,
     },
 }));
 

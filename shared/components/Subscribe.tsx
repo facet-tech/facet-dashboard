@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { color, snackbar } from "../constant";
 import FacetFormError from "./FacetFormError";
-import {Input} from "@material-ui/core";
+import { Input } from "@material-ui/core";
 
 const MainForm = styled.form`
     text-align: center;
@@ -74,7 +74,7 @@ export default function StayUpdated() {
         <CoreDiv>
             <MainForm onSubmit={(e) => e.preventDefault()}>
                 <div>
-                    <Input /* A hidden element to send the "subject" (purpose) of the notification to API.  Don't delete. */ style={{display: "none"}} value="Subscribe Request" name={"subject"} inputRef={register()}/>
+                    <Input /* A hidden element to send the "subject" (purpose) of the notification to API.  Don't delete. */ style={{ display: "none" }} value="Subscribe Request" name={"subject"} inputRef={register()} />
                     <FacetInput extraStyle={{ maxWidth: "30rem" }} value={email} onChange={(e) => { setEmail(e.target.value) }}
                         placeholder="email"
                         /* The name attribute is the json key sent to the API. Don't change unless the API is updated.*/
