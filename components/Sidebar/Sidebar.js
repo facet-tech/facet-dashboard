@@ -82,18 +82,10 @@ export default function Sidebar(props) {
   );
   var brand = (
     <div className={classes.logo}>
-      <a
-        href="https://www.creative-tim.com?ref=njsmd-sidebar"
-        className={classNames(classes.logoLink, {
-          [classes.logoLinkRTL]: props.rtlActive,
-        })}
-        target="_blank"
-      >
-        <div className={classes.logoImage}>
-          <img src={logo} alt="logo" className={classes.img} />
-        </div>
-        {logoText}
-      </a>
+      <div className={classes.logoImage}>
+        <img src={logo} alt="logo" className={classes.img} />
+      </div>
+      {logoText}
     </div>
   );
   return (
@@ -114,7 +106,7 @@ export default function Sidebar(props) {
           }}
         >
           {brand}
-          <br/>
+          <br />
           <Divider />
           <div className={classes.sidebarWrapper}>
             {props.rtlActive ? <RTLNavbarLinks /> : <AdminNavbarLinks />}
@@ -140,7 +132,7 @@ export default function Sidebar(props) {
           }}
         >
           {brand}
-          <br/>
+          <br />
           <FacetDivider />
           <div className={classes.sidebarWrapper}>{links}</div>
           {image !== undefined ? (

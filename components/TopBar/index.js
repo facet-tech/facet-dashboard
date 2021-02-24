@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import IconButton from "@material-ui/core/IconButton";
 import PersonIcon from "@material-ui/icons/Person";
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { Auth } from 'aws-amplify';
+import Router from "next/router";
 
 const CoreDiv = styled.div`
     display: grid;
@@ -22,6 +26,18 @@ const StyledDiv = styled.div`
 `;
 
 const TopBar = () => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+
     return <CoreDiv>
         <StyledDiv>
             <div>
@@ -29,15 +45,29 @@ const TopBar = () => {
                     color="inherit"
                     aria-label="open drawer"
                 >
-                    <PersonIcon />
+                    <NotificationsIcon />
                 </IconButton>
             </div>
             <div>
                 <IconButton
+                    onClick={handleClick}
                     color="inherit"
                     aria-label="open drawer"
                 >
-                    <NotificationsIcon />
+                    <PersonIcon />
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        <MenuItem onClick={async () => {
+                            await Auth.signOut();
+                            Router.push("/authentication");
+                        }}
+                        >Logout</MenuItem>
+                    </Menu>
                 </IconButton>
             </div>
 
