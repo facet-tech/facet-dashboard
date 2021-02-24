@@ -140,7 +140,10 @@ const getOrPostDomain = async (workspaceId) => {
 
 const getUser = async () => {
     const currentUserInfo = await Auth.currentUserInfo();
-    const email = currentUserInfo.username;
+    const email = currentUserInfo?.username;
+    if (!email) {
+        return;
+    }
     let suffix = `/user?email=${email}`;
     const getUserResponse = await triggerApiCall(HTTPMethods.GET, suffix);
 
@@ -172,20 +175,9 @@ const removeWhitelistedDomain = async (domain) => {
     // });
 }
 
-const getOrCreateWorkspace = async (email, readFromStorage = true) => {
+const getOrCreateWorkspace = async (email) => {
     try {
         let suffix = `/user?email=${email}`;
-        if (readFromStorage) {
-            // const { workspaceId } = await getKeyFromLocalStorage(storage.sessionData) || {};
-            // if (workspaceId) {
-            //     const responseObject = {
-            //         response: {
-            //             id: workspaceId
-            //         }
-            //     };
-            //     return responseObject;
-            // }
-        }
         const getUserResponse = await triggerApiCall(HTTPMethods.GET, suffix);
         // create new user
         if (getUserResponse && getUserResponse.status >= 400 && getUserResponse.status <= 500) {

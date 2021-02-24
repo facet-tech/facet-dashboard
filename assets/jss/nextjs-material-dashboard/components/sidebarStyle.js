@@ -97,19 +97,9 @@ const sidebarStyle = (theme) => ({
   },
   logoImage: {
     textAlign: 'center',
-    // width: "30px",
-    // display: "inline-block",
-    // maxHeight: "30px",
-    // marginLeft: "10px",
-    // marginRight: "15px",
   },
   img: {
     width: "65%",
-    // width: "100%",
-    // top: "22px",
-    // position: "absolute",
-    // verticalAlign: "middle",
-    // border: "0",
   },
   background: {
     position: "absolute",

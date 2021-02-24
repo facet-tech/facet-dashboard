@@ -38,9 +38,6 @@ export default () => {
           email,
         }
       });
-      // setKeyInLocalStorage(LoginTypes.email, email);
-      // await setKeyInLocalStorage(storage.username, email);
-      // await setKeyInLocalStorage(storage.password, password);
       setCurrAuthState(authStateConstant.confirmingSignup);
       setSubmitting(false);
     } catch (error) {
