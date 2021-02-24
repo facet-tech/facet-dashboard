@@ -59,7 +59,6 @@ export default () => {
 
   return (
     <>
-      <br />
       <FacetFormContainer>
         <h3 style={{ color: color.ice }}>Reset Password</h3>
         <div>
