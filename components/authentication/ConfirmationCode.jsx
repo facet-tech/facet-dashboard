@@ -17,7 +17,7 @@ import AppContext from "../../context/AppContext";
 export default () => {
     const { enqueueSnackbar } = useSnackbar();
     const { authObject } = React.useContext(AppContext);
-    const { setCurrAuthState, persistLogin } = React.useContext(AppContext);
+    const { setCurrAuthState } = React.useContext(AppContext);
     const { register, errors, handleSubmit, watch } = useForm({});
     const [serverError, setServerError] = useState(undefined);
     const [submitting, setSubmitting] = useState(false);
@@ -30,7 +30,6 @@ export default () => {
             const { confirmationCode } = data;
             await Auth.confirmSignUp(authObject.email, confirmationCode);
             await getOrCreateWorkspace(authObject.email);
-            await persistLogin(authObject.email, authObject.password);
             setCurrAuthState(authStateConstant.signedIn);
             setSubmitting(false);
         } catch (error) {
@@ -53,13 +52,10 @@ export default () => {
 
     return (
         <>
-            <br />
             <FacetFormContainer>
                 <h3 style={{ color: color.ice }}>Authorization Key</h3>
                 <MarginTop value='.5rem' />
                 <FacetLabel text="An authorization key was sent to your email." />
-                <br />
-                <FacetLink color={color.electricB} text="Resend email" onClick={() => { resendConfirmationCode() }} />
                 <br />
                 <br />
                 <form onSubmit={e => e.preventDefault()}>

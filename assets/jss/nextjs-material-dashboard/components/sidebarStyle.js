@@ -1,3 +1,4 @@
+import { color } from "../../../../shared/constant.js";
 import {
   drawerWidth,
   transition,
@@ -17,6 +18,7 @@ import {
 
 const sidebarStyle = (theme) => ({
   drawerPaper: {
+    backgroundColor: color.black,
     border: "none",
     position: "fixed",
     top: "0",
@@ -94,18 +96,10 @@ const sidebarStyle = (theme) => ({
     textAlign: "right",
   },
   logoImage: {
-    width: "30px",
-    display: "inline-block",
-    maxHeight: "30px",
-    marginLeft: "10px",
-    marginRight: "15px",
+    textAlign: 'center',
   },
   img: {
-    width: "35px",
-    top: "22px",
-    position: "absolute",
-    verticalAlign: "middle",
-    border: "0",
+    width: "65%",
   },
   background: {
     position: "absolute",

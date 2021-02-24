@@ -20,6 +20,7 @@ const BorderDiv = styled.div`
   border: 2px solid ${color.ice};
   padding: 1rem;
   width: 60%;
+  max-width: 50rem;
 `;
 
 const useStyles = makeStyles(() => ({

@@ -6,6 +6,8 @@ export interface AppState {
     setCurrAuthState: undefined,
     isCurrentlyLoggedIn: false,
     setIsCurrentlyLoggedIn: undefined,
+    authObject: any,
+    setAuthObject: undefined,
 }
 
 const AppContext = React.createContext({
@@ -13,6 +15,8 @@ const AppContext = React.createContext({
     setCurrAuthState: undefined,
     isCurrentlyLoggedIn: false,
     setIsCurrentlyLoggedIn: undefined,
+    authObject: undefined,
+    setAuthObject: undefined,
 });
 
 export default AppContext;

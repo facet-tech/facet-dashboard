@@ -12,7 +12,7 @@ import Sidebar from "../components/Sidebar/Sidebar.js";
 import routes from "../routes.js";
 import styles from "../assets/jss/nextjs-material-dashboard/layouts/adminStyle.js";
 import bgImage from "../assets/img/sidebar-2.jpg";
-import logo from "../assets/img/facet_primary.svg";
+import logo from "../assets/img/facet_typography.svg";
 import AppProvider from "../context/AppProvider";
 
 let ps;
@@ -68,7 +68,6 @@ export default function Admin({ children, ...rest }) {
         <Sidebar
           routes={routes}
           logo={logo}
-          image={image}
           handleDrawerToggle={handleDrawerToggle}
           open={mobileOpen}
           color={color}
@@ -88,7 +87,6 @@ export default function Admin({ children, ...rest }) {
           ) : (
               <div className={classes.map}>{children}</div>
             )}
-          {getRoute() ? <Footer /> : null}
         </div>
       </div>
     </AppProvider>

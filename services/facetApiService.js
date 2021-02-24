@@ -3,6 +3,7 @@ import { api } from '../shared/constant';
 import MockService from './MockService'
 import isDevelopment from "../utils/isDevelopment";
 import AmplifyService from "./AmplifyService";
+import { Auth } from "aws-amplify";
 
 /**
  * @param {domainId}
@@ -138,12 +139,15 @@ const getOrPostDomain = async (workspaceId) => {
 }
 
 const getUser = async () => {
-    // const email = await getKeyFromLocalStorage(storage.username);
+    const currentUserInfo = await Auth.currentUserInfo();
+    const email = currentUserInfo?.username;
+    if (!email) {
+        return;
+    }
+    let suffix = `/user?email=${email}`;
+    const getUserResponse = await triggerApiCall(HTTPMethods.GET, suffix);
 
-    // let suffix = `/user?email=${email}`;
-    // const getUserResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-
-    // return getUserResponse;
+    return getUserResponse;
 };
 
 const hasWhitelistedDomain = async (domain) => {
@@ -171,20 +175,9 @@ const removeWhitelistedDomain = async (domain) => {
     // });
 }
 
-const getOrCreateWorkspace = async (email, readFromStorage = true) => {
+const getOrCreateWorkspace = async (email) => {
     try {
         let suffix = `/user?email=${email}`;
-        if (readFromStorage) {
-            // const { workspaceId } = await getKeyFromLocalStorage(storage.sessionData) || {};
-            // if (workspaceId) {
-            //     const responseObject = {
-            //         response: {
-            //             id: workspaceId
-            //         }
-            //     };
-            //     return responseObject;
-            // }
-        }
         const getUserResponse = await triggerApiCall(HTTPMethods.GET, suffix);
         // create new user
         if (getUserResponse && getUserResponse.status >= 400 && getUserResponse.status <= 500) {
@@ -318,7 +311,7 @@ const saveFacets = async (facetMap, nonRolledOutFacets, enqueueSnackbar, globalF
 
 export {
     constructPayload, triggerApiCall, createDomain,
-    getDomain, getFacet, getOrPostDomain, deleteFacet,
+    getDomain, getFacet, getOrPostDomain, deleteFacet, getUser,
     getOrCreateWorkspace, deleteUser, postUser,
     saveFacets, convertGetFacetResponseToMap, addWhiteListedDomain,
     hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse
