@@ -18,8 +18,6 @@ export default function AppProvider({ children }) {
     const [isCurrentlyLoggedIn, setIsCurrentlyLoggedIn] = useState(false);
     const [authObject, setAuthObject] = useState({ email: '', password: '' });
     const [backendFacets, setBackendFacets] = useState([]);
-
-
     const router = useRouter();
 
     const isMounted = useIsMounted();
