@@ -1,13 +1,19 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
-import WebIcon from '@material-ui/icons/Web';
 import PaymentIcon from '@material-ui/icons/Payment';
+import DnsIcon from '@material-ui/icons/Dns';
 
 const dashboardRoutes = [
   {
     path: "/dashboard",
-    name: "Dashboard",
+    name: "Frontend",
     icon: Dashboard,
+    layout: "",
+  },
+  {
+    path: "/backend",
+    name: "Backend",
+    icon: DnsIcon,
     layout: "",
   },
   {

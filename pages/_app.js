@@ -6,6 +6,7 @@ import { createGlobalStyle } from 'styled-components'
 import Amplify from 'aws-amplify';
 import aws_exports from '../aws-exports';
 import FacetHead from './FacetHead';
+import AppProvider from "../context/AppProvider";
 
 Amplify.configure(aws_exports);
 
@@ -35,20 +36,21 @@ export default class MyApp extends App {
 
     return (
       <React.Fragment>
-        <GlobalStyle />
-        <FacetHead />
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-          <title>Facet Dashboard</title>
-        </Head>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-        {/* make height full */}
-        <style global jsx>{`
+        <AppProvider>
+          <GlobalStyle />
+          <FacetHead />
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            />
+            <title>Facet Dashboard</title>
+          </Head>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          {/* make height full */}
+          <style global jsx>{`
                 html,
                 body,
                 body > div:first-child,
@@ -57,6 +59,7 @@ export default class MyApp extends App {
                     height: 100%;
                 }
             `}</style>
+        </AppProvider>
       </React.Fragment>
     );
   }
