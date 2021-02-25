@@ -6,6 +6,8 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AppContext from '../../../context/AppContext';
+import styled from 'styled-components';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -19,15 +21,27 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+const StyledGrid = styled.div`
+    display: grid;
+    gap: .5rem;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit);
+`;
+
+const StyledInnerDiv = styled.div`
+    display: grid;
+    gap: .5rem;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit);
+`
+
 const BackendFacetCarousel = () => {
     const { backendFacets } = useContext(AppContext);
-    console.log('backendFacets', backendFacets);
     const classes = useStyles();
     return <div>
         <div className={classes.root}>
             {backendFacets?.map(backendFacet => {
                 const value = backendFacet.value;
-                console.log('value!', value)
                 const innerElement = value.map(element => {
                     return <Accordion>
                         <AccordionSummary
@@ -37,7 +51,18 @@ const BackendFacetCarousel = () => {
                         >
                             <Typography className={classes.heading}>{element.fullyQualifiedName}</Typography>
                         </AccordionSummary>
-                        <AccordionDetails>dw
+                        <AccordionDetails>
+                            <StyledGrid>
+                                {element?.signature?.map(sig => {
+                                    return <div>
+                                        {sig.name}
+                                        <Checkbox
+                                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                                            checked={sig.enabled}
+                                        />
+                                    </div>
+                                })}
+                            </StyledGrid>
                         </AccordionDetails>
                     </Accordion>
                 })
