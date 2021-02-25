@@ -1,5 +1,5 @@
 import React from 'react'
-import { authState as authStateConstant, color, snackbar } from '../shared/constant';
+import { authState as authStateConstant } from '../shared/constant';
 
 export interface AppState {
     currAuthState: string;
@@ -17,6 +17,8 @@ const AppContext = React.createContext({
     setIsCurrentlyLoggedIn: undefined,
     authObject: undefined,
     setAuthObject: undefined,
+    backendFacets: [],
+    setBackendFacets: undefined
 });
 
 export default AppContext;

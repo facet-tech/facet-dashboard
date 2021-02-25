@@ -17,6 +17,8 @@ export default function AppProvider({ children }) {
     const [currAuthState, setCurrAuthState] = useState(authStateConstant.signingIn);
     const [isCurrentlyLoggedIn, setIsCurrentlyLoggedIn] = useState(false);
     const [authObject, setAuthObject] = useState({ email: '', password: '' });
+    const [backendFacets, setBackendFacets] = useState([]);
+
 
     const router = useRouter();
 
@@ -37,7 +39,7 @@ export default function AppProvider({ children }) {
     return <AppContext.Provider value={{
         currAuthState, setCurrAuthState,
         isCurrentlyLoggedIn, setIsCurrentlyLoggedIn,
-        authObject, setAuthObject
+        authObject, setAuthObject, backendFacets, setBackendFacets
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider

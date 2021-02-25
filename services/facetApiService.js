@@ -309,10 +309,36 @@ const saveFacets = async (facetMap, nonRolledOutFacets, enqueueSnackbar, globalF
     }
 }
 
+// http://localhost:3000/app?workspaceId=WORKSPACE~N2IzODAyNzQtZGY5OC00OTE4LWEwM2UtZGVjYmRmZTkyMTA4&id=APP~BackedTestPoc
+// facet/backend?appId={}
+const getApp = async () => {
+    const currentUserInfo = await Auth.currentUserInfo();
+    const email = currentUserInfo?.username;
+    if (!email) {
+        return;
+    }
+    const getUserResponse = await getUser(email);
+    const workspaceId = getUserResponse?.response?.workspaceId;
+    console.log('workspaceId', workspaceId);
+    let suffix = `/app?workspaceId=${workspaceId}`;
+    const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    console.log('getAppResponse', getAppResponse);
+    return getAppResponse?.response[0]?.name;
+}
+
+const getBackendFacets = async (name) => {
+    console.log('APPID', name);
+    const suffix = `/facet/backend?appId=${name}`;
+    const getBackendFacetsResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    console.log('getBackendFacetsResponse', getBackendFacetsResponse);
+    return getBackendFacetsResponse;
+}
+
 export {
-    constructPayload, triggerApiCall, createDomain,
+    constructPayload, triggerApiCall, createDomain, getApp,
     getDomain, getFacet, getOrPostDomain, deleteFacet, getUser,
     getOrCreateWorkspace, deleteUser, postUser,
     saveFacets, convertGetFacetResponseToMap, addWhiteListedDomain,
-    hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse
+    hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse,
+    getBackendFacets
 };
