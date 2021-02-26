@@ -8,6 +8,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AppContext from '../../../context/AppContext';
 import styled from 'styled-components';
 import Checkbox from '@material-ui/core/Checkbox';
+import FacetLabel from '../FacetLabel';
+import { color, fontSize } from '../../constant';
+import FacetDivider from '../FacetDivider';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,15 +28,14 @@ const StyledGrid = styled.div`
     display: grid;
     gap: .5rem;
     grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fit);
+    width: 100%;
 `;
 
 const StyledInnerDiv = styled.div`
     display: grid;
     gap: .5rem;
     grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fit);
-`
+ `;
 
 const BackendFacetCarousel = () => {
     const { backendFacets } = useContext(AppContext);
@@ -49,18 +51,31 @@ const BackendFacetCarousel = () => {
                             aria-controls={element.fullyQualifiedName + "-content"}
                             id={element.fullyQualifiedName + "-header"}
                         >
-                            <Typography className={classes.heading}>{element.fullyQualifiedName}</Typography>
+                            <Typography className={classes.heading}>{element.fullyQualifiedName}{element.interfaceSignature && ` :element.interfaceSignature[0]`}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <StyledGrid>
-                                {element?.signature?.map(sig => {
-                                    return <div>
-                                        {sig.name}
-                                        <Checkbox
-                                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                                            checked={sig.enabled}
-                                        />
+                                <StyledInnerDiv>
+                                    <div>
+                                        <FacetLabel fontSize={fontSize.medium} color={color.black} text="Name" />
                                     </div>
+                                    <div style={{ justifySelf: 'end' }}>
+                                        <FacetLabel fontSize={fontSize.medium} color={color.black} text="Enabled" />
+                                    </div>
+                                </StyledInnerDiv>
+                                <FacetDivider />
+                                {element?.signature?.map(sig => {
+                                    return <StyledInnerDiv>
+                                        <div style={{ maxWidth: '15rem' }}>
+                                            <FacetLabel fontSize={fontSize.medium} color={color.black} text={sig.signature} />
+                                        </div>
+                                        <div style={{ justifySelf: 'end' }}>
+                                            <Checkbox
+                                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                                                checked={sig.enabled}
+                                            />
+                                        </div>
+                                    </StyledInnerDiv>
                                 })}
                             </StyledGrid>
                         </AccordionDetails>
@@ -79,7 +94,6 @@ const BackendFacetCarousel = () => {
 
                 </Accordion>
             })}
-
         </div>
     </div>
 }
