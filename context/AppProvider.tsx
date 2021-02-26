@@ -34,9 +34,14 @@ export default function AppProvider({ children }) {
         }
     }, []);
 
+    const handleEnabledChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        // TODO update when state management is ready
+        // setChecked(event.target.checked);
+    };
+
     return <AppContext.Provider value={{
         currAuthState, setCurrAuthState,
-        isCurrentlyLoggedIn, setIsCurrentlyLoggedIn,
+        isCurrentlyLoggedIn, setIsCurrentlyLoggedIn, handleEnabledChange,
         authObject, setAuthObject, backendFacets, setBackendFacets
     }}>
         {/* @ts-ignore */}

@@ -38,7 +38,7 @@ const StyledInnerDiv = styled.div`
  `;
 
 const BackendFacetCarousel = () => {
-    const { backendFacets } = useContext(AppContext);
+    const { backendFacets, handleEnabledChange } = useContext(AppContext);
     const classes = useStyles();
     return <div>
         <div className={classes.root}>
@@ -73,6 +73,7 @@ const BackendFacetCarousel = () => {
                                             <Checkbox
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
                                                 checked={sig.enabled}
+                                                onChange={handleEnabledChange}
                                             />
                                         </div>
                                     </StyledInnerDiv>
