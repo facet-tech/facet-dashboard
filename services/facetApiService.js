@@ -319,18 +319,14 @@ const getApp = async () => {
     }
     const getUserResponse = await getUser(email);
     const workspaceId = getUserResponse?.response?.workspaceId;
-    console.log('workspaceId', workspaceId);
     let suffix = `/app?workspaceId=${workspaceId}`;
     const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-    console.log('getAppResponse', getAppResponse);
     return getAppResponse?.response[0]?.name;
 }
 
 const getBackendFacets = async (name) => {
-    console.log('APPID', name);
     const suffix = `/facet/backend?appId=${name}`;
     const getBackendFacetsResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-    console.log('getBackendFacetsResponse', getBackendFacetsResponse);
     return getBackendFacetsResponse;
 }
 
