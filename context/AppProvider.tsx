@@ -35,9 +35,14 @@ export default function AppProvider({ children }) {
         }
     }, []);
 
-    const handleEnabledChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        // TODO update when state management is ready
-        // setChecked(event.target.checked);
+    const handleEnabledChange = (sig, currBackendFacet) => {
+        sig.enabled = !sig.enabled;
+        console.log('sig!', sig);
+        console.log('element', currBackendFacet);
+        setBackendFacets([...currBackendFacet]);
+        // setBackendFacets([{
+        //     name: element.name
+        // }])
     };
 
     return <AppContext.Provider value={{

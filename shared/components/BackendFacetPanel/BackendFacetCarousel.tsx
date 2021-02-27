@@ -41,11 +41,12 @@ const StyledInnerDiv = styled.div`
 const SubInnerDiv = styled.div`
     display: grid;
     gap: 1%;
-    grid-template-columns: 94% 5%;
+    grid-template-columns: 97% 2%;
  `
 
 const BackendFacetCarousel = () => {
     const { backendFacets, handleEnabledChange } = useContext(AppContext);
+    console.log('AA0', backendFacets);
     const classes = useStyles();
     return <div>
         <div className={classes.root}>
@@ -76,22 +77,6 @@ const BackendFacetCarousel = () => {
                                                 </AccordionSummary>
                                                 <AccordionDetails>
                                                     <FunctionCard parameter={sig.parameter} returnType={sig.returnType} signature={sig.signature} />
-                                                    {/* <StyledGrid>
-                                                        {element?.signature?.map(sig => {
-                                                            return <StyledInnerDiv>
-                                                                <div style={{ maxWidth: '15rem' }}>
-                                                                    <FacetLabel fontSize={fontSize.medium} color={color.black} text={sig.name} />
-                                                                </div>
-                                                                <div style={{ justifySelf: 'end' }}>
-                                                                    <Checkbox
-                                                                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                                                                        checked={sig.enabled}
-                                                                        onChange={handleEnabledChange}
-                                                                    />
-                                                                </div>
-                                                            </StyledInnerDiv>
-                                                        })}
-                                                    </StyledGrid> */}
                                                 </AccordionDetails>
                                             </Accordion>
                                         </div>
@@ -99,7 +84,7 @@ const BackendFacetCarousel = () => {
                                             <Checkbox
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
                                                 checked={sig.enabled}
-                                                onChange={handleEnabledChange}
+                                                onChange={() => { handleEnabledChange(sig, backendFacets) }}
                                             />
                                         </div>
                                     </SubInnerDiv>
