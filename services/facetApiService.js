@@ -272,6 +272,7 @@ const extractFacetArray = (facetMap, nonRolledOutFacets, globalFacets) => {
         console.log(`[ERROR] [extractFacetArray]`, e)
     }
 }
+
 /**
  * 
  * @param {*} facetMap 
@@ -330,10 +331,17 @@ const getBackendFacets = async (name) => {
     return getBackendFacetsResponse;
 }
 
+const postBackendFacets = async (name, body) => {
+    const suffix = `/facet/backend`;
+    const postBackendFacetsResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    console.log('postBackendFacetsResponse', postBackendFacetsResponse);
+    return postBackendFacetsResponse;
+}
+
 export {
     constructPayload, triggerApiCall, createDomain, getApp,
     getDomain, getFacet, getOrPostDomain, deleteFacet, getUser,
-    getOrCreateWorkspace, deleteUser, postUser,
+    getOrCreateWorkspace, deleteUser, postUser, postBackendFacets,
     saveFacets, convertGetFacetResponseToMap, addWhiteListedDomain,
     hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse,
     getBackendFacets

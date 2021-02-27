@@ -6,6 +6,8 @@ import { Auth } from 'aws-amplify';
 import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
+import { postBackendFacets } from '../services/facetApiService';
+import { element } from 'prop-types';
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -40,6 +42,7 @@ export default function AppProvider({ children }) {
         console.log('sig!', sig);
         console.log('element', currBackendFacet);
         setBackendFacets([...currBackendFacet]);
+        postBackendFacets(currBackendFacet[0].name, currBackendFacet[0].value[0])
         // setBackendFacets([{
         //     name: element.name
         // }])
