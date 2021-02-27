@@ -21,31 +21,31 @@ const FunctionCard = ({ parameter, returnType, signature }) => {
                     {parameter?.map(e => {
                         return <StyledDiv>
                             <div>
-                                Name:
+                                <FacetLabel color={color.black} text="Name:" />
                             </div>
                             <div>
-                                {e.name}
+                                <FacetLabel color={color.black} text={e.name} />
                             </div>
                         </StyledDiv>
                     })}
                 </div>
             </div>
-            <div>
+            <StyledDiv>
                 <div>
-                    <FacetLabel text="Return Type: " />
+                    <FacetLabel color={color.black} text="Return Type: " />
                 </div>
                 <div>
-                    <FacetLabel text={returnType} />
+                    <FacetLabel color={color.black} text={returnType} />
                 </div>
-            </div>
-            <div>
+            </StyledDiv>
+            <StyledDiv>
                 <div>
-                    <FacetLabel text="Signature: " />
+                    <FacetLabel color={color.black} text="Signature: " />
                 </div>
                 <div>
-                    <FacetLabel text={signature} />
+                    <FacetLabel color={color.black} text={signature} />
                 </div>
-            </div>
+            </StyledDiv>
         </div>
     </>
 }

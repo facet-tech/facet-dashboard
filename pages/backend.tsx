@@ -27,9 +27,6 @@ const Backend = () => {
     return <div>
         <h2>Backend Applications</h2>
         <BackendFacetCarousel />
-        <StyledMarginDiv >
-            <FacetButton text="Save" />
-        </StyledMarginDiv>
     </div>
 }
 
