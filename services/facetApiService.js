@@ -322,13 +322,18 @@ const getApp = async () => {
     const workspaceId = getUserResponse?.response?.workspaceId;
     let suffix = `/app?workspaceId=${workspaceId}`;
     const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-    return getAppResponse?.response[0]?.name;
+    console.log('@getAppResponse', getAppResponse);
+    return getAppResponse?.response?.map(e => e?.name);
 }
 
-const getBackendFacets = async (name) => {
-    const suffix = `/facet/backend?appId=${name}`;
-    const getBackendFacetsResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-    return getBackendFacetsResponse;
+const getBackendFacets = async (appNameArray) => {
+    const promises = await appNameArray.map(async name => {
+        const suffix = `/facet/backend?appId=${name}`;
+        console.log('suffixarw', suffix);
+        const getBackendFacetsResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+        return Promise.resolve(getBackendFacetsResponse);
+    });
+    return Promise.all(promises);
 }
 
 const postBackendFacets = async (name, body) => {

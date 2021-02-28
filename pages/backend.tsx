@@ -1,15 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import AppContext from '../context/AppContext';
 import Admin from "../layouts/Admin.js";
 import { getApp, getBackendFacets } from '../services/facetApiService.js';
 import ParserBackendService from '../services/ParserBackendService';
 import BackendFacetCarousel from '../shared/components/BackendFacetPanel/BackendFacetCarousel';
-import FacetButton from '../shared/components/FacetButton';
-import styled from 'styled-components';
-
-const StyledMarginDiv = styled.div`
-    margin-top: 1rem;
-`
 
 const Backend = () => {
 
@@ -17,8 +11,10 @@ const Backend = () => {
 
     useEffect(() => {
         (async () => {
-            const getAppResponse = await getApp();
-            const getBackendFacetsResponse = await getBackendFacets(getAppResponse);
+            const getAppResponseArray = await getApp();
+            console.log('getAppResponse', getAppResponseArray);
+            const getBackendFacetsResponse = await getBackendFacets(getAppResponseArray);
+            console.log('getBackendFacetsResponse', getBackendFacetsResponse);
             const singleBackendResponse = ParserBackendService.ParseSingleBackendResponse(getBackendFacetsResponse);
             setBackendFacets(singleBackendResponse);
         })();

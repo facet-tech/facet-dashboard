@@ -32,12 +32,6 @@ const StyledGrid = styled.div`
     width: 100%;
 `;
 
-const StyledInnerDiv = styled.div`
-    display: grid;
-    gap: .5rem;
-    grid-auto-flow: column;
- `;
-
 const SubInnerDiv = styled.div`
     display: grid;
     gap: 1%;
@@ -46,7 +40,6 @@ const SubInnerDiv = styled.div`
 
 const BackendFacetCarousel = () => {
     const { backendFacets, handleEnabledChange } = useContext(AppContext);
-    console.log('AA0', backendFacets);
     const classes = useStyles();
     return <div>
         <div className={classes.root}>
