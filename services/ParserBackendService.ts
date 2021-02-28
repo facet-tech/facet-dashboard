@@ -34,11 +34,9 @@ class ParserBackendService {
      * @returns {ParsedObject}
      */
     static ParseBackendResponse = (getBackendFacetsResponse) => {
-        console.log('kappa', getBackendFacetsResponse)
         let resultMap = new Map();
         getBackendFacetsResponse?.forEach(appElement => {
             appElement?.response?.forEach(element => {
-                console.log('shmuk', element);
                 const { appId } = element;
                 const mapEntry = resultMap.get(appId) || [];
                 mapEntry.push(element);
