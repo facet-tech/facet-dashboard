@@ -33,13 +33,17 @@ class ParserBackendService {
      * 
      * @returns {ParsedObject}
      */
-    static ParseSingleBackendResponse = (getBackendFacetsResponse) => {
+    static ParseBackendResponse = (getBackendFacetsResponse) => {
+        console.log('kappa', getBackendFacetsResponse)
         let resultMap = new Map();
-        getBackendFacetsResponse?.response?.forEach(element => {
-            const { appId } = element;
-            const mapEntry = resultMap.get(appId) || [];
-            mapEntry.push(element);
-            resultMap.set(appId, mapEntry);
+        getBackendFacetsResponse?.forEach(appElement => {
+            appElement.forEach(element => {
+                console.log('shmuk', element);
+                const { appId } = element;
+                const mapEntry = resultMap.get(appId) || [];
+                mapEntry.push(element);
+                resultMap.set(appId, mapEntry);
+            });
         });
         return Array.from(resultMap, ([name, value]) => ({ name, value }));;
     }

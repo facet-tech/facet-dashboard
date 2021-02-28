@@ -15,8 +15,9 @@ const Backend = () => {
             console.log('getAppResponse', getAppResponseArray);
             const getBackendFacetsResponse = await getBackendFacets(getAppResponseArray);
             console.log('getBackendFacetsResponse', getBackendFacetsResponse);
-            const singleBackendResponse = ParserBackendService.ParseSingleBackendResponse(getBackendFacetsResponse);
-            setBackendFacets(singleBackendResponse);
+            const parsedBackendResponse = ParserBackendService.ParseBackendResponse(getBackendFacetsResponse);
+            console.log('parsedBackendResponse', parsedBackendResponse)
+            setBackendFacets(parsedBackendResponse);
         })();
     }, []);
 
