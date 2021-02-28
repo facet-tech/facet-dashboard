@@ -8,6 +8,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AppContext from '../../../context/AppContext';
 import styled from 'styled-components';
 import Checkbox from '@material-ui/core/Checkbox';
+import FacetLabel from '../FacetLabel';
+import { color, fontSize } from '../../constant';
+import FacetDivider from '../FacetDivider';
+import FunctionCard from './FunctionCard';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,18 +29,17 @@ const StyledGrid = styled.div`
     display: grid;
     gap: .5rem;
     grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fit);
+    width: 100%;
 `;
 
-const StyledInnerDiv = styled.div`
+const SubInnerDiv = styled.div`
     display: grid;
-    gap: .5rem;
-    grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fit);
-`
+    gap: 1%;
+    grid-template-columns: 97% 2%;
+ `
 
 const BackendFacetCarousel = () => {
-    const { backendFacets } = useContext(AppContext);
+    const { backendFacets, handleEnabledChange } = useContext(AppContext);
     const classes = useStyles();
     return <div>
         <div className={classes.root}>
@@ -54,13 +57,30 @@ const BackendFacetCarousel = () => {
                         <AccordionDetails>
                             <StyledGrid>
                                 {element?.signature?.map(sig => {
-                                    return <div>
-                                        {sig.name}
-                                        <Checkbox
-                                            inputProps={{ 'aria-label': 'primary checkbox' }}
-                                            checked={sig.enabled}
-                                        />
-                                    </div>
+                                    return <SubInnerDiv>
+                                        <div>
+                                            {/* <FacetLabel fontSize={fontSize.medium} color={color.black} text={sig.name} /> */}
+                                            <Accordion>
+                                                <AccordionSummary
+                                                    expandIcon={<ExpandMoreIcon />}
+                                                    aria-controls={element.fullyQualifiedName + "--content"}
+                                                    id={element.fullyQualifiedName + "--header"}
+                                                >
+                                                    <FacetLabel fontSize={fontSize.medium} color={color.black} text={sig.name} />
+                                                </AccordionSummary>
+                                                <AccordionDetails>
+                                                    <FunctionCard parameter={sig.parameter} returnType={sig.returnType} signature={sig.signature} />
+                                                </AccordionDetails>
+                                            </Accordion>
+                                        </div>
+                                        <div style={{ justifySelf: 'end' }}>
+                                            <Checkbox
+                                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                                                checked={sig.enabled}
+                                                onChange={() => { handleEnabledChange(sig, backendFacets) }}
+                                            />
+                                        </div>
+                                    </SubInnerDiv>
                                 })}
                             </StyledGrid>
                         </AccordionDetails>
@@ -74,12 +94,9 @@ const BackendFacetCarousel = () => {
                     >
                         <Typography className={classes.heading}>{backendFacet.name}</Typography>
                     </AccordionSummary>
-
                     {innerElement}
-
                 </Accordion>
             })}
-
         </div>
     </div>
 }

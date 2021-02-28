@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import AppContext from '../context/AppContext';
 import Admin from "../layouts/Admin.js";
 import { getApp, getBackendFacets } from '../services/facetApiService.js';
@@ -7,21 +7,19 @@ import BackendFacetCarousel from '../shared/components/BackendFacetPanel/Backend
 
 const Backend = () => {
 
-    const { backendFacets, setBackendFacets } = useContext(AppContext);
+    const { setBackendFacets } = useContext(AppContext);
 
     useEffect(() => {
-
         (async () => {
-            const getAppResponse = await getApp();
-            const getBackendFacetsResponse = await getBackendFacets(getAppResponse);
-            console.log('getAppResponse', getBackendFacetsResponse);
-            console.log('CHECK', ParserBackendService);
-            const singleBackendResponse = ParserBackendService.ParseSingleBackendResponse(getBackendFacetsResponse);
-            setBackendFacets(singleBackendResponse);
+            const getAppResponseArray = await getApp();
+            console.log('getAppResponse', getAppResponseArray);
+            const getBackendFacetsResponse = await getBackendFacets(getAppResponseArray);
+            console.log('getBackendFacetsResponse', getBackendFacetsResponse);
+            const parsedBackendResponse = ParserBackendService.ParseBackendResponse(getBackendFacetsResponse);
+            console.log('parsedBackendResponse', parsedBackendResponse)
+            setBackendFacets(parsedBackendResponse);
         })();
-
     }, []);
-
 
     return <div>
         <h2>Backend Applications</h2>

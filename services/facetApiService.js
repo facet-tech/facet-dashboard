@@ -272,6 +272,7 @@ const extractFacetArray = (facetMap, nonRolledOutFacets, globalFacets) => {
         console.log(`[ERROR] [extractFacetArray]`, e)
     }
 }
+
 /**
  * 
  * @param {*} facetMap 
@@ -319,25 +320,33 @@ const getApp = async () => {
     }
     const getUserResponse = await getUser(email);
     const workspaceId = getUserResponse?.response?.workspaceId;
-    console.log('workspaceId', workspaceId);
     let suffix = `/app?workspaceId=${workspaceId}`;
     const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-    console.log('getAppResponse', getAppResponse);
-    return getAppResponse?.response[0]?.name;
+    console.log('@getAppResponse', getAppResponse);
+    return getAppResponse?.response?.map(e => e?.name);
 }
 
-const getBackendFacets = async (name) => {
-    console.log('APPID', name);
-    const suffix = `/facet/backend?appId=${name}`;
-    const getBackendFacetsResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-    console.log('getBackendFacetsResponse', getBackendFacetsResponse);
-    return getBackendFacetsResponse;
+const getBackendFacets = async (appNameArray) => {
+    const promises = await appNameArray.map(async name => {
+        const suffix = `/facet/backend?appId=${name}`;
+        console.log('suffixarw', suffix);
+        const getBackendFacetsResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+        return Promise.resolve(getBackendFacetsResponse);
+    });
+    return Promise.all(promises);
+}
+
+const postBackendFacets = async (name, body) => {
+    const suffix = `/facet/backend`;
+    const postBackendFacetsResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    console.log('postBackendFacetsResponse', postBackendFacetsResponse);
+    return postBackendFacetsResponse;
 }
 
 export {
     constructPayload, triggerApiCall, createDomain, getApp,
     getDomain, getFacet, getOrPostDomain, deleteFacet, getUser,
-    getOrCreateWorkspace, deleteUser, postUser,
+    getOrCreateWorkspace, deleteUser, postUser, postBackendFacets,
     saveFacets, convertGetFacetResponseToMap, addWhiteListedDomain,
     hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse,
     getBackendFacets
