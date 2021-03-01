@@ -36,7 +36,7 @@ export default ({ children }) => {
         <StyledDiv>
             <MarginTop value="2rem" />
             <div style={{ textAlign: 'center' }}>
-                {/* <FacetImage title="facet" fill={color.ice} src={facetLogo} /> */}
+                <FacetImage title="facet" fill={color.ice} src={facetLogo} />
             </div>
             <br />
             <BorderDiv>

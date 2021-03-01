@@ -15,8 +15,6 @@ const Backend = () => {
     useEffect(() => {
         (async () => {
             const getAppResponseArray = await getApp();
-            // const getBackendFacetsResponse = await getBackendFacet(getAppResponseArray);
-            // const parsedBackendResponse = ParserBackendService.ParseBackendResponse(getBackendFacetsResponse);
             setBackendFacetNames(getAppResponseArray);
         })();
     }, []);

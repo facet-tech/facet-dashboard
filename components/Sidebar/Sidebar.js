@@ -84,8 +84,7 @@ export default function Sidebar(props) {
   );
   var brand = (
     <div className={classes.logo}>
-      <div className={classes.logoImage}>dwawd
-        {/* <Image width='100%' height='100%' src='../../assets/img/facet_logo_combo.svg'/> */}
+      <div className={classes.logoImage}>
         <img src={logo} alt="logo" className={classes.img} />
       </div>
       {logoText}

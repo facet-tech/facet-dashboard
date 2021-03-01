@@ -34,10 +34,8 @@ class ParserBackendService {
      * @returns {ParsedObject}
      */
     static ParseBackendResponse = (getBackendFacetsResponse) => {
-        console.log('@getBackendFacetsResponse', getBackendFacetsResponse)
         let resultMap = new Map();
         getBackendFacetsResponse?.response?.forEach(appElement => {
-            console.log('appElement', appElement)
             const { appId } = appElement;
             const mapEntry = resultMap.get(appId) || [];
             mapEntry.push(appElement);
