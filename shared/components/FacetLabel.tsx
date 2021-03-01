@@ -5,7 +5,7 @@ const FacetLabel = ({ text, color = colors.grayB, fontSize = 'small', fontFamily
     border = "none", borderRadius = "none", padding = "0", paddingTop = "0", paddingBottom = "0", extraStyle = {} }) => {
     return <span
         style={{
-            width: '100%',
+            // width: '100%',
             color,
             fontSize,
             fontFamily,
@@ -17,6 +17,13 @@ const FacetLabel = ({ text, color = colors.grayB, fontSize = 'small', fontFamily
             padding,
             paddingTop,
             paddingBottom,
+
+            display: 'block',
+            width:'300px',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+
             ...extraStyle
         }}
     >{text}</span>

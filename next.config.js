@@ -5,7 +5,23 @@ const withCSS = require("@zeit/next-css");
 const webpack = require("webpack");
 const path = require("path");
 
-module.exports = withPlugins([[withSass], [withImages], [withCSS]],
+module.exports = withPlugins([[withSass], [withImages], [withCSS], [
+  {
+    exportPathMap: async function (
+      defaultPathMap, { dev, dir, outDir, distDir, buildId }
+    ) {
+      return {
+        '/': { page: '/' },
+        '/authentication': { page: '/authentication' },
+        '/dashboard': { page: '/dashboard' },
+        '/user-profile': { page: '/user-profile' },
+        '/payment': { page: '/payment' },
+      }
+    },
+    trailingSlash: true,
+
+  }
+]],
   {
     webpack: (config) => {
       config.module.rules.push(
@@ -23,19 +39,4 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS]],
       )
       return config
     },
-  },
-  {
-    exportPathMap: async function (
-      defaultPathMap, { dev, dir, outDir, distDir, buildId }
-    ) {
-      return {
-        '/': { page: '/' },
-        '/authentication': { page: '/authentication' },
-        '/dashboard': { page: '/dashboard' },
-        '/user-profile': { page: '/user-profile' },
-        '/payment': { page: '/payment' },
-      }
-    },
-    trailingSlash: true,
-
   });
