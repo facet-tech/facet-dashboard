@@ -7,7 +7,6 @@ import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
 import { postBackendFacets } from '../services/facetApiService';
-import { element } from 'prop-types';
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -20,6 +19,7 @@ export default function AppProvider({ children }) {
     const [isCurrentlyLoggedIn, setIsCurrentlyLoggedIn] = useState(false);
     const [authObject, setAuthObject] = useState({ email: '', password: '' });
     const [backendFacets, setBackendFacets] = useState([]);
+    const [backendFacetNames, setBackendFacetNames] = useState([]);
 
     const router = useRouter();
     const isMounted = useIsMounted();
@@ -39,19 +39,15 @@ export default function AppProvider({ children }) {
 
     const handleEnabledChange = (sig, currBackendFacet) => {
         sig.enabled = !sig.enabled;
-        console.log('sig!', sig);
-        console.log('element', currBackendFacet);
         setBackendFacets([...currBackendFacet]);
         postBackendFacets(currBackendFacet[0].name, currBackendFacet[0].value[0])
-        // setBackendFacets([{
-        //     name: element.name
-        // }])
     };
 
     return <AppContext.Provider value={{
         currAuthState, setCurrAuthState,
         isCurrentlyLoggedIn, setIsCurrentlyLoggedIn, handleEnabledChange,
-        authObject, setAuthObject, backendFacets, setBackendFacets
+        authObject, setAuthObject, backendFacets, setBackendFacets,
+        backendFacetNames, setBackendFacetNames
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider

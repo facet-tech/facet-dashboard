@@ -16,7 +16,6 @@ import RTLNavbarLinks from "../../components/Navbars/RTLNavbarLinks.js";
 import styles from "../../assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
 import { Divider } from "@material-ui/core";
 import FacetDivider from '../../shared/components/FacetDivider';
-import Image from 'next/image';
 import logo from "../../assets/img/facet_logo_combo.svg";
 
 export default function Sidebar(props) {
