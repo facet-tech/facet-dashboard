@@ -9,6 +9,8 @@ export interface AppState {
     authObject: any,
     setAuthObject: undefined,
     handleEnabledChange: undefined,
+    backendFacetNames: [],
+    setBackendFacetNames: undefined,
 }
 
 const AppContext = React.createContext({
@@ -21,6 +23,8 @@ const AppContext = React.createContext({
     backendFacets: [],
     setBackendFacets: undefined,
     handleEnabledChange: undefined,
+    backendFacetNames: [],
+    setBackendFacetNames: undefined
 });
 
 export default AppContext;

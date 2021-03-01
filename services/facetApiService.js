@@ -322,24 +322,18 @@ const getApp = async () => {
     const workspaceId = getUserResponse?.response?.workspaceId;
     let suffix = `/app?workspaceId=${workspaceId}`;
     const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-    console.log('@getAppResponse', getAppResponse);
     return getAppResponse?.response?.map(e => e?.name);
 }
 
-const getBackendFacets = async (appNameArray) => {
-    const promises = await appNameArray.map(async name => {
-        const suffix = `/facet/backend?appId=${name}`;
-        console.log('suffixarw', suffix);
-        const getBackendFacetsResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-        return Promise.resolve(getBackendFacetsResponse);
-    });
-    return Promise.all(promises);
+const getBackendFacet = async (name) => {
+    const suffix = `/facet/backend?appId=${name}`;
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    return getBackendFacetResponse;
 }
 
 const postBackendFacets = async (name, body) => {
     const suffix = `/facet/backend`;
     const postBackendFacetsResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
-    console.log('postBackendFacetsResponse', postBackendFacetsResponse);
     return postBackendFacetsResponse;
 }
 
@@ -349,5 +343,5 @@ export {
     getOrCreateWorkspace, deleteUser, postUser, postBackendFacets,
     saveFacets, convertGetFacetResponseToMap, addWhiteListedDomain,
     hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse,
-    getBackendFacets
+    getBackendFacet
 };

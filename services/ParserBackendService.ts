@@ -35,13 +35,11 @@ class ParserBackendService {
      */
     static ParseBackendResponse = (getBackendFacetsResponse) => {
         let resultMap = new Map();
-        getBackendFacetsResponse?.forEach(appElement => {
-            appElement?.response?.forEach(element => {
-                const { appId } = element;
-                const mapEntry = resultMap.get(appId) || [];
-                mapEntry.push(element);
-                resultMap.set(appId, mapEntry);
-            });
+        getBackendFacetsResponse?.response?.forEach(appElement => {
+            const { appId } = appElement;
+            const mapEntry = resultMap.get(appId) || [];
+            mapEntry.push(appElement);
+            resultMap.set(appId, mapEntry);
         });
         return Array.from(resultMap, ([name, value]) => ({ name, value }));;
     }

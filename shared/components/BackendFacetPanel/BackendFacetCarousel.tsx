@@ -10,7 +10,6 @@ import styled from 'styled-components';
 import Checkbox from '@material-ui/core/Checkbox';
 import FacetLabel from '../FacetLabel';
 import { color, fontSize } from '../../constant';
-import FacetDivider from '../FacetDivider';
 import FunctionCard from './FunctionCard';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -86,16 +85,7 @@ const BackendFacetCarousel = () => {
                         </AccordionDetails>
                     </Accordion>
                 })
-                return <Accordion>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls={backendFacet.name + "-content"}
-                        id="panel5a-header"
-                    >
-                        <Typography className={classes.heading}>{backendFacet.name}</Typography>
-                    </AccordionSummary>
-                    {innerElement}
-                </Accordion>
+                return innerElement
             })}
         </div>
     </div>
