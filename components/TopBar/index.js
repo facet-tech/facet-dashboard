@@ -27,6 +27,7 @@ const StyledDiv = styled.div`
 
 const TopBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [notificationAnchorEl, setNotificationAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -36,17 +37,35 @@ const TopBar = () => {
         setAnchorEl(null);
     };
 
-    const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+    const handleNotificationClick = (event) => {
+        setNotificationAnchorEl(event.currentTarget);
+    };
+
+    const handleNotificationClose = () => {
+        setNotificationAnchorEl(null);
+    };
 
     return <CoreDiv>
         <StyledDiv>
             <div>
                 <IconButton
+                    onClick={handleNotificationClick}
                     color="inherit"
                     aria-label="open drawer"
                 >
                     <NotificationsIcon />
                 </IconButton>
+                <Menu
+                    id="notification-menu"
+                    anchorEl={notificationAnchorEl}
+                    keepMounted
+                    open={Boolean(notificationAnchorEl)}
+                    onClose={handleNotificationClose}
+                >
+                    <MenuItem>
+                        No new notifications found
+                    </MenuItem>
+                </Menu>
             </div>
             <div>
                 <IconButton
@@ -55,20 +74,20 @@ const TopBar = () => {
                     aria-label="open drawer"
                 >
                     <PersonIcon />
-                    <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={async () => {
-                            await Auth.signOut();
-                            Router.push("/authentication");
-                        }}
-                        >Logout</MenuItem>
-                    </Menu>
                 </IconButton>
+                <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <MenuItem onClick={async () => {
+                        await Auth.signOut();
+                        Router.push("/authentication");
+                    }}
+                    >Logout</MenuItem>
+                </Menu>
             </div>
 
         </StyledDiv>

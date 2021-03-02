@@ -8,7 +8,7 @@ const BackendApplicationList = () => {
     return <>
         <ul>
             {backendFacetNames?.map(backendFacet => {
-                return <li>
+                return <li key={backendFacet}>
                     <Link href={`backend/${backendFacet}`}>
                         <a>{backendFacet}</a>
                     </Link>
