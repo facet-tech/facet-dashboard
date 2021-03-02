@@ -37,10 +37,10 @@ export default function AppProvider({ children }) {
         }
     }, []);
 
-    const handleEnabledChange = (sig, currBackendFacet) => {
+    const handleEnabledChange = (sig, element) => {
         sig.enabled = !sig.enabled;
-        setBackendFacets([...currBackendFacet]);
-        postBackendFacets(currBackendFacet[0].name, currBackendFacet[0].value[0])
+        setBackendFacets([...backendFacets]);
+        postBackendFacets(element)
     };
 
     return <AppContext.Provider value={{

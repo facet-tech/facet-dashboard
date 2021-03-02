@@ -7,7 +7,6 @@ import BackendFacetCarousel from '../../shared/components/BackendFacetPanel/Back
 import { useRouter } from 'next/router';
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
-import BackendApplicationList from '../../shared/components/BackendApplicationList';
 import Link from 'next/link'
 
 const Backend = () => {
@@ -35,7 +34,7 @@ const Backend = () => {
             </IconButton>
         </Link>
 
-        <h2>Backend Applications</h2>
+        <h2>{appId}</h2>
         <BackendFacetCarousel />
     </div>
 }

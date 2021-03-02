@@ -31,8 +31,6 @@ const StyledGrid = styled.div`
     display: grid;
     gap: .5rem;
     grid-template-columns: 100%;
-    // grid-auto-flow: row;
-    // width: 100%;
 `;
 
 const SubInnerDiv = styled.div`
@@ -82,7 +80,7 @@ const BackendFacetCarousel = () => {
                                             <Checkbox
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
                                                 checked={sig.enabled}
-                                                onChange={() => { handleEnabledChange(sig, backendFacets) }}
+                                                onChange={() => { handleEnabledChange(sig, element) }}
                                             />
                                         </div>
                                     </SubInnerDiv>
