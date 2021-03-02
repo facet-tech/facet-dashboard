@@ -58,12 +58,6 @@ export default class MyApp extends App {
                 div#__next > div {
                     height: 100%;
                 }
-
-                body {
-                  position: relative;
-                  height: auto;
-                  min-height: 100% !important;
-              }
             `}</style>
         </AppProvider>
       </React.Fragment>

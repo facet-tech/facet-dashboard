@@ -100,12 +100,12 @@ export default () => {
             <br />
             <Typography>
               <b>
-                <FacetLabel text='Not registered? ' />
+                <FacetLabel width="100%" text='Not registered? ' />
                 <FacetLink color={color.electricB} text='Sign up.' href="#" onClick={() => { setCurrAuthState(authStateConstant.signingUp) }} />
               </b>
               <br />
               <br />
-              <FacetLabel text="By logging into Facet you agree to the terms of use and conditions of you and the privacy policy." />
+              <FacetLabel width="100%" text="By logging into Facet you agree to the terms of use and conditions of you and the privacy policy." />
             </Typography>
           </div>
         </form>
