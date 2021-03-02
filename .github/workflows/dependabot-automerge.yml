@@ -10,6 +10,15 @@ jobs:
 
     if: github.actor == 'dependabot[bot]'
     steps:
+      - name: install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: build
+        run: yarn build && yarn export
+
+        env:
+          NODE_ENV: dev
+
       - name: automerge
         uses: actions/github-script@0.2.0
         with:
