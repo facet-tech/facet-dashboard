@@ -331,7 +331,7 @@ const getBackendFacet = async (name) => {
     return getBackendFacetResponse;
 }
 
-const postBackendFacets = async (name, body) => {
+const postBackendFacets = async (body) => {
     const suffix = `/facet/backend`;
     const postBackendFacetsResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
     return postBackendFacetsResponse;

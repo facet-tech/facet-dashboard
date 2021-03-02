@@ -16,7 +16,6 @@ import RTLNavbarLinks from "../../components/Navbars/RTLNavbarLinks.js";
 import styles from "../../assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
 import { Divider } from "@material-ui/core";
 import FacetDivider from '../../shared/components/FacetDivider';
-import logo from "../../assets/img/facet_logo_combo.svg";
 
 export default function Sidebar(props) {
   // used for checking current route
@@ -85,7 +84,7 @@ export default function Sidebar(props) {
   var brand = (
     <div className={classes.logo}>
       <div className={classes.logoImage}>
-        <img src={logo} alt="logo" className={classes.img} />
+        <img src='../images/facet_logo_combo.svg' alt="logo" className={classes.img} />
       </div>
       {logoText}
     </div>
