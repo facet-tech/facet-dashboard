@@ -30,7 +30,7 @@ export default function AppProvider({ children }) {
             const userResponse = await getUser();
             const workspaceId = userResponse?.response?.workspaceId;
             const getDomainsResponse = await getDomains(workspaceId);
-            setDomains(getDomainsResponse.response);
+            setDomains(getDomainsResponse?.response);
         })();
 
         if (isMounted.current) {

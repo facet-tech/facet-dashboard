@@ -24,7 +24,7 @@ const PaginatedTable = () => {
 
     const startIndex = (page - 1) * 10;
     const endIndex = ((page - 1) * 10) + 10;
-    const currDomains = domains.slice(startIndex, endIndex);
+    const currDomains = domains?.slice(startIndex, endIndex) || [];
 
     const totalDomains = Math.ceil(domains.length / 10);
     const classes = useStyles();
