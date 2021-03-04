@@ -6,7 +6,7 @@ import { Auth } from 'aws-amplify';
 import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
-import { postBackendFacets } from '../services/facetApiService';
+import { postBackendFacets, getUser, getDomains } from '../services/facetApiService';
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -23,8 +23,16 @@ export default function AppProvider({ children }) {
 
     const router = useRouter();
     const isMounted = useIsMounted();
+    const [domains, setDomains] = useState([]);
 
     useEffect(() => {
+        (async () => {
+            const userResponse = await getUser();
+            const workspaceId = userResponse?.response?.workspaceId;
+            const getDomainsResponse = await getDomains(workspaceId);
+            setDomains(getDomainsResponse.response);
+        })();
+
         if (isMounted.current) {
             (async () => {
                 const loggedIn = await Auth.currentUserInfo();
@@ -47,7 +55,7 @@ export default function AppProvider({ children }) {
         currAuthState, setCurrAuthState,
         isCurrentlyLoggedIn, setIsCurrentlyLoggedIn, handleEnabledChange,
         authObject, setAuthObject, backendFacets, setBackendFacets,
-        backendFacetNames, setBackendFacetNames
+        backendFacetNames, setBackendFacetNames, domains, setDomains
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider

@@ -103,22 +103,8 @@ const createDomain = async (domain, workspaceId) => {
 }
 
 // TODO buggy
-const getDomain = async (domainName, workspaceId, readFromStorage = false) => {
-    if (process.env.NODE_ENV === 'development') {
-        return MockService.mockGetDomain();
-    }
-    if (false) {
-        // const { domainId } = await getKeyFromLocalStorage(storage.sessionData) || {};
-        // if (domainId) {
-        //     const responseObject = {
-        //         response: {
-        //             id: domainId
-        //         }
-        //     };
-        //     return responseObject;
-        // }
-    }
-    const suffix = `/domain?domain=${domainName}&workspaceId=${workspaceId}`;
+const getDomains = async (workspaceId) => {
+    const suffix = `/domain?workspaceId=${workspaceId}`;
     const apiResponse = await triggerApiCall(HTTPMethods.GET, suffix);
     return apiResponse;
 }
@@ -339,7 +325,7 @@ const postBackendFacets = async (body) => {
 
 export {
     constructPayload, triggerApiCall, createDomain, getApp,
-    getDomain, getFacet, getOrPostDomain, deleteFacet, getUser,
+    getDomains, getFacet, getOrPostDomain, deleteFacet, getUser,
     getOrCreateWorkspace, deleteUser, postUser, postBackendFacets,
     saveFacets, convertGetFacetResponseToMap, addWhiteListedDomain,
     hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse,
