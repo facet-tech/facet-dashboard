@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import IconButton from "@material-ui/core/IconButton";
-import PersonIcon from "@material-ui/icons/Person";
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Auth } from 'aws-amplify';
