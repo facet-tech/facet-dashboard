@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import AppContext from '../../context/AppContext';
+import { color } from '../../shared/constant';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -34,7 +35,7 @@ const PaginatedTable = () => {
     </div> : <div className={classes.root}>
             <Pagination page={page} onChange={handleChange} count={totalDomains} />
             {currDomains?.map(domain => {
-                return <li>
+                return <li style={{ color: color.white }}>
                     {domain.domain}
                 </li>
             })}

@@ -19,7 +19,7 @@ const StyledI = styled.i`
     }
 `
 
-const FacetIconButton = ({ name, size = "small", fill = color.lightGray,
+const FacetIconButton = ({ name, size = "small", fill = color.white,
     isSelected = true, customHeight = null, width = null, iconWidth = null, iconHeight = null, children = null, ...other }) => {
 
     useEffect(() => {

@@ -6,6 +6,8 @@ import ParserBackendService from '../services/ParserBackendService';
 import BackendFacetCarousel from '../shared/components/BackendFacetPanel/BackendFacetCarousel';
 import { useRouter } from 'next/router';
 import BackendApplicationList from '../shared/components/BackendApplicationList';
+import styled from 'styled-components';
+import { color } from '../shared/constant';
 
 const Backend = () => {
     const router = useRouter();
@@ -19,8 +21,12 @@ const Backend = () => {
         })();
     }, []);
 
+    const StyledH2 = styled.h2`
+        color: ${color.white};
+    `
+
     return <div>
-        <h2>Backend Applications</h2>
+        <StyledH2>Backend Applications</StyledH2>
         <BackendApplicationList />
     </div>
 }

@@ -7,6 +7,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Auth } from 'aws-amplify';
 import Router from "next/router";
+import { color } from '../../shared/constant';
+import FacetIconButton from '../../shared/components/FacetIconButton';
 
 const CoreDiv = styled.div`
     display: grid;
@@ -29,7 +31,7 @@ const TopBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [notificationAnchorEl, setNotificationAnchorEl] = React.useState(null);
 
-    const handleClick = (event) => {
+    const accountClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -48,13 +50,14 @@ const TopBar = () => {
     return <CoreDiv>
         <StyledDiv>
             <div>
-                <IconButton
+                <FacetIconButton
+                    iconWidth="25"
+                    iconHeight="25"
+                    title="Notifications"
+                    fill={color.white}
+                    name="bell"
                     onClick={handleNotificationClick}
-                    color="inherit"
-                    aria-label="open drawer"
-                >
-                    <NotificationsIcon />
-                </IconButton>
+                />
                 <Menu
                     id="notification-menu"
                     anchorEl={notificationAnchorEl}
@@ -68,13 +71,14 @@ const TopBar = () => {
                 </Menu>
             </div>
             <div>
-                <IconButton
-                    onClick={handleClick}
-                    color="inherit"
-                    aria-label="open drawer"
-                >
-                    <PersonIcon />
-                </IconButton>
+                <FacetIconButton
+                    iconWidth="25"
+                    iconHeight="25"
+                    title="Account"
+                    fill={color.white}
+                    name="person"
+                    onClick={accountClick}
+                />
                 <Menu
                     id="simple-menu"
                     anchorEl={anchorEl}
