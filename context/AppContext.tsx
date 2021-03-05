@@ -11,6 +11,8 @@ export interface AppState {
     handleEnabledChange: undefined,
     backendFacetNames: [],
     setBackendFacetNames: undefined,
+    domains: [],
+    setDomains: undefined,
 }
 
 const AppContext = React.createContext({
@@ -24,7 +26,9 @@ const AppContext = React.createContext({
     setBackendFacets: undefined,
     handleEnabledChange: undefined,
     backendFacetNames: [],
-    setBackendFacetNames: undefined
+    setBackendFacetNames: undefined,
+    domains: [],
+    setDomains: [],
 });
 
 export default AppContext;

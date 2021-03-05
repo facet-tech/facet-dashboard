@@ -63,7 +63,7 @@ const TopBar = () => {
                     onClose={handleNotificationClose}
                 >
                     <MenuItem>
-                        No new notifications found
+                        No new notifications found.
                     </MenuItem>
                 </Menu>
             </div>
