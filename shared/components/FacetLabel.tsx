@@ -1,7 +1,7 @@
 import React from 'react';
-import { color as colors } from "../constant";
+import { color as colors, fontSize as fontSizeConst } from "../constant";
 
-const FacetLabel = ({ text, width = undefined, color = colors.white, fontSize = 'small', fontFamily = 'Helvetica', textDecoration = "none", fontWeight = 500, backgroundColor = "none",
+const FacetLabel = ({ text, width = undefined, color = colors.white, fontSize = fontSizeConst.medium, fontFamily = 'Helvetica', textDecoration = "none", fontWeight = 500, backgroundColor = "none",
     border = "none", borderRadius = "none", padding = "0", paddingTop = "0", paddingBottom = "0", extraStyle = {} }) => {
     return <span
         style={{

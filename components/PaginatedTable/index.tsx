@@ -2,7 +2,8 @@ import React, { useState, useContext } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import AppContext from '../../context/AppContext';
-import { color } from '../../shared/constant';
+import { color, fontSize } from '../../shared/constant';
+import FacetLabel from '../../shared/components/FacetLabel';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -31,7 +32,7 @@ const PaginatedTable = () => {
     const classes = useStyles();
 
     let element = totalDomains === 0 ? <div>
-        No Domains Found.
+        <FacetLabel fontSize={fontSize.medium} text="No Domains Found." />
     </div> : <div className={classes.root}>
             <Pagination page={page} onChange={handleChange} count={totalDomains} />
             {currDomains?.map(domain => {
