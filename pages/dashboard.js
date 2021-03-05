@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Admin from "../layouts/Admin.js";
-import { getUser, getDomains } from '../services/facetApiService';
 import PaginatedTable from '../components/PaginatedTable';
 function Dashboard() {
 
