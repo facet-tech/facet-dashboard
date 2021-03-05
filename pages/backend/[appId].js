@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import Link from 'next/link'
+import StyledH2 from '../../components/StyledH2';
 
 const Backend = () => {
 
@@ -34,7 +35,7 @@ const Backend = () => {
             </IconButton>
         </Link>
 
-        <h2>{appId}</h2>
+        <StyledH2>{appId}</StyledH2>
         <BackendFacetCarousel />
     </div>
 }

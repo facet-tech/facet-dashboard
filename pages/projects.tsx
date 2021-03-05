@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import StyledH2 from "../components/StyledH2/index.js";
 import Admin from "../layouts/Admin.js";
 
 const Projects = () => {
@@ -11,7 +12,7 @@ const Projects = () => {
     }, []);
 
     return <>
-        <h2>Workspace domains</h2>
+        <StyledH2>Workspace domains</StyledH2>
         <ul>
             <li> <a href='https://facet.run'>https://facet.run</a></li>
         </ul>
