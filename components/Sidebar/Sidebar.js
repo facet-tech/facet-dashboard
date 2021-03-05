@@ -90,7 +90,7 @@ export default function Sidebar(props) {
     </div>
   );
   return (
-    <div>
+    <div >
       <Hidden mdUp implementation="css">
         <Drawer
           variant="temporary"
@@ -100,6 +100,9 @@ export default function Sidebar(props) {
             paper: classNames(classes.drawerPaper, {
               [classes.drawerPaperRTL]: props.rtlActive,
             }),
+          }}
+          style={{
+            border: '5px solid red'
           }}
           onClose={props.handleDrawerToggle}
           ModalProps={{
