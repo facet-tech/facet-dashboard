@@ -28,7 +28,7 @@ const AppContext = React.createContext({
     backendFacetNames: [],
     setBackendFacetNames: undefined,
     domains: [],
-    setDomains: [],
+    setDomains: undefined,
 });
 
 export default AppContext;
