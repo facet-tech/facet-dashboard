@@ -62,7 +62,6 @@ const BackendFacetCarousel = () => {
                                 {element?.signature?.map(sig => {
                                     return <SubInnerDiv>
                                         <div>
-                                            {/* <FacetLabel fontSize={fontSize.medium} color={color.black} text={sig.name} /> */}
                                             <Accordion>
                                                 <AccordionSummary
                                                     expandIcon={<ExpandMoreIcon />}
