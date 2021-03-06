@@ -101,9 +101,6 @@ export default function Sidebar(props) {
               [classes.drawerPaperRTL]: props.rtlActive,
             }),
           }}
-          style={{
-            border: '5px solid red'
-          }}
           onClose={props.handleDrawerToggle}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
