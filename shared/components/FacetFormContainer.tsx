@@ -12,6 +12,7 @@ const StyledDiv = styled.div`
     background-color: #181D26;
     height: 100%;
     color: white;
+    grid-template-columns: 100%;
 `;
 
 const BorderDiv = styled.div`
