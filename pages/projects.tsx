@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import StyledH2 from "../components/StyledH2/index.js";
+import StyledH2 from "../components/StyledH2";
 import Admin from "../layouts/Admin.js";
 
 const Projects = () => {
