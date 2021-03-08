@@ -34,7 +34,8 @@ const color = {
     primary: '#9D1757',
     primaryGray: "#9D989E",
     secondaryGray: '#F3F3F3',
-    paragraph: '#494949'
+    paragraph: '#494949',
+    iconBtnGray: '#CBCBCB',
 };
 
 const mountainWalkColors = {

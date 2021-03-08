@@ -19,7 +19,7 @@ import {
 const sidebarStyle = (theme) => ({
   drawerPaper: {
     backgroundColor: color.black,
-    border: "none",
+    borderRight: '1px solid #404040',
     position: "fixed",
     top: "0",
     bottom: "0",

@@ -10,7 +10,6 @@ import Navbar from "../components/Navbars/Navbar.js";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 import routes from "../routes.js";
 import styles from "../assets/jss/nextjs-material-dashboard/layouts/adminStyle.js";
-import bgImage from "../assets/img/sidebar-2.jpg";
 import logo from "../assets/img/facet_logo_combo.svg";
 import AppProvider from "../context/AppProvider";
 
@@ -25,7 +24,6 @@ export default function Admin({ children, ...rest }) {
   // ref to help us initialize PerfectScrollbar on windows devices
   const mainPanel = React.createRef();
   // states and functions
-  const [image, setImage] = React.useState(bgImage);
   const [color, setColor] = React.useState("white");
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -84,8 +82,8 @@ export default function Admin({ children, ...rest }) {
               <div className={classes.container}>{children}</div>
             </div>
           ) : (
-              <div className={classes.map}>{children}</div>
-            )}
+            <div className={classes.map}>{children}</div>
+          )}
         </div>
       </div>
     </AppProvider>

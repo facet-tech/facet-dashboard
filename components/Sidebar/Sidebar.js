@@ -90,7 +90,7 @@ export default function Sidebar(props) {
     </div>
   );
   return (
-    <div>
+    <div >
       <Hidden mdUp implementation="css">
         <Drawer
           variant="temporary"

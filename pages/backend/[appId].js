@@ -8,6 +8,9 @@ import { useRouter } from 'next/router';
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import Link from 'next/link'
+import StyledH2 from '../../components/StyledH2';
+import FacetIconButton from '../../shared/components/FacetIconButton';
+import { color } from '../../shared/constant';
 
 const Backend = () => {
 
@@ -17,7 +20,6 @@ const Backend = () => {
 
     useEffect(() => {
         (async () => {
-
             const getBackendFacetsResponse = await getBackendFacet(appId);
             const parsedBackendResponse = ParserBackendService.ParseBackendResponse(getBackendFacetsResponse);
             setBackendFacets(parsedBackendResponse);
@@ -26,15 +28,15 @@ const Backend = () => {
 
     return <div>
         <Link href={`/backend`}>
-            <IconButton
-                color="inherit"
-                aria-label="open drawer"
-            >
-                <KeyboardBackspaceIcon />
-            </IconButton>
+            <FacetIconButton
+                iconWidth="25"
+                iconHeight="25"
+                title="Notifications"
+                fill={color.white}
+                name="arrow-back"
+            />
         </Link>
-
-        <h2>{appId}</h2>
+        <StyledH2>{appId}</StyledH2>
         <BackendFacetCarousel />
     </div>
 }

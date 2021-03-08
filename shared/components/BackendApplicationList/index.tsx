@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../../../context/AppContext';
 import Link from 'next/link'
+import { color } from '../../constant';
 
 const BackendApplicationList = () => {
     const { backendFacetNames } = useContext(AppContext);
@@ -10,7 +11,7 @@ const BackendApplicationList = () => {
             {backendFacetNames?.map(backendFacet => {
                 return <li key={backendFacet}>
                     <Link href={`backend/${backendFacet}`}>
-                        <a>{backendFacet}</a>
+                        <a style={{ color: color.white }}>{backendFacet}</a>
                     </Link>
                 </li>
             })}
