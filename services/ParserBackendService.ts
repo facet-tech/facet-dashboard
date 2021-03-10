@@ -1,7 +1,3 @@
-// org.springframework.web.bind.annotation.RestController -> class supports endpoints
-// org.springframework.web.bind.annotation.RequestMapping" -> value: "{"/example/v1/hotels"}" -> path at class level
-// if the signature has org.springframework.web.bind.annotation.RequestMapping ==> endpoint
-
 import { HTTPMethods } from "../shared/constant";
 
 class ParserBackendService {

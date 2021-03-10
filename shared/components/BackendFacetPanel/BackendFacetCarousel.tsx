@@ -40,10 +40,6 @@ const SubInnerDiv = styled.div`
     grid-template-columns: 90% 2%;
  `
 
-// org.springframework.web.bind.annotation.RestController -> class supports endpoints
-// org.springframework.web.bind.annotation.RequestMapping" -> value: "{"/example/v1/hotels"}" -> path at class level
-// if the signature has org.springframework.web.bind.annotation.RequestMapping ==> endpoint
-
 const BackendFacetCarousel = () => {
     const { backendFacets, handleEnabledChange } = useContext(AppContext);
     const classes = useStyles();
