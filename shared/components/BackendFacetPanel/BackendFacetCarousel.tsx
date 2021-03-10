@@ -11,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FacetLabel from '../FacetLabel';
 import { color, fontSize } from '../../constant';
 import FunctionCard from './FunctionCard';
+import ParserBackendService from '../../../services/ParserBackendService';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -39,6 +40,10 @@ const SubInnerDiv = styled.div`
     grid-template-columns: 90% 2%;
  `
 
+// org.springframework.web.bind.annotation.RestController -> class supports endpoints
+// org.springframework.web.bind.annotation.RequestMapping" -> value: "{"/example/v1/hotels"}" -> path at class level
+// if the signature has org.springframework.web.bind.annotation.RequestMapping ==> endpoint
+
 const BackendFacetCarousel = () => {
     const { backendFacets, handleEnabledChange } = useContext(AppContext);
     const classes = useStyles();
@@ -47,19 +52,25 @@ const BackendFacetCarousel = () => {
             {backendFacets?.map(backendFacet => {
                 const value = backendFacet.value;
                 const innerElement = value.map(element => {
+                    const containsEndpoints = ParserBackendService.containsEndpoints(element?.annotation)
+                    const pathName = containsEndpoints ? ParserBackendService.getPathName(element?.annotation) : null;
+                    console.log('dwadw!', element, containsEndpoints);
                     return <Accordion>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls={element.fullyQualifiedName + "-content"}
                             id={element.fullyQualifiedName + "-header"}
                         >
-                            <Typography className={classes.heading}>{element.fullyQualifiedName}</Typography>
+                            <Typography className={classes.heading}>{element.fullyQualifiedName} {containsEndpoints ? <b style={{ color: 'black' }}>{pathName}</b> : null}
+                            </Typography>
                         </AccordionSummary>
                         <AccordionDetails classes={{
                             root: classes.accordionDetails
                         }}>
                             <StyledGrid>
                                 {element?.signature?.map(sig => {
+                                    const sigPathName = containsEndpoints ? ParserBackendService.getPathName(sig?.annotation) : undefined;
+                                    const endpointType = containsEndpoints ? ` - ${ParserBackendService.getEndpointType(sig?.annotation)}` : undefined;
                                     return <SubInnerDiv>
                                         <div>
                                             <Accordion>
@@ -69,6 +80,8 @@ const BackendFacetCarousel = () => {
                                                     id={element.fullyQualifiedName + "--header"}
                                                 >
                                                     <FacetLabel fontSize={fontSize.medium} color={color.black} text={sig.name} />
+                                                    <b style={{ color: 'black' }}>{pathName}{sigPathName}</b>
+                                                    <b style={{ color: 'black' }}>{pathName}{endpointType}</b>
                                                 </AccordionSummary>
                                                 <AccordionDetails>
                                                     <FunctionCard parameter={sig.parameter} returnType={sig.returnType} signature={sig.signature} />
