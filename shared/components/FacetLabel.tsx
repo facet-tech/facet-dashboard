@@ -17,7 +17,7 @@ const FacetLabel = ({ text, width = undefined, color = colors.white, fontSize = 
             paddingTop,
             paddingBottom,
             display: 'block',
-            width: width ? width : '300px',
+            width: width ? width : '500px',
             overflow: 'hidden',
             whiteSpace: 'nowrap',
             textOverflow: 'ellipsis',
