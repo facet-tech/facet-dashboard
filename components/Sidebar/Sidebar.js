@@ -56,11 +56,7 @@ export default function Sidebar(props) {
                 paddingRight: '4rem',
               }}>
                 {typeof prop.icon === "string" ? (
-                  <Icon
-                    className={classNames(whiteFontClasses, {
-                      [classes.itemIconRTL]: props.rtlActive,
-                    })}
-                  >
+                  <Icon>
                     {prop.icon}
                   </Icon>
                 ) : (
