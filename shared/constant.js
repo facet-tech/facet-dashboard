@@ -36,6 +36,7 @@ const color = {
     secondaryGray: '#F3F3F3',
     paragraph: '#494949',
     iconBtnGray: '#CBCBCB',
+    sidebarGray: '#717171'
 };
 
 const mountainWalkColors = {

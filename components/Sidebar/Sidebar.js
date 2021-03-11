@@ -36,7 +36,7 @@ export default function Sidebar(props) {
         if (prop.path === "/upgrade-to-pro") {
           activePro = classes.activePro + " ";
           listItemClasses = classNames({
-            [" " + classes[color]]: true,
+
           });
         } else {
           listItemClasses = classNames({
@@ -50,23 +50,26 @@ export default function Sidebar(props) {
         });
         return (
           <Link href={prop.layout + prop.path} key={key}>
-            <a className={activePro + classes.item}>
-              <ListItem button className={classes.itemLink + listItemClasses}>
+            <a>
+              <ListItem style={{
+                paddingLeft: '4rem',
+                paddingRight: '4rem',
+              }}>
                 {typeof prop.icon === "string" ? (
                   <Icon
-                    className={classNames(classes.itemIcon, whiteFontClasses, {
+                    className={classNames(whiteFontClasses, {
                       [classes.itemIconRTL]: props.rtlActive,
                     })}
                   >
                     {prop.icon}
                   </Icon>
                 ) : (
-                    <prop.icon
-                      className={classNames(classes.itemIcon, whiteFontClasses, {
-                        [classes.itemIconRTL]: props.rtlActive,
-                      })}
-                    />
-                  )}
+                  <prop.icon
+                    className={classNames(classes.itemIcon, whiteFontClasses, {
+                      [classes.itemIconRTL]: props.rtlActive,
+                    })}
+                  />
+                )}
                 <ListItemText
                   primary={props.rtlActive ? prop.rtlName : prop.name}
                   className={classNames(classes.itemText, whiteFontClasses, {
