@@ -1,4 +1,4 @@
-import { HTTPMethods } from "../shared/constant";
+import { APIEndpoint, HTTPMethods } from "../shared/constant";
 
 class ParserBackendService {
 
@@ -20,7 +20,7 @@ class ParserBackendService {
     }
 
     static getPathName = (annotationArr) => {
-        const obj = annotationArr?.find(e => e.name === "org.springframework.web.bind.annotation.RequestMapping");
+        const obj = annotationArr?.find(e => e.name === APIEndpoint.requestMapping);
         if (!obj || obj.length === 0) {
             return '';
         }
@@ -28,11 +28,11 @@ class ParserBackendService {
     }
 
     static containsEndpoints = (annotationArr) => {
-        return annotationArr?.some(e => e.name === 'org.springframework.web.bind.annotation.RestController');
+        return annotationArr?.some(e => e.name === APIEndpoint.restController);
     }
 
     static getEndpointType = (annotationArr) => {
-        const obj = annotationArr?.find(e => e.name === "org.springframework.web.bind.annotation.RequestMapping");
+        const obj = annotationArr?.find(e => e.name === APIEndpoint.requestMapping);
         if (!obj || obj.length === 0) {
             return '';
         }

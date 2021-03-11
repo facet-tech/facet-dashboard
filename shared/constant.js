@@ -84,6 +84,11 @@ const snackbar = {
     }
 };
 
+const APIEndpoint = {
+    restController: 'org.springframework.web.bind.annotation.RestController',
+    requestMapping: 'org.springframework.web.bind.annotation.RequestMapping'
+}
+
 const documentationIds = {
     download: 'facet-download',
     install: 'install',
@@ -168,6 +173,7 @@ const APIUrl = {
 
 
 export {
-    color, fontSize, allFacets, mountainWalkColors, documentationIds, authState, APIUrl, apiBaseURL,
-    snackbar, documentationText, responsiveThresholds, isMobile, isMobileLg, api, HTTPMethods, ChromeRequestType
+    color, fontSize, allFacets, mountainWalkColors, documentationIds, authState,
+    APIUrl, apiBaseURL, snackbar, documentationText, responsiveThresholds,
+    isMobile, isMobileLg, api, HTTPMethods, ChromeRequestType, APIEndpoint
 };

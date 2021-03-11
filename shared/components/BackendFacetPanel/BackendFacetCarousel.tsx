@@ -50,7 +50,6 @@ const BackendFacetCarousel = () => {
                 const innerElement = value.map(element => {
                     const containsEndpoints = ParserBackendService.containsEndpoints(element?.annotation)
                     const pathName = containsEndpoints ? ParserBackendService.getPathName(element?.annotation) : null;
-                    console.log('dwadw!', element, containsEndpoints);
                     return <Accordion>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
