@@ -36,6 +36,7 @@ const color = {
     secondaryGray: '#F3F3F3',
     paragraph: '#494949',
     iconBtnGray: '#CBCBCB',
+    sidebarGray: '#717171'
 };
 
 const mountainWalkColors = {
@@ -83,6 +84,11 @@ const snackbar = {
         fill: color.white
     }
 };
+
+const APIEndpoint = {
+    restController: 'org.springframework.web.bind.annotation.RestController',
+    requestMapping: 'org.springframework.web.bind.annotation.RequestMapping'
+}
 
 const documentationIds = {
     download: 'facet-download',
@@ -168,6 +174,7 @@ const APIUrl = {
 
 
 export {
-    color, fontSize, allFacets, mountainWalkColors, documentationIds, authState, APIUrl, apiBaseURL,
-    snackbar, documentationText, responsiveThresholds, isMobile, isMobileLg, api, HTTPMethods, ChromeRequestType
+    color, fontSize, allFacets, mountainWalkColors, documentationIds, authState,
+    APIUrl, apiBaseURL, snackbar, documentationText, responsiveThresholds,
+    isMobile, isMobileLg, api, HTTPMethods, ChromeRequestType, APIEndpoint
 };

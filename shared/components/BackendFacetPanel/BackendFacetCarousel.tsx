@@ -8,9 +8,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AppContext from '../../../context/AppContext';
 import styled from 'styled-components';
 import Checkbox from '@material-ui/core/Checkbox';
-import FacetLabel from '../FacetLabel';
-import { color, fontSize } from '../../constant';
+import { color } from '../../constant';
 import FunctionCard from './FunctionCard';
+import ParserBackendService from '../../../services/ParserBackendService';
+import Icon from '../Icon';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -47,19 +48,34 @@ const BackendFacetCarousel = () => {
             {backendFacets?.map(backendFacet => {
                 const value = backendFacet.value;
                 const innerElement = value.map(element => {
+                    const containsEndpoints = ParserBackendService.containsEndpoints(element?.annotation)
+                    const pathName = containsEndpoints ? ParserBackendService.getPathName(element?.annotation) : null;
                     return <Accordion>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls={element.fullyQualifiedName + "-content"}
                             id={element.fullyQualifiedName + "-header"}
                         >
-                            <Typography className={classes.heading}>{element.fullyQualifiedName}</Typography>
+                            <Typography className={classes.heading}>
+                                {element.fullyQualifiedName}
+                                {containsEndpoints ? <>
+                                    <br />
+                                    <b style={{ color: 'black' }}>
+                                        <Icon iconWidth="20"
+                                            iconHeight="15"
+                                            fill={color.black}
+                                            name="settings-outline"
+                                            title="settings-outline" /> {pathName}</b>
+                                </> : null}
+                            </Typography>
                         </AccordionSummary>
                         <AccordionDetails classes={{
                             root: classes.accordionDetails
                         }}>
                             <StyledGrid>
                                 {element?.signature?.map(sig => {
+                                    const sigPathName = containsEndpoints ? ParserBackendService.getPathName(sig?.annotation) : undefined;
+                                    const endpointType = containsEndpoints ? ` - ${ParserBackendService.getEndpointType(sig?.annotation)}` : undefined;
                                     return <SubInnerDiv>
                                         <div>
                                             <Accordion>
@@ -68,7 +84,12 @@ const BackendFacetCarousel = () => {
                                                     aria-controls={element.fullyQualifiedName + "--content"}
                                                     id={element.fullyQualifiedName + "--header"}
                                                 >
-                                                    <FacetLabel fontSize={fontSize.medium} color={color.black} text={sig.name} />
+                                                    <Typography>
+                                                        {sig.name}
+                                                        <br />
+                                                        <span>{pathName}{sigPathName}</span>{' '}
+                                                        <span>{endpointType}</span>
+                                                    </Typography>
                                                 </AccordionSummary>
                                                 <AccordionDetails>
                                                     <FunctionCard parameter={sig.parameter} returnType={sig.returnType} signature={sig.signature} />
@@ -91,7 +112,7 @@ const BackendFacetCarousel = () => {
                 return innerElement
             })}
         </div>
-    </div>
+    </div >
 }
 
 export default BackendFacetCarousel;

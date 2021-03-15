@@ -7,6 +7,7 @@ import Amplify from 'aws-amplify';
 import aws_exports from '../aws-exports';
 import FacetHead from './FacetHead';
 import AppProvider from "../context/AppProvider";
+import "../styles/globals.css";
 
 Amplify.configure(aws_exports);
 
