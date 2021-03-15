@@ -57,13 +57,6 @@ const BackendFacetCarousel = () => {
                             id={element.fullyQualifiedName + "-header"}
                         >
                             <Typography className={classes.heading}>
-                                {/* {containsEndpoints ? <>
-                                    <Icon iconWidth="20"
-                                        iconHeight="15"
-                                        fill={color.black}
-                                        name="settings-outline"
-                                        title="settings-outline" />
-                                </> : null} */}
                                 {element.fullyQualifiedName}
                                 {containsEndpoints ? <>
                                     <br />
@@ -97,10 +90,6 @@ const BackendFacetCarousel = () => {
                                                         <span>{pathName}{sigPathName}</span>{' '}
                                                         <span>{endpointType}</span>
                                                     </Typography>
-                                                    {/* <FacetLabel fontSize={fontSize.medium} color={color.black} text={sig.name} />
-                                                    <br />
-                                                    <b style={{ color: 'black' }}>{pathName}{sigPathName}</b>
-                                                    <b style={{ color: 'black' }}>{pathName}{endpointType}</b> */}
                                                 </AccordionSummary>
                                                 <AccordionDetails>
                                                     <FunctionCard parameter={sig.parameter} returnType={sig.returnType} signature={sig.signature} />
