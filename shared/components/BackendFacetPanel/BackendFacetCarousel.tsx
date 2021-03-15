@@ -37,7 +37,7 @@ const StyledGrid = styled.div`
 const SubInnerDiv = styled.div`
     display: grid;
     gap: 1%;
-    grid-template-columns: 90% 2%;
+    grid-template-columns: 97% 2%;
  `
 
 const BackendFacetCarousel = () => {
@@ -96,7 +96,9 @@ const BackendFacetCarousel = () => {
                                                 </AccordionDetails>
                                             </Accordion>
                                         </div>
-                                        <div>
+                                        <div style={{
+                                            justifySelf: 'end',
+                                        }}>
                                             <Checkbox
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
                                                 checked={sig.enabled}
