@@ -14,8 +14,7 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS], [
         '/': { page: '/' },
         '/authentication': { page: '/authentication' },
         '/dashboard': { page: '/dashboard' },
-        '/user-profile': { page: '/user-profile' },
-        '/payment': { page: '/payment' },
+        '/backend': { page: '/backend' },
       }
     },
     trailingSlash: true,

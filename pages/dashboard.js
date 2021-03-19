@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { color } from "../shared/constant.js";
 
 const StyledH2 = styled.h2`
-color: ${color.white};
+  color: ${color.white};
 `
 function Dashboard() {
 
