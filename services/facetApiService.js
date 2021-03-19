@@ -248,8 +248,8 @@ const extractFacetArray = (facetMap, nonRolledOutFacets, globalFacets) => {
         const facetArray = Array.from(facetMap, ([name, value]) => ({ name, value }));
         return facetArray.map(facet => {
             return {
-                enabled: nonRolledOutFacets.includes(facet.name),
-                global: globalFacets.includes(facet.name),
+                enabled: nonRolledOutFacets?.includes(facet.name),
+                global: globalFacets?.includes(facet.name),
                 name: facet.name,
                 domElement: generateDomElements(facetMap.get(facet.name))
             }

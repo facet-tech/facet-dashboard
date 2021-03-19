@@ -37,13 +37,13 @@ class ParserBackendService {
             return '';
         }
         const typeStr = obj?.parameters?.method?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
-        if (typeStr.includes(HTTPMethods.GET)) {
+        if (typeStr?.includes(HTTPMethods.GET)) {
             return HTTPMethods.GET;
-        } else if (typeStr.includes(HTTPMethods.POST)) {
+        } else if (typeStr?.includes(HTTPMethods.POST)) {
             return HTTPMethods.POST;
-        } else if (typeStr.includes(HTTPMethods.DELETE)) {
+        } else if (typeStr?.includes(HTTPMethods.DELETE)) {
             return HTTPMethods.DELETE;
-        } else if (typeStr.includes(HTTPMethods.PUT)) {
+        } else if (typeStr?.includes(HTTPMethods.PUT)) {
             return HTTPMethods.PUT;
         }
         return undefined
