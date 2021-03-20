@@ -77,20 +77,19 @@ export default function Sidebar(props) {
   function activeRoute(routeName) {
     return router.route.indexOf(routeName) > -1 ? true : false;
   }
-  const {logoText, routes } = props;
+  const { logoText, routes } = props;
   var links = (
     <StyledList>
       {routes.map((prop, key) => {
         return (
           <Link href={prop.path} key={key} >
             <a onClick={() => {
-              console.log('SETTARW', prop.path);
               setCurrRoute(prop.path);
             }}>
               <StyledListItem style={{
                 paddingLeft: '4rem',
                 paddingRight: '4rem',
-                color: currRoute === prop.path ? colorConstant.white: colorConstant.sidebarGray
+                color: currRoute === prop.path ? colorConstant.white : colorConstant.sidebarGray
               }}>
                 {typeof prop.icon === "string" ? (
                   <Icon>

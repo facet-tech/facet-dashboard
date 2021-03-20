@@ -7,7 +7,7 @@ import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
 import { postBackendFacets, getUser, getDomains } from '../services/facetApiService';
-import dashboardRoutes from '../routes';
+import dashboardRoutes, { pathRoutes } from '../routes';
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -21,7 +21,7 @@ export default function AppProvider({ children }) {
     const [authObject, setAuthObject] = useState({ email: '', password: '' });
     const [backendFacets, setBackendFacets] = useState([]);
     const [backendFacetNames, setBackendFacetNames] = useState([]);
-    const [currRoute, setCurrRoute] = useState(dashboardRoutes[0]);
+    const [currRoute, setCurrRoute] = useState(pathRoutes.frontend);
 
     const router = useRouter();
     const isMounted = useIsMounted();

@@ -31,8 +31,8 @@ const dashboardRoutes = [
 ];
 
 const pathRoutes = {
-  dashboard: 'dashboard',
-  backend: 'backend',
+  frontend: '/dashboard',
+  backend: '/backend',
 }
 
 export { pathRoutes };
