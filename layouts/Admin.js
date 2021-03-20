@@ -12,7 +12,6 @@ import routes from "../routes.js";
 import styles from "../assets/jss/nextjs-material-dashboard/layouts/adminStyle.js";
 import logo from "../assets/img/facet_logo_combo.svg";
 import AppProvider from "../context/AppProvider";
-import styled from 'styled-components';
 
 let ps;
 
@@ -77,7 +76,6 @@ export default function Admin({ children, ...rest }) {
             handleDrawerToggle={handleDrawerToggle}
             {...rest}
           />
-
 
           <div className={classes.content}>
             <div className={classes.container}>{children}</div>

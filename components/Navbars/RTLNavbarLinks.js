@@ -11,7 +11,6 @@ export default function RTLNavbarLinks() {
   const size = useWindowSize();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
-  const [open, setOpen] = React.useState(null);
 
   return (
     <div>

@@ -23,6 +23,7 @@ const StyledAppBar = styled(AppBar)`
     transition: all 150ms ease 0s;
     minHeight: 50px;
     display: block;
+    box-shadow: none!important;
 `;
 
 const StyledDiv = styled.div`
@@ -31,10 +32,12 @@ const StyledDiv = styled.div`
 
 export default function Header(props) {
   return (
-    <StyledAppBar style={{ background: color.black, width: '86.5%' }}>
+    <StyledAppBar elevation={0} style={{ background: color.blackDashboard, width: 'calc(100% - 230px)' }}>
       <Toolbar>
         <StyledDiv>
-          <TopBar />
+          <TopBar style={{
+            boxShadow: 'none!important'
+          }} />
         </StyledDiv>
         <Hidden mdUp implementation="css">
           <IconButton

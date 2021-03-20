@@ -14,9 +14,8 @@ import AdminNavbarLinks from "../../components/Navbars/AdminNavbarLinks.js";
 import RTLNavbarLinks from "../../components/Navbars/RTLNavbarLinks.js";
 import styles from "../../assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
 import { Divider } from "@material-ui/core";
-import FacetDivider from '../../shared/components/FacetDivider';
 import styled from 'styled-components';
-import { color, color as colorConstant } from "../../shared/constant.js";
+import { color as colorConstant } from "../../shared/constant.js";
 import AppContext from "../../context/AppContext";
 
 const StyledListItem = styled(ListItem)`
@@ -34,6 +33,7 @@ const StyledList = styled(List)`
 `;
 
 const StyledDrawer = styled(Drawer)`
+    box-shadow: none;
     position: absolute;
     z-index: 1;
     height: 100%;
@@ -46,7 +46,7 @@ const StyledDrawer = styled(Drawer)`
     color: ${colorConstant.white};
     
     & > div {
-      background-color: ${colorConstant.black};
+      background-color: ${colorConstant.blackDashboard};
       ${'' /* color: ${color.white}; */}
     }
     
@@ -102,6 +102,7 @@ export default function Sidebar(props) {
                 <ListItemText
                   primary={prop.name}
                   disableTypography={true}
+                  style={{ marginLeft: '.5rem' }}
                 />
               </StyledListItem>
             </a>
@@ -148,7 +149,6 @@ export default function Sidebar(props) {
         >
           {brand}
           <br />
-          <FacetDivider />
           <div>{links}</div>
         </StyledDrawer>
       </Hidden>
