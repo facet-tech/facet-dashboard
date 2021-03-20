@@ -17,6 +17,13 @@ const StyledDiv = styled.div`
     padding: 1rem;
 `
 
+const GridDiv = styled.div`
+    display: grid;
+    grid-template-columns: 3% 90%;
+    gap: 2%;
+    align-items: center;
+`;
+
 const Backend = () => {
 
     const { setBackendFacets } = useContext(AppContext);
@@ -32,16 +39,22 @@ const Backend = () => {
     }, []);
 
     return <StyledDiv>
-        <Link href={`/backend`}>
-            <FacetIconButton
-                iconWidth="25"
-                iconHeight="25"
-                title="Notifications"
-                fill={color.white}
-                name="arrow-back"
-            />
-        </Link>
-        <StyledH2>{appId}</StyledH2>
+        <GridDiv>
+            <div>
+                <Link href={`/backend`}>
+                    <FacetIconButton
+                        iconWidth="25"
+                        iconHeight="25"
+                        title="Notifications"
+                        fill={color.white}
+                        name="arrow-back"
+                    />
+                </Link>
+            </div>
+            <div>
+                <StyledH2>{appId}</StyledH2>
+            </div>
+        </GridDiv>
         <BackendFacetCarousel />
     </StyledDiv>
 }
