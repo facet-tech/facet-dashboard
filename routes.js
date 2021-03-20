@@ -30,4 +30,22 @@ const dashboardRoutes = [
   },
 ];
 
+const pathRoutes = {
+  frontend: {
+    path: '/dashboard',
+    title: 'Frontend Domains'
+  },
+  backend: {
+    path: '/backend',
+    title: 'Backend Applications'
+  },
+}
+
+const getByPath = (path) => {
+  const val = Object.keys(pathRoutes)?.find(key => pathRoutes[key].path === path);
+  return pathRoutes[val];
+}
+
+export { pathRoutes, getByPath };
+
 export default dashboardRoutes;

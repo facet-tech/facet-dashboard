@@ -11,6 +11,18 @@ import Link from 'next/link'
 import StyledH2 from '../../components/StyledH2';
 import FacetIconButton from '../../shared/components/FacetIconButton';
 import { color } from '../../shared/constant';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+    padding: 1rem;
+`
+
+const GridDiv = styled.div`
+    display: grid;
+    grid-template-columns: 3% 90%;
+    gap: 2%;
+    align-items: center;
+`;
 
 const Backend = () => {
 
@@ -26,19 +38,25 @@ const Backend = () => {
         })();
     }, []);
 
-    return <div>
-        <Link href={`/backend`}>
-            <FacetIconButton
-                iconWidth="25"
-                iconHeight="25"
-                title="Notifications"
-                fill={color.white}
-                name="arrow-back"
-            />
-        </Link>
-        <StyledH2>{appId}</StyledH2>
+    return <StyledDiv>
+        <GridDiv>
+            <div>
+                <Link href={`/backend`}>
+                    <FacetIconButton
+                        iconWidth="25"
+                        iconHeight="25"
+                        title="Notifications"
+                        fill={color.white}
+                        name="arrow-back"
+                    />
+                </Link>
+            </div>
+            <div>
+                <StyledH2>{appId}</StyledH2>
+            </div>
+        </GridDiv>
         <BackendFacetCarousel />
-    </div>
+    </StyledDiv>
 }
 
 Backend.layout = Admin;

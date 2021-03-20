@@ -36,7 +36,8 @@ const color = {
     secondaryGray: '#F3F3F3',
     paragraph: '#494949',
     iconBtnGray: '#CBCBCB',
-    sidebarGray: '#717171'
+    sidebarGray: '#717171',
+    blackDashboard: '#111111'
 };
 
 const mountainWalkColors = {
@@ -168,7 +169,7 @@ const APIUrl = {
     apiBaseURL,
     testBaseURL,
     localBaseURL,
-    activeBaseURL: isDevelopment() ? localBaseURL : apiBaseURL,
+    activeBaseURL: isDevelopment() ? apiBaseURL : apiBaseURL,
     websiteURL
 };
 
