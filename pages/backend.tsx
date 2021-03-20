@@ -21,7 +21,6 @@ const Backend = () => {
     `
 
     return <div>
-        <StyledH2>Backend Applications</StyledH2>
         <BackendApplicationList />
     </div>
 }

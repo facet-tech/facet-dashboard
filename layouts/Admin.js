@@ -88,8 +88,8 @@ export default function Admin({ children, ...rest }) {
             {...rest}
           />
 
-          <div className={classes.content}>
-            <div className={classes.container}>{children}</div>
+          <div style={{marginTop: '7rem'}}>
+            <div>{children}</div>
           </div>
 
         </StyledDiv>

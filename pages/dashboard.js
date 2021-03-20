@@ -11,7 +11,6 @@ function Dashboard() {
 
   return (
     <div>
-      <StyledH2>Active Workspace domains</StyledH2>
       <PaginatedTable />
     </div>
   );

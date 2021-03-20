@@ -16,6 +16,7 @@ import { Divider } from "@material-ui/core";
 import styled from 'styled-components';
 import { color as colorConstant } from "../../shared/constant.js";
 import AppContext from "../../context/AppContext";
+import { getByPath } from "../../routes.js";
 
 const StyledListItem = styled(ListItem)`
     color: ${colorConstant.white};
@@ -68,7 +69,6 @@ const CoreDiv = styled.div`
 export default function Sidebar(props) {
   const { currRoute, setCurrRoute } = useContext(AppContext);
   // used for checking current route
-  const router = useRouter();
   // creates styles for this component
   const useStyles = makeStyles(styles);
   const classes = useStyles();
@@ -80,12 +80,13 @@ export default function Sidebar(props) {
         return (
           <Link href={prop.path} key={key} >
             <a onClick={() => {
-              setCurrRoute(prop.path);
+              const val = getByPath(prop.path);
+              setCurrRoute(val);
             }}>
               <StyledListItem style={{
                 paddingLeft: '4rem',
                 paddingRight: '4rem',
-                color: currRoute === prop.path ? colorConstant.white : colorConstant.sidebarGray
+                color: currRoute?.path === prop.path ? colorConstant.white : colorConstant.sidebarGray
               }}>
                 {typeof prop.icon === "string" ? (
                   <Icon>
