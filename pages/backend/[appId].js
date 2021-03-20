@@ -11,6 +11,11 @@ import Link from 'next/link'
 import StyledH2 from '../../components/StyledH2';
 import FacetIconButton from '../../shared/components/FacetIconButton';
 import { color } from '../../shared/constant';
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+    padding: 1rem;
+`
 
 const Backend = () => {
 
@@ -26,7 +31,7 @@ const Backend = () => {
         })();
     }, []);
 
-    return <div>
+    return <StyledDiv>
         <Link href={`/backend`}>
             <FacetIconButton
                 iconWidth="25"
@@ -38,7 +43,7 @@ const Backend = () => {
         </Link>
         <StyledH2>{appId}</StyledH2>
         <BackendFacetCarousel />
-    </div>
+    </StyledDiv>
 }
 
 Backend.layout = Admin;

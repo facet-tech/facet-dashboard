@@ -12,6 +12,17 @@ import routes from "../routes.js";
 import styles from "../assets/jss/nextjs-material-dashboard/layouts/adminStyle.js";
 import logo from "../assets/img/facet_logo_combo.svg";
 import AppProvider from "../context/AppProvider";
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+  width: calc(100% - 260px) !important;
+  overflow: auto;
+  position: relative;
+  float: right;
+  maxHeight: 100%;
+  width: 100%;
+  overflowScrolling: touch;
+`;
 
 let ps;
 
@@ -70,7 +81,7 @@ export default function Admin({ children, ...rest }) {
           color={color}
           {...rest}
         />
-        <div className={classes.mainPanel} ref={mainPanel}>
+        <StyledDiv ref={mainPanel}>
           <Navbar
             routes={routes}
             handleDrawerToggle={handleDrawerToggle}
@@ -81,7 +92,7 @@ export default function Admin({ children, ...rest }) {
             <div className={classes.container}>{children}</div>
           </div>
 
-        </div>
+        </StyledDiv>
       </div>
     </AppProvider>
   );

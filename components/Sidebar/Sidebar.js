@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
@@ -74,9 +73,6 @@ export default function Sidebar(props) {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   // verifies if routeName is the one active (in browser input)
-  function activeRoute(routeName) {
-    return router.route.indexOf(routeName) > -1 ? true : false;
-  }
   const { logoText, routes } = props;
   var links = (
     <StyledList>
