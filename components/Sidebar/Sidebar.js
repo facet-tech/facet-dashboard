@@ -1,6 +1,5 @@
 /*eslint-disable*/
 import React from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -18,6 +17,11 @@ import { Divider } from "@material-ui/core";
 import FacetDivider from '../../shared/components/FacetDivider';
 import styled from 'styled-components';
 import { color } from "../../shared/constant.js";
+
+
+const StyledListItem = styled(ListItem)`
+    color: ${color.white};
+`;
 
 const StyledList = styled(List)`
     margin-top: 20px;
@@ -39,6 +43,12 @@ const StyledDrawer = styled(Drawer)`
     left: 0;
     background-size: cover;
     background-position: center center;
+    color: ${color.white};
+    
+    & > div {
+      background-color: ${color.black};
+      ${'' /* color: ${color.white}; */}
+    }
     
     &:after: {
       position: absolute;
@@ -50,6 +60,10 @@ const StyledDrawer = styled(Drawer)`
       background: ${color.sidebarGray};
       opacity: .8;
     }
+`;
+
+const CoreDiv = styled.div`
+  background-color: ${color.black};
 `;
 
 export default function Sidebar(props) {
@@ -66,27 +80,10 @@ export default function Sidebar(props) {
   var links = (
     <StyledList>
       {routes.map((prop, key) => {
-        var activePro = " ";
-        var listItemClasses;
-        if (prop.path === "/upgrade-to-pro") {
-          activePro = classes.activePro + " ";
-          listItemClasses = classNames({
-
-          });
-        } else {
-          listItemClasses = classNames({
-            [" " + classes[color]]: activeRoute(prop.layout + prop.path),
-          });
-        }
-        const whiteFontClasses = classNames({
-          [" " + classes.whiteFont]:
-            activeRoute(prop.layout + prop.path) ||
-            prop.path === "/upgrade-to-pro",
-        });
         return (
           <Link href={prop.layout + prop.path} key={key}>
             <a>
-              <ListItem style={{
+              <StyledListItem style={{
                 paddingLeft: '4rem',
                 paddingRight: '4rem',
               }}>
@@ -96,19 +93,13 @@ export default function Sidebar(props) {
                   </Icon>
                 ) : (
                   <prop.icon
-                    className={classNames(classes.itemIcon, whiteFontClasses, {
-                      [classes.itemIconRTL]: props.rtlActive,
-                    })}
                   />
                 )}
                 <ListItemText
-                  primary={props.rtlActive ? prop.rtlName : prop.name}
-                  className={classNames(classes.itemText, whiteFontClasses, {
-                    [classes.itemTextRTL]: props.rtlActive,
-                  })}
+                  primary={prop.name}
                   disableTypography={true}
                 />
-              </ListItem>
+              </StyledListItem>
             </a>
           </Link>
         );
@@ -123,8 +114,9 @@ export default function Sidebar(props) {
       {logoText}
     </div>
   );
+  
   return (
-    <div >
+    <CoreDiv >
       <Hidden mdUp implementation="css">
         <StyledDrawer
           variant="temporary"
@@ -156,7 +148,7 @@ export default function Sidebar(props) {
           <div>{links}</div>
         </StyledDrawer>
       </Hidden>
-    </div>
+    </CoreDiv>
   );
 }
 

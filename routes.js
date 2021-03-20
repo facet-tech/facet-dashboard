@@ -30,4 +30,11 @@ const dashboardRoutes = [
   },
 ];
 
+const pathRoutes = {
+  dashboard: 'dashboard',
+  backend: 'backend',
+}
+
+export { pathRoutes };
+
 export default dashboardRoutes;

@@ -13,6 +13,8 @@ export interface AppState {
     setBackendFacetNames: undefined,
     domains: [],
     setDomains: undefined,
+    currRoute: string,
+    setCurrRoute: undefined
 }
 
 const AppContext = React.createContext({
@@ -29,6 +31,8 @@ const AppContext = React.createContext({
     setBackendFacetNames: undefined,
     domains: [],
     setDomains: undefined,
+    currRoute: undefined,
+    setCurrRoute: undefined
 });
 
 export default AppContext;
