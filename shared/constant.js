@@ -168,7 +168,7 @@ const APIUrl = {
     apiBaseURL,
     testBaseURL,
     localBaseURL,
-    activeBaseURL: isDevelopment() ? localBaseURL : apiBaseURL,
+    activeBaseURL: isDevelopment() ? apiBaseURL : apiBaseURL,
     websiteURL
 };
 

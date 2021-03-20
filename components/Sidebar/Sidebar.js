@@ -16,6 +16,41 @@ import RTLNavbarLinks from "../../components/Navbars/RTLNavbarLinks.js";
 import styles from "../../assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
 import { Divider } from "@material-ui/core";
 import FacetDivider from '../../shared/components/FacetDivider';
+import styled from 'styled-components';
+import { color } from "../../shared/constant.js";
+
+const StyledList = styled(List)`
+    margin-top: 20px;
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    list-style: none;
+    position: unset;
+`;
+
+const StyledDrawer = styled(Drawer)`
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center center;
+    
+    &:after: {
+      position: absolute;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      content: "";
+      display: block;
+      background: ${color.sidebarGray};
+      opacity: .8;
+    }
+`;
 
 export default function Sidebar(props) {
   // used for checking current route
@@ -27,9 +62,9 @@ export default function Sidebar(props) {
   function activeRoute(routeName) {
     return router.route.indexOf(routeName) > -1 ? true : false;
   }
-  const { color, image, logoText, routes } = props;
+  const { color, logoText, routes } = props;
   var links = (
-    <List className={classes.list}>
+    <StyledList>
       {routes.map((prop, key) => {
         var activePro = " ";
         var listItemClasses;
@@ -78,7 +113,7 @@ export default function Sidebar(props) {
           </Link>
         );
       })}
-    </List>
+    </StyledList>
   );
   var brand = (
     <div className={classes.logo}>
@@ -91,15 +126,10 @@ export default function Sidebar(props) {
   return (
     <div >
       <Hidden mdUp implementation="css">
-        <Drawer
+        <StyledDrawer
           variant="temporary"
           anchor={props.rtlActive ? "left" : "right"}
           open={props.open}
-          classes={{
-            paper: classNames(classes.drawerPaper, {
-              [classes.drawerPaperRTL]: props.rtlActive,
-            }),
-          }}
           onClose={props.handleDrawerToggle}
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
@@ -112,36 +142,19 @@ export default function Sidebar(props) {
             {props.rtlActive ? <RTLNavbarLinks /> : <AdminNavbarLinks />}
             {links}
           </div>
-          {image !== undefined ? (
-            <div
-              className={classes.background}
-              style={{ backgroundImage: "url(" + image + ")" }}
-            />
-          ) : null}
-        </Drawer>
+        </StyledDrawer>
       </Hidden>
       <Hidden smDown implementation="css">
-        <Drawer
+        <StyledDrawer
           anchor={props.rtlActive ? "right" : "left"}
           variant="permanent"
           open
-          classes={{
-            paper: classNames(classes.drawerPaper, {
-              [classes.drawerPaperRTL]: props.rtlActive,
-            }),
-          }}
         >
           {brand}
           <br />
           <FacetDivider />
-          <div className={classes.sidebarWrapper}>{links}</div>
-          {image !== undefined ? (
-            <div
-              className={classes.background}
-              style={{ backgroundImage: "url(" + image + ")" }}
-            />
-          ) : null}
-        </Drawer>
+          <div>{links}</div>
+        </StyledDrawer>
       </Hidden>
     </div>
   );

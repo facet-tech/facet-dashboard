@@ -12,6 +12,7 @@ import routes from "../routes.js";
 import styles from "../assets/jss/nextjs-material-dashboard/layouts/adminStyle.js";
 import logo from "../assets/img/facet_logo_combo.svg";
 import AppProvider from "../context/AppProvider";
+import styled from 'styled-components';
 
 let ps;
 
@@ -77,13 +78,11 @@ export default function Admin({ children, ...rest }) {
             {...rest}
           />
 
-          {getRoute() ? (
-            <div className={classes.content}>
-              <div className={classes.container}>{children}</div>
-            </div>
-          ) : (
-            <div className={classes.map}>{children}</div>
-          )}
+
+          <div className={classes.content}>
+            <div className={classes.container}>{children}</div>
+          </div>
+
         </div>
       </div>
     </AppProvider>
