@@ -88,7 +88,7 @@ export default function Admin({ children, ...rest }) {
             {...rest}
           />
 
-          <div style={{marginTop: '7rem'}}>
+          <div style={{ marginTop: '7rem' }}>
             <div>{children}</div>
           </div>
 

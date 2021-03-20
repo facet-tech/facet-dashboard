@@ -118,36 +118,15 @@ export default function Sidebar(props) {
 
   return (
     <CoreDiv >
-      <Hidden mdUp implementation="css">
-        <StyledDrawer
-          variant="temporary"
-          anchor={props.rtlActive ? "left" : "right"}
-          open={props.open}
-          onClose={props.handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-        >
-          {brand}
-          <br />
-          <Divider />
-          <div className={classes.sidebarWrapper}>
-            {props.rtlActive ? <RTLNavbarLinks /> : <AdminNavbarLinks />}
-            {links}
-          </div>
-        </StyledDrawer>
-      </Hidden>
-      <Hidden smDown implementation="css">
-        <StyledDrawer
-          anchor={props.rtlActive ? "right" : "left"}
-          variant="permanent"
-          open
-        >
-          {brand}
-          <br />
-          <div>{links}</div>
-        </StyledDrawer>
-      </Hidden>
+      <StyledDrawer
+        anchor={props.rtlActive ? "right" : "left"}
+        variant="permanent"
+        open
+      >
+        {brand}
+        <br />
+        <div>{links}</div>
+      </StyledDrawer>
     </CoreDiv>
   );
 }
