@@ -33,7 +33,7 @@ const dashboardRoutes = [
 const pathRoutes = {
   frontend: {
     path: '/dashboard',
-    title: 'Active Workspace domains'
+    title: 'Frontend Domains'
   },
   backend: {
     path: '/backend',
