@@ -35,7 +35,6 @@ const StyledList = styled(List)`
 const StyledDrawer = styled(Drawer)`
     box-shadow: none;
     position: absolute;
-    z-index: 1;
     height: 100%;
     width: 100%;
     display: block;
