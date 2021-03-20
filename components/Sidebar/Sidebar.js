@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -16,11 +16,11 @@ import styles from "../../assets/jss/nextjs-material-dashboard/components/sideba
 import { Divider } from "@material-ui/core";
 import FacetDivider from '../../shared/components/FacetDivider';
 import styled from 'styled-components';
-import { color } from "../../shared/constant.js";
-
+import { color, color as colorConstant } from "../../shared/constant.js";
+import AppContext from "../../context/AppContext";
 
 const StyledListItem = styled(ListItem)`
-    color: ${color.white};
+    color: ${colorConstant.white};
 `;
 
 const StyledList = styled(List)`
@@ -43,10 +43,10 @@ const StyledDrawer = styled(Drawer)`
     left: 0;
     background-size: cover;
     background-position: center center;
-    color: ${color.white};
+    color: ${colorConstant.white};
     
     & > div {
-      background-color: ${color.black};
+      background-color: ${colorConstant.black};
       ${'' /* color: ${color.white}; */}
     }
     
@@ -57,16 +57,17 @@ const StyledDrawer = styled(Drawer)`
       height: 100%;
       content: "";
       display: block;
-      background: ${color.sidebarGray};
+      background: ${colorConstant.sidebarGray};
       opacity: .8;
     }
 `;
 
 const CoreDiv = styled.div`
-  background-color: ${color.black};
+  background-color: ${colorConstant.black};
 `;
 
 export default function Sidebar(props) {
+  const { currRoute, setCurrRoute } = useContext(AppContext);
   // used for checking current route
   const router = useRouter();
   // creates styles for this component
@@ -76,16 +77,20 @@ export default function Sidebar(props) {
   function activeRoute(routeName) {
     return router.route.indexOf(routeName) > -1 ? true : false;
   }
-  const { color, logoText, routes } = props;
+  const {logoText, routes } = props;
   var links = (
     <StyledList>
       {routes.map((prop, key) => {
         return (
-          <Link href={prop.layout + prop.path} key={key}>
-            <a>
+          <Link href={prop.path} key={key} >
+            <a onClick={() => {
+              console.log('SETTARW', prop.path);
+              setCurrRoute(prop.path);
+            }}>
               <StyledListItem style={{
                 paddingLeft: '4rem',
                 paddingRight: '4rem',
+                color: currRoute === prop.path ? colorConstant.white: colorConstant.sidebarGray
               }}>
                 {typeof prop.icon === "string" ? (
                   <Icon>
@@ -114,7 +119,7 @@ export default function Sidebar(props) {
       {logoText}
     </div>
   );
-  
+
   return (
     <CoreDiv >
       <Hidden mdUp implementation="css">
