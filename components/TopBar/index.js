@@ -7,11 +7,14 @@ import Router from "next/router";
 import { color } from '../../shared/constant';
 import FacetIconButton from '../../shared/components/FacetIconButton';
 import AppContext from '../../context/AppContext';
+import { pathRoutes } from '../../routes';
+import Link from 'next/link'
 
 const CoreDiv = styled.div`
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: ${props => props.columnA ? props.columnA : '50%'} ${props => props.columnB ? props.columnB : '50%'};
     justify-content: end;
+    align-items: center;
     width: 100%;
     text-align: end;
     height: 5rem;
@@ -29,6 +32,7 @@ const StyledDiv = styled.div`
 const TopBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [notificationAnchorEl, setNotificationAnchorEl] = React.useState(null);
+    const [settingsAnchorEl, setSettingsAnchorEl] = React.useState(null);
     const { currRoute } = useContext(AppContext);
 
     const accountClick = (event) => {
@@ -37,6 +41,7 @@ const TopBar = () => {
 
     const handleClose = () => {
         setAnchorEl(null);
+        setSettingsAnchorEl(null);
     };
 
     const handleNotificationClick = (event) => {
@@ -46,12 +51,35 @@ const TopBar = () => {
     const handleNotificationClose = () => {
         setNotificationAnchorEl(null);
     };
+
+    const handleSettingsClick = (event) => {
+        setSettingsAnchorEl(event.currentTarget);
+    }
+
     return <div>
         <CoreDiv>
             <div style={{
                 justifySelf: 'start'
             }}>
-                <h4>{currRoute.title}</h4>
+                <CoreDiv columnA='90%' columnB='10%'>
+                    <div>
+                        <h4>{currRoute.title}</h4>
+                    </div>
+                    <div>
+                        {currRoute.title === pathRoutes.backend.title ?
+                            <Link href={`backend/settings`}>
+                                <FacetIconButton
+                                    iconWidth="25"
+                                    iconHeight="25"
+                                    title="Notifications"
+                                    fill={color.white}
+                                    name="settings-outline"
+                                />
+                            </Link>
+                            : null}
+                    </div>
+                </CoreDiv>
+
             </div>
             <StyledDiv>
                 <div>

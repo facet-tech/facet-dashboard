@@ -311,6 +311,24 @@ const getApp = async () => {
     return getAppResponse?.response?.map(e => e?.name);
 }
 
+const getConfigurationResponse = async () => {
+    const suffix = `/facet/configuration?property=BLOCK_LIST~&id=JAVA_PACKAGE_PREFIX~`;
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    return getBackendFacetResponse;
+}
+
+const getDefaultConfiguration = async () => {
+    const suffix = `/facet/configuration?property=DEFAULT_BLOCK_LIST~&id=JAVA_PACKAGE_PREFIX~`;
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    return getBackendFacetResponse;
+}
+
+const updateConfiguration = async (body) => {
+    const suffix = `/facet/configuration?property=BLOCK_LIST~&id=JAVA_PACKAGE_PREFIX~`;
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    return getBackendFacetResponse;
+}
+
 const getBackendFacet = async (name) => {
     const suffix = `/facet/backend?appId=${name}`;
     const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
@@ -324,10 +342,10 @@ const postBackendFacets = async (body) => {
 }
 
 export {
-    constructPayload, triggerApiCall, createDomain, getApp,
+    constructPayload, triggerApiCall, createDomain, getApp, getConfigurationResponse,
     getDomains, getFacet, getOrPostDomain, deleteFacet, getUser,
     getOrCreateWorkspace, deleteUser, postUser, postBackendFacets,
     saveFacets, convertGetFacetResponseToMap, addWhiteListedDomain,
     hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse,
-    getBackendFacet
+    getBackendFacet, updateConfiguration, getDefaultConfiguration
 };
