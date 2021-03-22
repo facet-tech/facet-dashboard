@@ -8,6 +8,14 @@ import aws_exports from '../aws-exports';
 import FacetHead from './FacetHead';
 import AppProvider from "../context/AppProvider";
 import "../styles/globals.css";
+import { SnackbarProvider } from 'notistack';
+import FacetSnackbar from "../shared/components/FacetSnackbar";
+
+const snackbarConfig = {
+  autoHideDuration: 4000,
+  vertical: 'bottom',
+  horizontal: 'left'
+};
 
 Amplify.configure(aws_exports);
 
@@ -37,7 +45,25 @@ export default class MyApp extends App {
 
     return (
       <React.Fragment>
+        <SnackbarProvider
+          style={{ height: '2rem' }}
+          maxSnack={4}
+          disableWindowBlurListener
+          autoHideDuration={snackbarConfig.autoHideDuration}
+          iconVariant={{
+            error: '✖️',
+            warning: '⚠️',
+          }}
+          anchorOrigin={{
+            vertical: snackbarConfig.vertical,
+            horizontal: snackbarConfig.horizontal,
+          }}
+          content={(key, message) => (
+            <FacetSnackbar id={key} {...message} />
+          )}
+        ></SnackbarProvider>
         <AppProvider>
+
           <GlobalStyle />
           <FacetHead />
           <Head>
@@ -57,7 +83,6 @@ export default class MyApp extends App {
                 body > div:first-child,
                 div#__next,
                 div#__next > div {
-                    height: 100%;
                     background-color: #111111;
                 }
 

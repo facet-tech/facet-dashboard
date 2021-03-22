@@ -39,6 +39,10 @@ const pathRoutes = {
     path: '/backend',
     title: 'Backend Applications'
   },
+  backendSettings: {
+    path: '/backend/settings',
+    title: 'Backend Settings'
+  },
 }
 
 const getByPath = (path) => {
