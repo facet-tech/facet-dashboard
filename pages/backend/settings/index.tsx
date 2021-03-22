@@ -3,7 +3,7 @@ import AppContext from '../../../context/AppContext';
 import Admin from "../../../layouts/Admin.js";
 import { getApp, getConfigurationResponse, getDefaultConfiguration, updateConfiguration } from '../../../services/facetApiService.js';
 import styled from 'styled-components';
-import { color, snackbar } from '../../../shared/constant';
+import { color, fontSize, snackbar } from '../../../shared/constant';
 import FacetLabel from '../../../shared/components/FacetLabel';
 import FacetIconButton from '../../../shared/components/FacetIconButton';
 import FacetInput from '../../../shared/components/FacetInput';
@@ -42,30 +42,38 @@ const Backend = () => {
     return <div style={{
         overflow: 'hidden'
     }}>
-        <FacetIconButton
-            iconWidth="25"
-            iconHeight="25"
-            title="Delete"
-            fill={color.white}
-            name="refresh-outline"
-            onClick={async () => {
-                const r = confirm("Are you sure you want to reset your block list?");
-                if (r) {
-                    const defaultConfiguration = await getDefaultConfiguration();
-                    const signatureList = defaultConfiguration?.response?.attribute?.signature;
+        <AsideDiv>
+            <div>
+                <FacetLabel fontSize={fontSize.xxLarge} text="Block List" />
+            </div>
+            <div>
+                <FacetIconButton
+                    iconWidth="25"
+                    iconHeight="25"
+                    title="Delete"
+                    fill={color.white}
+                    name="refresh-outline"
+                    onClick={async () => {
+                        const r = confirm("Are you sure you want to reset your block list?");
+                        if (r) {
+                            const defaultConfiguration = await getDefaultConfiguration();
+                            const signatureList = defaultConfiguration?.response?.attribute?.signature;
 
-                    // @ts-ignore
-                    requestResponse.attribute.signature = signatureList;
-                    updateConfiguration(requestResponse);
+                            // @ts-ignore
+                            requestResponse.attribute.signature = signatureList;
+                            updateConfiguration(requestResponse);
 
-                    setSignature(signatureList);
-                    enqueueSnackbar({
-                        message: `Reset block-list to default`,
-                        variant: snackbar.success.text
-                    });
-                }
-            }}
-        />
+                            setSignature(signatureList);
+                            enqueueSnackbar({
+                                message: `Reset block-list to default`,
+                                variant: snackbar.success.text
+                            });
+                        }
+                    }}
+                />
+            </div>
+        </AsideDiv>
+
         {/* @ts-ignore */}
         {signature && signature?.map((e, index) => {
             return <StyledDiv>
