@@ -59,10 +59,13 @@ const TopBar = () => {
     return <div>
         <CoreDiv>
             <div style={{
-                justifySelf: 'start'
+                justifySelf: 'start',
+                width: '20rem'
             }}>
                 <CoreDiv columnA='90%' columnB='10%'>
-                    <div>
+                    <div style={{
+                        justifySelf: 'start'
+                    }}>
                         <h4>{currRoute.title}</h4>
                     </div>
                     <div>
