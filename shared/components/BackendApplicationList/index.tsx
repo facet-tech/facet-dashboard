@@ -16,8 +16,6 @@ const BackendApplicationList = () => {
     return <>
         <Grid>
             {backendFacetNames?.map(backendFacet => {
-
-
                 return <>
                     <ApplicationCard name={backendFacet} href={`${backendFacet}`} />
                 </>

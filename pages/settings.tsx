@@ -1,13 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react';
-import AppContext from '../../../context/AppContext';
-import Admin from "../../../layouts/Admin.js";
-import { getConfigurationResponse, getDefaultConfiguration, updateConfiguration } from '../../../services/facetApiService.js';
+import AppContext from '../context/AppContext';
+import Admin from "../layouts/Admin.js";
+import { getConfigurationResponse, getDefaultConfiguration, updateConfiguration } from '../services/facetApiService.js';
 import styled from 'styled-components';
-import { color, fontSize, snackbar } from '../../../shared/constant';
-import FacetLabel from '../../../shared/components/FacetLabel';
-import FacetIconButton from '../../../shared/components/FacetIconButton';
-import FacetInput from '../../../shared/components/FacetInput';
-import FacetButton from '../../../shared/components/FacetButton';
+import { color, fontSize, snackbar } from '../shared/constant';
+import FacetLabel from '../shared/components/FacetLabel';
+import FacetIconButton from '../shared/components/FacetIconButton';
+import FacetInput from '../shared/components/FacetInput';
+import FacetButton from '../shared/components/FacetButton';
 import { useSnackbar } from 'notistack';
 
 const StyledDiv = styled.div`

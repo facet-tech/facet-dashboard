@@ -7,6 +7,7 @@ import FacetIconButton from './FacetIconButton'
 import { postApp } from '../../services/facetApiService'
 import ParserBackendService from '../../services/ParserBackendService'
 import AppContext from '../../context/AppContext'
+import Link from "next/link";
 
 const TitleGrid = styled.div`
     display: grid;
@@ -45,9 +46,9 @@ const ApplicationCard = ({ name, appStack = applicationStack.java, isAuthorized 
     return <>
         <MainGrid>
             <TitleGrid>
-                <a href={href}>
+                <Link href={'/applications/'}>
                     <FacetLabel extraStyle={{ fontWeight: 'bold' }} text={name} />
-                </a>
+                </Link>
                 <div style={{
                     justifySelf: 'end'
                 }}>

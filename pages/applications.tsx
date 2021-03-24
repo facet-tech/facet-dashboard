@@ -3,8 +3,6 @@ import AppContext from '../context/AppContext';
 import Admin from "../layouts/Admin.js";
 import { getApp } from '../services/facetApiService.js';
 import BackendApplicationList from '../shared/components/BackendApplicationList';
-import styled from 'styled-components';
-import { color } from '../shared/constant';
 import ParserBackendService from '../services/ParserBackendService';
 
 const Backend = () => {

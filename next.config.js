@@ -14,6 +14,7 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS], [
         '/authentication': { page: '/authentication' },
         '/dashboard': { page: '/dashboard' },
         '/applications': { page: '/applications' },
+        '/settings': { page: '/settings' },
       }
     },
     trailingSlash: true,
