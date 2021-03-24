@@ -7,8 +7,6 @@ import Router from "next/router";
 import { color } from '../../shared/constant';
 import FacetIconButton from '../../shared/components/FacetIconButton';
 import AppContext from '../../context/AppContext';
-import { pathRoutes } from '../../routes';
-import Link from 'next/link'
 
 const CoreDiv = styled.div`
     display: grid;
