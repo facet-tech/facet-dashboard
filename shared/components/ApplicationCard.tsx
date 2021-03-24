@@ -7,6 +7,7 @@ import FacetIconButton from './FacetIconButton'
 import { postApp } from '../../services/facetApiService'
 import ParserBackendService from '../../services/ParserBackendService'
 import AppContext from '../../context/AppContext'
+import Link from "next/link";
 
 const TitleGrid = styled.div`
     display: grid;
@@ -45,9 +46,11 @@ const ApplicationCard = ({ name, appStack = applicationStack.java, isAuthorized 
     return <>
         <MainGrid>
             <TitleGrid>
-                <a href={href}>
-                    <FacetLabel extraStyle={{ fontWeight: 'bold' }} text={name} />
-                </a>
+                <Link href={href}>
+                    <a>
+                        <FacetLabel extraStyle={{ fontWeight: 'bold' }} text={name} />
+                    </a>
+                </Link>
                 <div style={{
                     justifySelf: 'end'
                 }}>
@@ -72,21 +75,23 @@ const ApplicationCard = ({ name, appStack = applicationStack.java, isAuthorized 
                         name={favoriteList.includes(name) ? 'star' : 'star-outline'} />
                 </div>
             </TitleGrid>
-            <a href={href}>
-                <DescriptionGrid>
-                    <div>
-                        <img src={`../images/${appStack.imgName}`} alt={appStack.name} />
-                    </div>
-                </DescriptionGrid>
-                {isAuthorized ? <PermissionGrid>
-                    <div>
-                        <Icon iconHeight='18' iconWidth='18' fill={dashboardColor.green} name='checkmark-circle-2-outline' />
-                    </div>
-                    <div>
-                        <FacetLabel color={dashboardColor.green} text='Authorized' />
-                    </div>
-                </PermissionGrid> : null}
-            </a>
+            <Link href={href}>
+                <a>
+                    <DescriptionGrid>
+                        <div>
+                            <img src={`../images/${appStack.imgName}`} alt={appStack.name} />
+                        </div>
+                    </DescriptionGrid>
+                    {isAuthorized ? <PermissionGrid>
+                        <div>
+                            <Icon iconHeight='18' iconWidth='18' fill={dashboardColor.green} name='checkmark-circle-2-outline' />
+                        </div>
+                        <div>
+                            <FacetLabel color={dashboardColor.green} text='Authorized' />
+                        </div>
+                    </PermissionGrid> : null}
+                </a>
+            </Link>
         </MainGrid>
     </>
 }

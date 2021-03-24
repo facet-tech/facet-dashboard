@@ -30,7 +30,7 @@ const dashboardRoutes = [
     layout: "",
   },
   {
-    path: "/applications/settings",
+    path: "/settings",
     name: "Settings",
     icon: SettingsIcon,
     layout: "",
@@ -47,7 +47,7 @@ const pathRoutes = {
     title: 'Projects'
   },
   backendSettings: {
-    path: '/applications/settings',
+    path: '/settings',
     title: 'Settings'
   },
   applications: {

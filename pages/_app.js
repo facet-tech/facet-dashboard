@@ -5,11 +5,11 @@ import "../assets/css/nextjs-material-dashboard.css?v=1.1.0";
 import { createGlobalStyle } from 'styled-components'
 import Amplify from 'aws-amplify';
 import aws_exports from '../aws-exports';
-import FacetHead from './FacetHead';
 import AppProvider from "../context/AppProvider";
 import "../styles/globals.css";
 import { SnackbarProvider } from 'notistack';
 import FacetSnackbar from "../shared/components/FacetSnackbar";
+import FacetHead from '../shared/components/FacetHead';
 
 const snackbarConfig = {
   autoHideDuration: 4000,
