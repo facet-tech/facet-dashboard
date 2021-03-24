@@ -54,7 +54,6 @@ export default function AppProvider({ children }) {
         setBackendFacets([...backendFacets]);
         postBackendFacets(element)
     };
-    console.log('getAppResponse', getAppResponse);
     return <AppContext.Provider value={{
         currAuthState, setCurrAuthState,
         isCurrentlyLoggedIn, setIsCurrentlyLoggedIn, handleEnabledChange,

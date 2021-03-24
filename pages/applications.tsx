@@ -20,7 +20,6 @@ const Backend = () => {
             setFavoriteList(favoriteList);
         })();
     }, []);
-    console.log('KEEPO favoriteList', favoriteList);
     return <div>
         <BackendApplicationList />
     </div>

@@ -41,7 +41,6 @@ const ApplicationCard = ({ name, appStack = applicationStack.java, isAuthorized 
 
     const { getAppResponse, favoriteList, setFavoriteList } = useContext(AppContext);
     const [isFavorite, setIsFavorite] = useState(favoriteList.includes(name));
-    console.log('ELA', favoriteList.includes(name));
     // TODO update initial state
     return <>
         <MainGrid>
@@ -64,11 +63,9 @@ const ApplicationCard = ({ name, appStack = applicationStack.java, isAuthorized 
                             setIsFavorite(!isFavorite);
                             if (newVal) {
                                 const newArray = [...favoriteList, name]
-                                console.log('keepo 1', newArray);
                                 setFavoriteList(newArray);
                             } else {
                                 const newArray = favoriteList.filter(e => e !== name);
-                                console.log('keepo 2', newArray);
                                 setFavoriteList(newArray)
                             }
                         }}
