@@ -7,7 +7,7 @@ import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
 import { postBackendFacets, getUser, getDomains } from '../services/facetApiService';
-import { getByPath, pathRoutes } from '../routes';
+import { getByPath } from '../routes';
 
 const snackbarConfig = {
     autoHideDuration: 5000,
