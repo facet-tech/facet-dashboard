@@ -68,21 +68,7 @@ const TopBar = () => {
                     }}>
                         <h4>{currRoute?.title}</h4>
                     </div>
-                    <div>
-                        {currRoute?.title === pathRoutes.applications.title ?
-                            <Link href={`applications/settings`}>
-                                <FacetIconButton
-                                    iconWidth="25"
-                                    iconHeight="25"
-                                    title="Notifications"
-                                    fill={color.white}
-                                    name="settings-outline"
-                                />
-                            </Link>
-                            : null}
-                    </div>
                 </CoreDiv>
-
             </div>
             <StyledDiv>
                 <div>

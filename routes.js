@@ -48,7 +48,7 @@ const pathRoutes = {
   },
   backendSettings: {
     path: '/applications/settings',
-    title: 'Application Settings'
+    title: 'Settings'
   },
   applications: {
     path: '/applications',
