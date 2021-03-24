@@ -2,6 +2,7 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
 import PaymentIcon from '@material-ui/icons/Payment';
 import DnsIcon from '@material-ui/icons/Dns';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const dashboardRoutes = [
   {
@@ -28,6 +29,12 @@ const dashboardRoutes = [
     icon: PaymentIcon,
     layout: "",
   },
+  {
+    path: "/applications/settings",
+    name: "Settings",
+    icon: SettingsIcon,
+    layout: "",
+  },
 ];
 
 const pathRoutes = {
@@ -41,8 +48,12 @@ const pathRoutes = {
   },
   backendSettings: {
     path: '/applications/settings',
-    title: 'Backend Settings'
+    title: 'Application Settings'
   },
+  applications: {
+    path: '/applications',
+    title: 'Applications'
+  }
 }
 
 const getByPath = (path) => {

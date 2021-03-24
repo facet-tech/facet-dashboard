@@ -7,7 +7,7 @@ import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
 import { postBackendFacets, getUser, getDomains } from '../services/facetApiService';
-import { pathRoutes } from '../routes';
+import { getByPath, pathRoutes } from '../routes';
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -22,7 +22,7 @@ export default function AppProvider({ children }) {
     const [backendFacets, setBackendFacets] = useState([]);
     const [backendFacetNames, setBackendFacetNames] = useState([]);
     const [getAppResponse, setGetAppResponse] = useState({});
-    const [currRoute, setCurrRoute] = useState(pathRoutes.frontend);// TODO BE SET FROM useEffect
+    const [currRoute, setCurrRoute] = useState(''); // TODO BE SET FROM useEffect
     const [favoriteList, setFavoriteList] = useState([]);
 
     const router = useRouter();
@@ -35,6 +35,8 @@ export default function AppProvider({ children }) {
             const workspaceId = userResponse?.response?.workspaceId;
             const getDomainsResponse = await getDomains(workspaceId);
             setDomains(getDomainsResponse?.response);
+            const val = getByPath(window.location.pathname.slice(0, -1));
+            setCurrRoute(val);
         })();
 
         if (isMounted.current) {

@@ -60,7 +60,7 @@ const TopBar = () => {
         <CoreDiv>
             <div style={{
                 justifySelf: 'start',
-                width: '20rem'
+                width: '15rem'
             }}>
                 <CoreDiv columnA='90%' columnB='10%'>
                     <div style={{
