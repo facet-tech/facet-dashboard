@@ -10,6 +10,8 @@ import "../styles/globals.css";
 import { SnackbarProvider } from 'notistack';
 import FacetSnackbar from "../shared/components/FacetSnackbar";
 import FacetHead from '../shared/components/FacetHead';
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
 
 const snackbarConfig = {
   autoHideDuration: 4000,
@@ -18,6 +20,16 @@ const snackbarConfig = {
 };
 
 Amplify.configure(aws_exports);
+
+Sentry.init({
+  dsn: "https://096ad65e15374a91ba548f74712534c0@o460218.ingest.sentry.io/5691543",
+  integrations: [new Integrations.BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
 
 const GlobalStyle = createGlobalStyle`
   body {
