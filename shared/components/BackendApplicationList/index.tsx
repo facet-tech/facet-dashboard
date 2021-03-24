@@ -17,7 +17,7 @@ const BackendApplicationList = () => {
         <Grid>
             {backendFacetNames?.map(backendFacet => {
                 return <>
-                    <ApplicationCard name={backendFacet} href={`backend/${backendFacet}`} />
+                    <ApplicationCard name={backendFacet} href={`${backendFacet}`} />
                 </>
             })}
         </Grid>

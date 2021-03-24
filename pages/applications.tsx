@@ -7,18 +7,16 @@ import styled from 'styled-components';
 import { color } from '../shared/constant';
 
 const Backend = () => {
-    const { setBackendFacetNames } = useContext(AppContext);
+    const { setBackendFacetNames, setGetAppResponse } = useContext(AppContext);
 
     useEffect(() => {
         (async () => {
-            const getAppResponseArray = await getApp();
-            setBackendFacetNames(getAppResponseArray);
+            const getAppResponse = await getApp();
+            setGetAppResponse(getAppResponse);
+            const backendFacetNames = getAppResponse?.response?.map(e => e?.name)
+            setBackendFacetNames(backendFacetNames);
         })();
     }, []);
-
-    const StyledH2 = styled.h2`
-        color: ${color.white};
-    `
 
     return <div>
         <BackendApplicationList />

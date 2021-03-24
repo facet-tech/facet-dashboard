@@ -48,6 +48,11 @@ class ParserBackendService {
         }
         return undefined
     }
+
+    static getAppByName = (name, getAppResponse) => {
+        const wantedApp = getAppResponse.response.find(e => e.name === name);
+        return wantedApp;
+    }
 }
 
 export default ParserBackendService;

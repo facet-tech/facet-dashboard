@@ -308,7 +308,13 @@ const getApp = async () => {
     const workspaceId = getUserResponse?.response?.workspaceId;
     let suffix = `/app?workspaceId=${workspaceId}`;
     const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix);
-    return getAppResponse?.response?.map(e => e?.name);
+    return getAppResponse;
+}
+
+const postApp = async (body) => {
+    const suffix = `/app?workspaceId=${body.workspaceId}`;
+    const postAppResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    return postAppResponse;
 }
 
 const getConfigurationResponse = async () => {
@@ -347,5 +353,5 @@ export {
     getOrCreateWorkspace, deleteUser, postUser, postBackendFacets,
     saveFacets, convertGetFacetResponseToMap, addWhiteListedDomain,
     hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse,
-    getBackendFacet, updateConfiguration, getDefaultConfiguration
+    getBackendFacet, updateConfiguration, getDefaultConfiguration, postApp
 };

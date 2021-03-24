@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import { dashboardColor, color, applicationStack } from '../constant'
 import FacetLabel from './FacetLabel'
 import Icon from '../components/Icon'
 import FacetIconButton from './FacetIconButton'
+import { postApp } from '../../services/facetApiService'
+import ParserBackendService from '../../services/ParserBackendService'
+import AppContext from '../../context/AppContext'
 
 const TitleGrid = styled.div`
     display: grid;
@@ -34,29 +37,35 @@ const DescriptionGrid = styled.div`
     background-color: ${dashboardColor.black};
 `
 
-const StyledA = styled.a`
-
-`;
-
 const ApplicationCard = ({ name, favorite = false, appStack = applicationStack.java, isAuthorized = true, href = '' }) => {
+
+    const { getAppResponse } = useContext(AppContext);
     const [isFavorite, setIsFavorite] = useState(favorite);
 
     return <>
         <MainGrid>
             <TitleGrid>
-                <StyledA href={href}>
+                <a href={href}>
                     <FacetLabel extraStyle={{ fontWeight: 'bold' }} text={name} />
-                </StyledA>
+                </a>
                 <div style={{
                     justifySelf: 'end'
                 }}>
                     <FacetIconButton
                         key={name + isFavorite}
-                        onClick={() => { setIsFavorite(!isFavorite) }}
+                        onClick={() => {
+                            let wantedApp = ParserBackendService.getAppByName(name, getAppResponse);
+                            wantedApp.Attribute = {
+                                favorite: !isFavorite
+                            };
+                            postApp(wantedApp);
+                            console.log('wantedApp', wantedApp);
+                            setIsFavorite(!isFavorite);
+                        }}
                         name={isFavorite ? 'star' : 'star-outline'} />
                 </div>
             </TitleGrid>
-            <StyledA href={href}>
+            <a href={href}>
                 <DescriptionGrid>
                     <div>
                         <img src={`../images/${appStack.imgName}`} alt={appStack.name} />
@@ -70,7 +79,7 @@ const ApplicationCard = ({ name, favorite = false, appStack = applicationStack.j
                         <FacetLabel color={dashboardColor.green} text='Authorized' />
                     </div>
                 </PermissionGrid> : null}
-            </StyledA>
+            </a>
         </MainGrid>
     </>
 }

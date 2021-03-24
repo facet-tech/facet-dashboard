@@ -69,8 +69,8 @@ const TopBar = () => {
                         <h4>{currRoute.title}</h4>
                     </div>
                     <div>
-                        {currRoute.title === pathRoutes.backend.title ?
-                            <Link href={`backend/settings`}>
+                        {currRoute.title === pathRoutes.applications.title ?
+                            <Link href={`applications/settings`}>
                                 <FacetIconButton
                                     iconWidth="25"
                                     iconHeight="25"

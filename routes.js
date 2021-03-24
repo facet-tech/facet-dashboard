@@ -11,8 +11,8 @@ const dashboardRoutes = [
     layout: "",
   },
   {
-    path: "/backend",
-    name: "Backend",
+    path: "/applications",
+    name: "Applications",
     icon: DnsIcon,
     layout: "",
   },
@@ -35,12 +35,12 @@ const pathRoutes = {
     path: '/dashboard',
     title: 'Frontend Domains'
   },
-  backend: {
-    path: '/backend',
-    title: 'Backend Applications'
+  applications: {
+    path: '/projects',
+    title: 'Projects'
   },
   backendSettings: {
-    path: '/backend/settings',
+    path: '/applications/settings',
     title: 'Backend Settings'
   },
 }

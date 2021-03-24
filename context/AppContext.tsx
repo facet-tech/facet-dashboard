@@ -14,7 +14,9 @@ export interface AppState {
     domains: [],
     setDomains: undefined,
     currRoute: string,
-    setCurrRoute: undefined
+    setCurrRoute: undefined,
+    getAppResponse: {},
+    setGetAppResponse: undefined
 }
 
 const AppContext = React.createContext({
@@ -32,7 +34,9 @@ const AppContext = React.createContext({
     domains: [],
     setDomains: undefined,
     currRoute: undefined,
-    setCurrRoute: undefined
+    setCurrRoute: undefined,
+    getAppResponse: undefined,
+    setGetAppResponse: undefined
 });
 
 export default AppContext;
