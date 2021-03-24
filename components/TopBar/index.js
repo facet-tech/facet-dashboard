@@ -66,10 +66,10 @@ const TopBar = () => {
                     <div style={{
                         justifySelf: 'start'
                     }}>
-                        <h4>{currRoute.title}</h4>
+                        <h4>{currRoute?.title}</h4>
                     </div>
                     <div>
-                        {currRoute.title === pathRoutes.applications.title ?
+                        {currRoute?.title === pathRoutes.applications.title ?
                             <Link href={`applications/settings`}>
                                 <FacetIconButton
                                     iconWidth="25"
