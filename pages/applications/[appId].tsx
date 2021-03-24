@@ -1,12 +1,10 @@
 import React, { useEffect, useContext } from 'react';
 import AppContext from '../../context/AppContext';
 import Admin from "../../layouts/Admin.js";
-import { getApp, getBackendFacet } from '../../services/facetApiService.js';
+import { getBackendFacet } from '../../services/facetApiService.js';
 import ParserBackendService from '../../services/ParserBackendService';
 import BackendFacetCarousel from '../../shared/components/BackendFacetPanel/BackendFacetCarousel';
 import { useRouter } from 'next/router';
-import IconButton from "@material-ui/core/IconButton";
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import Link from 'next/link'
 import StyledH2 from '../../components/StyledH2';
 import FacetIconButton from '../../shared/components/FacetIconButton';
@@ -41,7 +39,7 @@ const Backend = () => {
     return <StyledDiv>
         <GridDiv>
             <div>
-                <Link href={`/backend`}>
+                <Link href={`/applications`}>
                     <FacetIconButton
                         iconWidth="25"
                         iconHeight="25"

@@ -48,6 +48,16 @@ class ParserBackendService {
         }
         return undefined
     }
+
+    static getAppByName = (name, getAppResponse) => {
+        const wantedApp = getAppResponse.response.find(e => e.name === name);
+        return wantedApp;
+    }
+
+    static getFavoriteApps = (getAppResponse) => {
+        const result = getAppResponse.response.filter(e => e.attribute?.favorite === true);
+        return result.map(e => e.name);
+    }
 }
 
 export default ParserBackendService;

@@ -5,21 +5,21 @@ import { getApp } from '../services/facetApiService.js';
 import BackendApplicationList from '../shared/components/BackendApplicationList';
 import styled from 'styled-components';
 import { color } from '../shared/constant';
+import ParserBackendService from '../services/ParserBackendService';
 
 const Backend = () => {
-    const { setBackendFacetNames } = useContext(AppContext);
+    const { setBackendFacetNames, setGetAppResponse, favoriteList, setFavoriteList } = useContext(AppContext);
 
     useEffect(() => {
         (async () => {
-            const getAppResponseArray = await getApp();
-            setBackendFacetNames(getAppResponseArray);
+            const getAppResponse = await getApp();
+            setGetAppResponse(getAppResponse);
+            const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
+            setBackendFacetNames(backendFacetNames);
+            const favoriteList = ParserBackendService.getFavoriteApps(getAppResponse);
+            setFavoriteList(favoriteList);
         })();
     }, []);
-
-    const StyledH2 = styled.h2`
-        color: ${color.white};
-    `
-
     return <div>
         <BackendApplicationList />
     </div>

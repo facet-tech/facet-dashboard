@@ -13,7 +13,7 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS], [
       return {
         '/authentication': { page: '/authentication' },
         '/dashboard': { page: '/dashboard' },
-        '/backend': { page: '/backend' },
+        '/applications': { page: '/applications' },
       }
     },
     trailingSlash: true,

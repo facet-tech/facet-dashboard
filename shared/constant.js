@@ -37,8 +37,27 @@ const color = {
     paragraph: '#494949',
     iconBtnGray: '#CBCBCB',
     sidebarGray: '#717171',
-    blackDashboard: '#111111'
+    blackDashboard: '#111111',
+    dashboardGray: '#CDCFD0',
 };
+
+const dashboardColor = {
+    ice: '#E8F2FC',
+    gray: '#2A2A2A',
+    black: '#181818',
+    green: '#B3E07A'
+};
+
+const applicationStack = {
+    java: {
+        name: 'java',
+        imgName: 'java.svg'
+    },
+    javascript: {
+        name: 'javascript',
+        imgName: 'javascript.svg'
+    }
+}
 
 const mountainWalkColors = {
     gray: '#262626',
@@ -176,6 +195,6 @@ const APIUrl = {
 
 export {
     color, fontSize, allFacets, mountainWalkColors, documentationIds, authState,
-    APIUrl, apiBaseURL, snackbar, documentationText, responsiveThresholds,
-    isMobile, isMobileLg, api, HTTPMethods, ChromeRequestType, APIEndpoint
+    APIUrl, apiBaseURL, snackbar, documentationText, responsiveThresholds, dashboardColor,
+    isMobile, isMobileLg, api, HTTPMethods, ChromeRequestType, APIEndpoint, applicationStack
 };

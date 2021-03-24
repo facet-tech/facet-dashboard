@@ -7,7 +7,7 @@ import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
 import { postBackendFacets, getUser, getDomains } from '../services/facetApiService';
-import dashboardRoutes, { pathRoutes } from '../routes';
+import { pathRoutes } from '../routes';
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -21,7 +21,9 @@ export default function AppProvider({ children }) {
     const [authObject, setAuthObject] = useState({ email: '', password: '' });
     const [backendFacets, setBackendFacets] = useState([]);
     const [backendFacetNames, setBackendFacetNames] = useState([]);
-    const [currRoute, setCurrRoute] = useState(pathRoutes.frontend);
+    const [getAppResponse, setGetAppResponse] = useState({});
+    const [currRoute, setCurrRoute] = useState(pathRoutes.frontend);// TODO BE SET FROM useEffect
+    const [favoriteList, setFavoriteList] = useState([]);
 
     const router = useRouter();
     const isMounted = useIsMounted();
@@ -52,13 +54,13 @@ export default function AppProvider({ children }) {
         setBackendFacets([...backendFacets]);
         postBackendFacets(element)
     };
-
     return <AppContext.Provider value={{
         currAuthState, setCurrAuthState,
         isCurrentlyLoggedIn, setIsCurrentlyLoggedIn, handleEnabledChange,
         authObject, setAuthObject, backendFacets, setBackendFacets,
         backendFacetNames, setBackendFacetNames, domains, setDomains,
-        currRoute, setCurrRoute
+        currRoute, setCurrRoute, getAppResponse, setGetAppResponse,
+        favoriteList, setFavoriteList
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider
