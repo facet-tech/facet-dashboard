@@ -37,11 +37,12 @@ const DescriptionGrid = styled.div`
     background-color: ${dashboardColor.black};
 `
 
-const ApplicationCard = ({ name, favorite = false, appStack = applicationStack.java, isAuthorized = true, href = '' }) => {
+const ApplicationCard = ({ name, appStack = applicationStack.java, isAuthorized = true, href = '' }) => {
 
-    const { getAppResponse } = useContext(AppContext);
-    const [isFavorite, setIsFavorite] = useState(favorite);
-
+    const { getAppResponse, favoriteList, setFavoriteList } = useContext(AppContext);
+    const [isFavorite, setIsFavorite] = useState(favoriteList.includes(name));
+    console.log('ELA', favoriteList.includes(name));
+    // TODO update initial state
     return <>
         <MainGrid>
             <TitleGrid>
@@ -52,17 +53,26 @@ const ApplicationCard = ({ name, favorite = false, appStack = applicationStack.j
                     justifySelf: 'end'
                 }}>
                     <FacetIconButton
-                        key={name + isFavorite}
+                        key={name + isFavorite + favoriteList.includes(name) + Math.random()}
                         onClick={() => {
                             let wantedApp = ParserBackendService.getAppByName(name, getAppResponse);
                             wantedApp.Attribute = {
                                 favorite: !isFavorite
                             };
                             postApp(wantedApp);
-                            console.log('wantedApp', wantedApp);
+                            const newVal = !isFavorite;
                             setIsFavorite(!isFavorite);
+                            if (newVal) {
+                                const newArray = [...favoriteList, name]
+                                console.log('keepo 1', newArray);
+                                setFavoriteList(newArray);
+                            } else {
+                                const newArray = favoriteList.filter(e => e !== name);
+                                console.log('keepo 2', newArray);
+                                setFavoriteList(newArray)
+                            }
                         }}
-                        name={isFavorite ? 'star' : 'star-outline'} />
+                        name={favoriteList.includes(name) ? 'star' : 'star-outline'} />
                 </div>
             </TitleGrid>
             <a href={href}>

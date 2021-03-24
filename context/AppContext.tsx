@@ -16,7 +16,9 @@ export interface AppState {
     currRoute: string,
     setCurrRoute: undefined,
     getAppResponse: {},
-    setGetAppResponse: undefined
+    setGetAppResponse: undefined,
+    favoriteList: [],
+    setFavoriteList: undefined
 }
 
 const AppContext = React.createContext({
@@ -36,7 +38,9 @@ const AppContext = React.createContext({
     currRoute: undefined,
     setCurrRoute: undefined,
     getAppResponse: undefined,
-    setGetAppResponse: undefined
+    setGetAppResponse: undefined,
+    favoriteList: [],
+    setFavoriteList: undefined
 });
 
 export default AppContext;

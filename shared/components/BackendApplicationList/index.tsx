@@ -12,10 +12,12 @@ const Grid = styled.div`
 
 
 const BackendApplicationList = () => {
-    const { backendFacetNames } = useContext(AppContext);
+    const { backendFacetNames, favoriteList } = useContext(AppContext);
     return <>
         <Grid>
             {backendFacetNames?.map(backendFacet => {
+
+
                 return <>
                     <ApplicationCard name={backendFacet} href={`${backendFacet}`} />
                 </>

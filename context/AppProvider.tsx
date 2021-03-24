@@ -23,6 +23,7 @@ export default function AppProvider({ children }) {
     const [backendFacetNames, setBackendFacetNames] = useState([]);
     const [getAppResponse, setGetAppResponse] = useState({});
     const [currRoute, setCurrRoute] = useState(pathRoutes.frontend);// TODO BE SET FROM useEffect
+    const [favoriteList, setFavoriteList] = useState([]);
 
     const router = useRouter();
     const isMounted = useIsMounted();
@@ -59,7 +60,8 @@ export default function AppProvider({ children }) {
         isCurrentlyLoggedIn, setIsCurrentlyLoggedIn, handleEnabledChange,
         authObject, setAuthObject, backendFacets, setBackendFacets,
         backendFacetNames, setBackendFacetNames, domains, setDomains,
-        currRoute, setCurrRoute, getAppResponse, setGetAppResponse
+        currRoute, setCurrRoute, getAppResponse, setGetAppResponse,
+        favoriteList, setFavoriteList
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider
