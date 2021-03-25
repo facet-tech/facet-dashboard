@@ -75,7 +75,6 @@ export default class MyApp extends App {
           )}
         ></SnackbarProvider>
         <AppProvider>
-
           <GlobalStyle />
           <FacetHead />
           <Head>
