@@ -4,3 +4,11 @@
 * {
   font-family: "Manrope";
 }
+
+a {
+  color: #80cae1 !important;
+}
+
+a:hover {
+  color: #80cae1 !important;
+}

@@ -1,10 +1,10 @@
 import React from 'react';
 import { color as colors, fontSize } from '../constant';
 
-const FacetParagraph = ({ text = null, color = colors.black, fontSize = 'medium', children = null }) => {
+const FacetParagraph = ({ text = null, width = '100%', color = colors.white, fontSize = 'medium', children = null }) => {
     return <span
         style={{
-            width: '100%',
+            width,
             color,
             fontSize,
             fontFamily: 'Manrope',
