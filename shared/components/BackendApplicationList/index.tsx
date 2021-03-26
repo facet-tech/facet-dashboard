@@ -30,7 +30,6 @@ const BackendApplicationList = () => {
             <FacetParagraph width='unset' color={color.grayB}>
                 Check our <a href='https://facet.run/documentation' target='_blank'>documentation</a> on how to create a new project.
                 </FacetParagraph>
-
             <FacetIconButton onClick={() => {
                 window.open('https://facet.run/documentation', '_blank');
             }} fill={dashboardColor.cyan} name='external-link-outline' />
