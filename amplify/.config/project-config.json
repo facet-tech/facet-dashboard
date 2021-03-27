@@ -1,0 +1,17 @@
+{
+  "providers": [
+    "awscloudformation"
+  ],
+  "projectName": "facetextension",
+  "version": "3.0",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": "pages",
+      "DistributionDir": "out",
+      "BuildCommand": "yarn build",
+      "StartCommand": "yarn dev"
+    }
+  }
+}
