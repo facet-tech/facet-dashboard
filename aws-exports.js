@@ -3,7 +3,7 @@
 
 const awsmobile = {
     "aws_project_region": "us-west-2",
-    "aws_cognito_identity_pool_id": "us-west-2:710f6c07-b4db-48f0-bcec-6e8bfa8ba278",
+    "aws_cognito_identity_pool_id": "us-west-2_oM4ne6cSf",
     "aws_cognito_region": "us-west-2",
     "aws_user_pools_id": "us-west-2_oM4ne6cSf",
     "aws_user_pools_web_client_id": "6fa4fhctnojuf3hmlvo0mvsp02",
@@ -13,15 +13,12 @@ const awsmobile = {
             "phone",
             "email",
             "openid",
-            "profile",
-            "aws.cognito.signin.user.admin"
+            "profile"
         ],
-        "redirectSignIn": "http://localhost:8080/",
-        "redirectSignOut": "http://localhost:8080/",
-        "responseType": "code"
+        "redirectSignIn": "http://localhost:3000/",
+        "redirectSignOut": "http://localhost:3000/",
     },
     "federationTarget": "COGNITO_USER_POOLS"
 };
-
 
 export default awsmobile;
