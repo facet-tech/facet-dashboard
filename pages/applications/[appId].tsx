@@ -24,13 +24,13 @@ const GridDiv = styled.div`
 
 const Backend = () => {
 
-    const { setBackendFacets } = useContext(AppContext);
+    const { setBackendFacets, apiKey } = useContext(AppContext);
     const router = useRouter();
     const { appId } = router.query
 
     useEffect(() => {
         (async () => {
-            const getBackendFacetsResponse = await getBackendFacet(appId);
+            const getBackendFacetsResponse = await getBackendFacet(appId, apiKey);
             const parsedBackendResponse = ParserBackendService.ParseBackendResponse(getBackendFacetsResponse);
             setBackendFacets(parsedBackendResponse);
         })();

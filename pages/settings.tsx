@@ -28,13 +28,14 @@ const AsideDiv = styled.div`
 `;
 
 const Backend = () => {
+    const { apiKey } = useContext(AppContext);
     const [signature, setSignature] = useState([]);
     const [requestResponse, setRequestResponse] = useState({});
     const [addedListItem, setAddedListItem] = useState('');
     const { enqueueSnackbar } = useSnackbar();
     useEffect(() => {
         (async () => {
-            const configurationResponse = await getConfigurationResponse();
+            const configurationResponse = await getConfigurationResponse(apiKey);
             setRequestResponse(configurationResponse.response);
             setSignature(configurationResponse?.response?.attribute?.signature);
         })();
@@ -56,7 +57,7 @@ const Backend = () => {
                     onClick={async () => {
                         const r = confirm("Are you sure you want to reset your block list?");
                         if (r) {
-                            const defaultConfiguration = await getDefaultConfiguration();
+                            const defaultConfiguration = await getDefaultConfiguration(apiKey);
                             const signatureList = defaultConfiguration?.response?.attribute?.signature;
 
                             // @ts-ignore
@@ -87,7 +88,7 @@ const Backend = () => {
                         const newList = signature.filter(item => item !== e);
                         //@ts-ignore
                         requestResponse.attribute.signature = newList;
-                        updateConfiguration(requestResponse);
+                        updateConfiguration(requestResponse, apiKey);
                         setSignature(newList);
                     }}
                 />
@@ -103,7 +104,7 @@ const Backend = () => {
                     signature.push(addedListItem)
                     //@ts-ignore
                     requestResponse.attribute.signature = signature;
-                    updateConfiguration(requestResponse);
+                    updateConfiguration(requestResponse, apiKey);
                     // @ts-ignore
                     setSignature(signature);
                     setAddedListItem('')

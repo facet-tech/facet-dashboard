@@ -55,8 +55,8 @@ class ParserBackendService {
     }
 
     static getFavoriteApps = (getAppResponse) => {
-        const result = getAppResponse.response.filter(e => e.attribute?.favorite === true);
-        return result.map(e => e.name);
+        const result = getAppResponse?.response?.filter(e => e.attribute?.favorite === true);
+        return result?.map(e => e.name);
     }
 }
 

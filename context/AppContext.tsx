@@ -18,7 +18,9 @@ export interface AppState {
     getAppResponse: {},
     setGetAppResponse: undefined,
     favoriteList: [],
-    setFavoriteList: undefined
+    setFavoriteList: undefined,
+    apiKey: string,
+    setApiKey: undefined,
 }
 
 const AppContext = React.createContext({
@@ -40,7 +42,9 @@ const AppContext = React.createContext({
     getAppResponse: undefined,
     setGetAppResponse: undefined,
     favoriteList: [],
-    setFavoriteList: undefined
+    setFavoriteList: undefined,
+    apiKey: '',
+    setApiKey: undefined,
 });
 
 export default AppContext;
