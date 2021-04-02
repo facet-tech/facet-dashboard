@@ -40,8 +40,8 @@ const DescriptionGrid = styled.div`
 
 const ApplicationCard = ({ name, appStack = applicationStack.java, isAuthorized = true, href = '' }) => {
 
-    const { getAppResponse, favoriteList, setFavoriteList } = useContext(AppContext);
-    const [isFavorite, setIsFavorite] = useState(favoriteList.includes(name));
+    const { getAppResponse, favoriteList, setFavoriteList, apiKey } = useContext(AppContext);
+    const [isFavorite, setIsFavorite] = useState(favoriteList?.includes(name));
     // TODO update initial state
     return <>
         <MainGrid>
@@ -55,13 +55,13 @@ const ApplicationCard = ({ name, appStack = applicationStack.java, isAuthorized 
                     justifySelf: 'end'
                 }}>
                     <FacetIconButton
-                        key={name + isFavorite + favoriteList.includes(name) + Math.random()}
+                        key={name + isFavorite + favoriteList?.includes(name) + Math.random()}
                         onClick={() => {
                             let wantedApp = ParserBackendService.getAppByName(name, getAppResponse);
                             wantedApp.Attribute = {
                                 favorite: !isFavorite
                             };
-                            postApp(wantedApp);
+                            postApp(wantedApp, apiKey);
                             const newVal = !isFavorite;
                             setIsFavorite(!isFavorite);
                             if (newVal) {

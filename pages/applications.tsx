@@ -6,11 +6,11 @@ import BackendApplicationList from '../shared/components/BackendApplicationList'
 import ParserBackendService from '../services/ParserBackendService';
 
 const Backend = () => {
-    const { setBackendFacetNames, setGetAppResponse, favoriteList, setFavoriteList } = useContext(AppContext);
+    const { setBackendFacetNames, setGetAppResponse, favoriteList, setFavoriteList, apiKey } = useContext(AppContext);
 
     useEffect(() => {
         (async () => {
-            const getAppResponse = await getApp();
+            const getAppResponse = await getApp(apiKey);
             setGetAppResponse(getAppResponse);
             const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
             setBackendFacetNames(backendFacetNames);

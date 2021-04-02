@@ -28,14 +28,15 @@ const constructPayload = (domainId = '', urlPath = '', path = []) => {
  * @param {urlSuffix} urlSuffix default empty value = ''
  * @param {body} body the body of the request
  */
-const triggerApiCall = async (method, urlSuffix = '', body, headers) => {
+const triggerApiCall = async (method, urlSuffix = '', body, HTTPHeaders = undefined) => {
     try {
         let jwt = await AmplifyService.getCurrentUserJTW();
-        let HTTPHeaders = !headers ? {
+        let headers = !HTTPHeaders ? {
             AccessToken: jwt,
-        } : headers;
+        } : HTTPHeaders;
+        console.log('HEY!',headers);
         const url = `${APIUrl.activeBaseURL}${urlSuffix}`;
-        let obj = HTTPMethods.GET === method ? { method, HTTPHeaders } : { HTTPHeaders, method, body: JSON.stringify(body) };
+        let obj = HTTPMethods.GET === method ? { method, headers } : { headers, method, body: JSON.stringify(body) };
         const res = await fetch(url, obj);
         if (!res) {
             return {
