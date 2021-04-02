@@ -36,7 +36,6 @@ export default function AppProvider({ children }) {
             const workspaceId = userResponse?.response?.workspaceId;
             const apiKey = userResponse?.response?.apiKey;
             setApiKey(apiKey);
-            console.log('apiKEy',apiKey);
             const getDomainsResponse = await getDomains(workspaceId);
             setDomains(getDomainsResponse?.response);
             const val = getByPath(window.location.pathname.slice(0, -1));

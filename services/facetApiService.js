@@ -34,7 +34,6 @@ const triggerApiCall = async (method, urlSuffix = '', body, HTTPHeaders = undefi
         let headers = !HTTPHeaders ? {
             AccessToken: jwt,
         } : HTTPHeaders;
-        console.log('HEY!',headers);
         const url = `${APIUrl.activeBaseURL}${urlSuffix}`;
         let obj = HTTPMethods.GET === method ? { method, headers } : { headers, method, body: JSON.stringify(body) };
         const res = await fetch(url, obj);
@@ -297,8 +296,6 @@ const saveFacets = async (facetMap, nonRolledOutFacets, enqueueSnackbar, globalF
     }
 }
 
-// http://localhost:3000/app?workspaceId=WORKSPACE~N2IzODAyNzQtZGY5OC00OTE4LWEwM2UtZGVjYmRmZTkyMTA4&id=APP~BackedTestPoc
-// facet/backend?appId={}
 const getApp = async (apiKey) => {
     const headers = {
         apiKey
