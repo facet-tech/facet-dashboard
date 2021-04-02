@@ -24,16 +24,21 @@ const StyledGrid = styled.div`
 `
 
 const BackendApplicationList = () => {
-    const { backendFacetNames } = useContext(AppContext);
+    const { backendFacetNames, apiKey } = useContext(AppContext);
     return <>
-        <StyledGrid>
-            <FacetParagraph width='unset' color={color.grayB}>
-                Check our <a href='https://facet.run/documentation' target='_blank'>documentation</a> on how to create a new project.
+        <FacetParagraph width='unset' color={color.grayB}>
+            API Key:{' '}
+        </FacetParagraph>
+        <FacetParagraph width='unset' color={color.grayB}>
+            {apiKey}
+        </FacetParagraph>
+        <br />
+        <FacetParagraph width='unset' color={color.grayB}>
+            Check our <a href='https://facet.run/documentation' target='_blank'>documentation</a> on how to create a new project.
                 </FacetParagraph>
-            <FacetIconButton onClick={() => {
-                window.open('https://facet.run/documentation', '_blank');
-            }} fill={dashboardColor.cyan} name='external-link-outline' />
-        </StyledGrid>
+        <FacetIconButton onClick={() => {
+            window.open('https://facet.run/documentation', '_blank');
+        }} fill={dashboardColor.cyan} name='external-link-outline' />
         <Grid>
             {backendFacetNames?.map(backendFacet => {
                 return <>

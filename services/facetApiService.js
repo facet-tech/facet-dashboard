@@ -28,12 +28,12 @@ const constructPayload = (domainId = '', urlPath = '', path = []) => {
  * @param {urlSuffix} urlSuffix default empty value = ''
  * @param {body} body the body of the request
  */
-const triggerApiCall = async (method, urlSuffix = '', body) => {
+const triggerApiCall = async (method, urlSuffix = '', body, HTTPHeaders = undefined) => {
     try {
         let jwt = await AmplifyService.getCurrentUserJTW();
-        let headers = {
+        let headers = !HTTPHeaders ? {
             AccessToken: jwt,
-        };
+        } : HTTPHeaders;
         const url = `${APIUrl.activeBaseURL}${urlSuffix}`;
         let obj = HTTPMethods.GET === method ? { method, headers } : { headers, method, body: JSON.stringify(body) };
         const res = await fetch(url, obj);
@@ -296,9 +296,10 @@ const saveFacets = async (facetMap, nonRolledOutFacets, enqueueSnackbar, globalF
     }
 }
 
-// http://localhost:3000/app?workspaceId=WORKSPACE~N2IzODAyNzQtZGY5OC00OTE4LWEwM2UtZGVjYmRmZTkyMTA4&id=APP~BackedTestPoc
-// facet/backend?appId={}
-const getApp = async () => {
+const getApp = async (apiKey) => {
+    const headers = {
+        apiKey
+    }
     const currentUserInfo = await Auth.currentUserInfo();
     const email = currentUserInfo?.username;
     if (!email) {
@@ -307,43 +308,61 @@ const getApp = async () => {
     const getUserResponse = await getUser(email);
     const workspaceId = getUserResponse?.response?.workspaceId;
     let suffix = `/app?workspaceId=${workspaceId}`;
-    const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix, undefined, headers);
     return getAppResponse;
 }
 
-const postApp = async (body) => {
+const postApp = async (body, apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/app?workspaceId=${body.workspaceId}`;
-    const postAppResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    const postAppResponse = await triggerApiCall(HTTPMethods.POST, suffix, body, headers);
     return postAppResponse;
 }
 
-const getConfigurationResponse = async () => {
+const getConfigurationResponse = async (apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/configuration?property=BLOCK_LIST~&id=JAVA_PACKAGE_PREFIX~`;
-    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix, undefined, headers);
     return getBackendFacetResponse;
 }
 
-const getDefaultConfiguration = async () => {
+const getDefaultConfiguration = async (apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/configuration?property=DEFAULT_BLOCK_LIST~&id=JAVA_PACKAGE_PREFIX~`;
-    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix, undefined, headers);
     return getBackendFacetResponse;
 }
 
-const updateConfiguration = async (body) => {
+const updateConfiguration = async (body, apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/configuration?property=BLOCK_LIST~&id=JAVA_PACKAGE_PREFIX~`;
-    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.POST, suffix, body, headers);
     return getBackendFacetResponse;
 }
 
-const getBackendFacet = async (name) => {
+const getBackendFacet = async (name, apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/backend?appId=${name}`;
-    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix, undefined, headers);
     return getBackendFacetResponse;
 }
 
-const postBackendFacets = async (body) => {
+const postBackendFacets = async (body, apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/backend`;
-    const postBackendFacetsResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    const postBackendFacetsResponse = await triggerApiCall(HTTPMethods.POST, suffix, body, headers);
     return postBackendFacetsResponse;
 }
 

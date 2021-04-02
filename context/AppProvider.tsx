@@ -24,6 +24,7 @@ export default function AppProvider({ children }) {
     const [getAppResponse, setGetAppResponse] = useState({});
     const [currRoute, setCurrRoute] = useState(''); // TODO BE SET FROM useEffect
     const [favoriteList, setFavoriteList] = useState([]);
+    const [apiKey, setApiKey] = useState('');
 
     const router = useRouter();
     const isMounted = useIsMounted();
@@ -33,6 +34,8 @@ export default function AppProvider({ children }) {
         (async () => {
             const userResponse = await getUser();
             const workspaceId = userResponse?.response?.workspaceId;
+            const apiKey = userResponse?.response?.apiKey;
+            setApiKey(apiKey);
             const getDomainsResponse = await getDomains(workspaceId);
             setDomains(getDomainsResponse?.response);
             const val = getByPath(window.location.pathname.slice(0, -1));
@@ -54,7 +57,7 @@ export default function AppProvider({ children }) {
     const handleEnabledChange = (sig, element) => {
         sig.enabled = !sig.enabled;
         setBackendFacets([...backendFacets]);
-        postBackendFacets(element)
+        postBackendFacets(element, apiKey)
     };
     return <AppContext.Provider value={{
         currAuthState, setCurrAuthState,
@@ -62,7 +65,7 @@ export default function AppProvider({ children }) {
         authObject, setAuthObject, backendFacets, setBackendFacets,
         backendFacetNames, setBackendFacetNames, domains, setDomains,
         currRoute, setCurrRoute, getAppResponse, setGetAppResponse,
-        favoriteList, setFavoriteList
+        favoriteList, setFavoriteList, apiKey, setApiKey
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider
