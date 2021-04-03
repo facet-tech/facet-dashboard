@@ -21,6 +21,10 @@ export interface AppState {
     setFavoriteList: undefined,
     apiKey: string,
     setApiKey: undefined,
+    openModal: false,
+    setOpenModal: undefined,
+    handleModalOpen: undefined,
+    handleModalClose: undefined
 }
 
 const AppContext = React.createContext({
@@ -45,6 +49,10 @@ const AppContext = React.createContext({
     setFavoriteList: undefined,
     apiKey: '',
     setApiKey: undefined,
+    openModal: false,
+    setOpenModal: undefined,
+    handleModalOpen: undefined,
+    handleModalClose: undefined
 });
 
 export default AppContext;

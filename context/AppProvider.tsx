@@ -16,7 +16,9 @@ const snackbarConfig = {
 }
 
 export default function AppProvider({ children }) {
+    const router = useRouter();
     const [currAuthState, setCurrAuthState] = useState(authStateConstant.signingIn);
+    const [openModal, setOpenModal] = useState(false);
     const [isCurrentlyLoggedIn, setIsCurrentlyLoggedIn] = useState(false);
     const [authObject, setAuthObject] = useState({ email: '', password: '' });
     const [backendFacets, setBackendFacets] = useState([]);
@@ -25,10 +27,17 @@ export default function AppProvider({ children }) {
     const [currRoute, setCurrRoute] = useState(''); // TODO BE SET FROM useEffect
     const [favoriteList, setFavoriteList] = useState([]);
     const [apiKey, setApiKey] = useState('');
-
-    const router = useRouter();
     const isMounted = useIsMounted();
     const [domains, setDomains] = useState([]);
+
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
+
 
     useEffect(() => {
         (async () => {
@@ -59,13 +68,15 @@ export default function AppProvider({ children }) {
         setBackendFacets([...backendFacets]);
         postBackendFacets(element, apiKey)
     };
+
     return <AppContext.Provider value={{
         currAuthState, setCurrAuthState,
         isCurrentlyLoggedIn, setIsCurrentlyLoggedIn, handleEnabledChange,
         authObject, setAuthObject, backendFacets, setBackendFacets,
         backendFacetNames, setBackendFacetNames, domains, setDomains,
         currRoute, setCurrRoute, getAppResponse, setGetAppResponse,
-        favoriteList, setFavoriteList, apiKey, setApiKey
+        favoriteList, setFavoriteList, apiKey, setApiKey,
+        openModal, setOpenModal, handleModalOpen, handleModalClose
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider

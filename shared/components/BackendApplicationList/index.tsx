@@ -6,10 +6,11 @@ import FacetParagraph from '../FacetParagraph';
 import { color, dashboardColor } from '../../constant';
 import FacetIcon from '../Icon';
 import FacetIconButton from '../FacetIconButton';
+import AddProjectCard from '../AddProjectCard';
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: 22rem 22rem;
+    grid-template-columns: 22rem 22rem 22rem;
     grid-gap: 1rem;
     overflow: hidden;
     margin-top: 2rem;
@@ -45,6 +46,7 @@ const BackendApplicationList = () => {
                     <ApplicationCard name={backendFacet} href={`applications/${backendFacet}/`} />
                 </>
             })}
+            <AddProjectCard/>
         </Grid>
     </>
 }

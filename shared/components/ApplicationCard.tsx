@@ -21,6 +21,7 @@ const TitleGrid = styled.div`
 
 const MainGrid = styled.div`
     width: 22rem;
+    height: 11rem;
     :hover {
         transform: scale(1.01);
     }
@@ -72,7 +73,7 @@ const ApplicationCard = ({ name, appStack = applicationStack.java, isAuthorized 
                                 setFavoriteList(newArray)
                             }
                         }}
-                        name={favoriteList.includes(name) ? 'star' : 'star-outline'} />
+                        name={favoriteList?.includes(name) ? 'star' : 'star-outline'} />
                 </div>
             </TitleGrid>
             <Link href={href}>
