@@ -11,6 +11,7 @@ import FacetIconButton from '../../shared/components/FacetIconButton';
 import { color } from '../../shared/constant';
 import styled from 'styled-components';
 import AppIdTopPanel from '../../shared/components/AppIdTopPanel';
+import FacetDropdown from '../../shared/components/FacetDropdown';
 
 const StyledDiv = styled.div`
     padding: 1rem;
@@ -39,6 +40,9 @@ const Backend = () => {
 
     return <StyledDiv>
         <AppIdTopPanel />
+        <br/>
+        <br/>
+        <FacetDropdown options={["DEVELOPMENT", "PRODUCTION"]} />
         <GridDiv>
             <div>
                 <Link href={`/applications`}>

@@ -1,9 +1,9 @@
 import { Divider, makeStyles } from "@material-ui/core"
-import { color } from "../constant";
+import { color, dashboardColor } from "../constant";
 
 const useStyles = makeStyles(() => ({
     divider: {
-        backgroundColor: color.lightGray,
+        backgroundColor: dashboardColor.darkGreen,
     },
 }));
 

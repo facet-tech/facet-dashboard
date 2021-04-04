@@ -48,7 +48,9 @@ const dashboardColor = {
     green: '#B3E07A',
     cyan: '#80CAE1',
     lightGray: '#CCCCCC',
-    darkGray: '#656565'
+    darkGray: '#656565',
+    darkGreen: '#57827A',
+    bgGray: '#373737'
 };
 
 const applicationStack = {
