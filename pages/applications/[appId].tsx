@@ -40,8 +40,8 @@ const Backend = () => {
 
     return <StyledDiv>
         <AppIdTopPanel />
-        <br/>
-        <br/>
+        <br />
+        <br />
         <FacetDropdown options={["DEVELOPMENT", "PRODUCTION"]} />
         <GridDiv>
             <div>

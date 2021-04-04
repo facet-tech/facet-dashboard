@@ -55,13 +55,12 @@ const FacetDropdown = ({ options = [] }) => {
             </div>
             <ParentDiv>
                 <MainDiv onClick={() => handleClick()}>
-                    <div style={{ 
+                    <div style={{
                         backgroundColor: dashboardColor.darkGreen,
                         borderRadius: '90px 0 0 90px'
-                        }}>
+                    }}>
                         {currentSelect}
                     </div>
-
                     <ArrowDiv>
                         <KeyboardArrowDownIcon />
                     </ArrowDiv>

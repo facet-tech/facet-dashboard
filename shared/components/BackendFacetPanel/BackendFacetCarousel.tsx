@@ -50,7 +50,10 @@ const BackendFacetCarousel = () => {
                 const innerElement = value.map(element => {
                     const containsEndpoints = ParserBackendService.containsEndpoints(element?.annotation)
                     const pathName = containsEndpoints ? ParserBackendService.getPathName(element?.annotation) : null;
-                    return <Accordion>
+                    return <Accordion
+                            style={{
+                             }}
+                            >
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls={element.fullyQualifiedName + "-content"}
