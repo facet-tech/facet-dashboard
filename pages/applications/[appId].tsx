@@ -38,11 +38,16 @@ const Backend = () => {
         })();
     }, []);
 
+    const options = [
+        { value: 'development', label: 'Development' },
+        { value: 'production', label: 'Production' },
+    ];
+
     return <StyledDiv>
         <AppIdTopPanel />
         <br />
         <br />
-        <FacetDropdown options={["DEVELOPMENT", "PRODUCTION"]} />
+        <FacetDropdown options={options} />
         <GridDiv>
             <div>
                 <Link href={`/applications`}>
