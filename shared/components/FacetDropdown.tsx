@@ -11,7 +11,7 @@ const ParentDiv = styled.div`
 
 const MainDiv = styled.div`
     display: grid;
-    grid-template-columns: 90% 10%;
+    grid-template-columns: 100%;
     justify-content: center;
     align-items: center;
     text-align: center;
