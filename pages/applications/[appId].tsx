@@ -10,6 +10,7 @@ import StyledH2 from '../../components/StyledH2';
 import FacetIconButton from '../../shared/components/FacetIconButton';
 import { color } from '../../shared/constant';
 import styled from 'styled-components';
+import AppIdTopPanel from '../../shared/components/AppIdTopPanel';
 
 const StyledDiv = styled.div`
     padding: 1rem;
@@ -37,6 +38,7 @@ const Backend = () => {
     }, []);
 
     return <StyledDiv>
+        <AppIdTopPanel />
         <GridDiv>
             <div>
                 <Link href={`/applications`}>
