@@ -11,7 +11,6 @@ const Backend = () => {
     useEffect(() => {
         (async () => {
             const getAppResponse = await getApp(apiKey);
-            console.log('@getAppResponse', getAppResponse);
             setGetAppResponse(getAppResponse);
             const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
             setBackendFacetNames(backendFacetNames);

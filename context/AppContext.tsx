@@ -24,7 +24,9 @@ export interface AppState {
     openModal: false,
     setOpenModal: undefined,
     handleModalOpen: undefined,
-    handleModalClose: undefined
+    handleModalClose: undefined,
+    appId: string,
+    setAppId: undefined
 }
 
 const AppContext = React.createContext({
@@ -52,7 +54,9 @@ const AppContext = React.createContext({
     openModal: false,
     setOpenModal: undefined,
     handleModalOpen: undefined,
-    handleModalClose: undefined
+    handleModalClose: undefined,
+    appId: '',
+    setAppId: undefined
 });
 
 export default AppContext;

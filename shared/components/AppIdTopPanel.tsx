@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
+import AppContext from '../../context/AppContext';
+import { getApp, postApp } from '../../services/facetApiService';
+import ParserBackendService from '../../services/ParserBackendService';
 import { dashboardColor } from '../constant';
 import FacetInput from './FacetInput';
 import FacetLabel from './FacetLabel';
@@ -30,6 +33,8 @@ const PanelDiv = styled.div`
 `
 
 const AppIdTopPanel = () => {
+    const { apiKey, appId } = useContext(AppContext);
+
     const [edditingDescription, setEdditingDescription] = useState(false);
     const [description, setDescription] = useState('');
 
@@ -92,16 +97,21 @@ const AppIdTopPanel = () => {
                                 setDescription(e.target.value);
                             }} />
                         }
-
                     </LightGrayDiv>
                 </PanelDiv>
                 <div style={{
                     textAlign: 'end'
                 }}>
-                    <a onClick={() => {
+                    <a onClick={async () => {
                         setEdditingDescription(!edditingDescription);
                         if (!edditingDescription) {
-                            console.log('PGG!');
+                            const getAppResponse = await getApp(apiKey);
+                            let wantedApp = ParserBackendService.getAppByName(appId, getAppResponse);
+                            wantedApp.attribute = {
+                                description
+                            }
+                            const ff = await postApp(wantedApp, apiKey);
+                            console.log('FF!', ff);
                         }
                     }}>
                         Edit

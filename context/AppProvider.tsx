@@ -29,6 +29,7 @@ export default function AppProvider({ children }) {
     const [apiKey, setApiKey] = useState('');
     const isMounted = useIsMounted();
     const [domains, setDomains] = useState([]);
+    const [appId, setAppId] = useState('');
 
     const handleModalOpen = () => {
         setOpenModal(true);
@@ -76,7 +77,8 @@ export default function AppProvider({ children }) {
         backendFacetNames, setBackendFacetNames, domains, setDomains,
         currRoute, setCurrRoute, getAppResponse, setGetAppResponse,
         favoriteList, setFavoriteList, apiKey, setApiKey,
-        openModal, setOpenModal, handleModalOpen, handleModalClose
+        openModal, setOpenModal, handleModalOpen, handleModalClose,
+        appId, setAppId
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider
