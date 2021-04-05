@@ -1,13 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { dashboardColor } from '../constant';
 import FacetDivider from './FacetDivider';
 import Select from 'react-select';
 import chroma from 'chroma-js';
-
-const ParentDiv = styled.div`
-`;
 
 const MainDiv = styled.div`
     display: grid;
@@ -17,14 +13,6 @@ const MainDiv = styled.div`
     text-align: center;
     color: black;
 `
-
-const ArrowDiv = styled.div`
-    justify-content: center;
-    align-content: center;
-    display: grid;
-    background-color: ${dashboardColor.bgGray};
-    border-radius: 0px 12px 12px 0px;
-`;
 
 const DropdownDiv = styled.div`
     display: grid;
@@ -88,7 +76,7 @@ const FacetDropdown = ({ options = [] }) => {
             <div>
                 <FacetDivider color={dashboardColor.purple} />
             </div>
-            <ParentDiv>
+            <div>
                 <MainDiv>
                     <Select
                         value={currentSelect}
@@ -97,7 +85,7 @@ const FacetDropdown = ({ options = [] }) => {
                         styles={colourStyles}
                     />
                 </MainDiv>
-            </ParentDiv>
+            </div>
             <div>
                 <FacetDivider color={dashboardColor.purple} />
             </div>

@@ -58,6 +58,11 @@ class ParserBackendService {
         const result = getAppResponse?.response?.filter(e => e.attribute?.favorite === true);
         return result?.map(e => e.name);
     }
+
+    static getDescription = (getAppResponse) => {
+        const result = getAppResponse?.response?.attribute?.description;
+        return result;
+    }
 }
 
 export default ParserBackendService;

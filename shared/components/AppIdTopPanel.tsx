@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-import { color, dashboardColor } from '../constant';
+import { dashboardColor } from '../constant';
+import FacetInput from './FacetInput';
 import FacetLabel from './FacetLabel';
 
 const Grid = styled.div`
@@ -22,69 +24,106 @@ const DarkGrayDiv = styled.div`
 `
 
 const PanelDiv = styled.div`
-    background-color: #161618;
+    background-color: ${dashboardColor.darkGray2};
     padding: 1rem;
+    height: 6rem;
 `
 
 const AppIdTopPanel = () => {
+    const [edditingDescription, setEdditingDescription] = useState(false);
+    const [description, setDescription] = useState('');
+
     return <>
         <Grid>
-            <PanelDiv>
-                <Row>
-                    <DarkGrayDiv>
-                        Name:
-                    </DarkGrayDiv>
-                    <LightGrayDiv>
-                        ServiceA
-                    </LightGrayDiv>
-                </Row>
-                <Row>
-                    <DarkGrayDiv>
-                        Creator:
-                    </DarkGrayDiv>
-                    <LightGrayDiv>
-                        Johan
-                    </LightGrayDiv>
-                </Row>
-                <Row>
-                    <DarkGrayDiv>
-                        Date Created:
-                    </DarkGrayDiv>
-                    <LightGrayDiv>
-                        2020/12/28
-                    </LightGrayDiv>
-                </Row>
-                <Row>
-                    <DarkGrayDiv>
-                        Date Modified:
-                    </DarkGrayDiv>
-                    <LightGrayDiv>
-                        Just now
-                    </LightGrayDiv>
-                </Row>
-            </PanelDiv>
-            <PanelDiv>
-                <DarkGrayDiv>
-                    Description
-                </DarkGrayDiv>
-                <LightGrayDiv>
-                    <i>
-                        <FacetLabel color={dashboardColor.lightGray} text="Add description here" />
-                    </i>
-                </LightGrayDiv>
-            </PanelDiv>
-            <PanelDiv>
-                <DarkGrayDiv>
-                    <span>
-                        Frameworks
-                    </span>
-                </DarkGrayDiv>
-                <div>
-                    <div>
-                        <img width="35" height="35" src={`../../images/java.svg`} alt='java.svg' />
+            <div>
+                <>
+                    <div style={{
+                        display: 'grid'
+                    }}>
+                        <PanelDiv>
+                            <Row>
+                                <DarkGrayDiv>
+                                    Name:
+                                 </DarkGrayDiv>
+                                <LightGrayDiv>
+                                    ServiceA
+                                </LightGrayDiv>
+                            </Row>
+                            <Row>
+                                <DarkGrayDiv>
+                                    Creator:
+                                </DarkGrayDiv>
+                                <LightGrayDiv>
+                                    Johan
+                                </LightGrayDiv>
+                            </Row>
+                            <Row>
+                                <DarkGrayDiv>
+                                    Date Created:
+                                </DarkGrayDiv>
+                                <LightGrayDiv>
+                                    2020/12/28
+                                </LightGrayDiv>
+                            </Row>
+                            <Row>
+                                <DarkGrayDiv>
+                                    Date Modified:
+                                </DarkGrayDiv>
+                                <LightGrayDiv>
+                                    Just now
+                                </LightGrayDiv>
+                            </Row>
+                        </PanelDiv>
                     </div>
+                </>
+
+            </div>
+
+            <div>
+                <PanelDiv>
+                    <DarkGrayDiv>
+                        Description
+                </DarkGrayDiv>
+                    <LightGrayDiv>
+                        {
+                            !edditingDescription && description === '' ? <i>
+                                <FacetLabel color={dashboardColor.lightGray} text="Add description here" />
+                            </i> : <FacetInput onChange={(e) => {
+                                setDescription(e.target.value);
+                            }} />
+                        }
+
+                    </LightGrayDiv>
+                </PanelDiv>
+                <div style={{
+                    textAlign: 'end'
+                }}>
+                    <a onClick={() => {
+                        setEdditingDescription(!edditingDescription);
+                        if (!edditingDescription) {
+                            console.log('PGG!');
+                        }
+                    }}>
+                        Edit
+                    </a>
                 </div>
-            </PanelDiv>
+            </div>
+
+            <div>
+                <PanelDiv>
+                    <DarkGrayDiv>
+                        <span>
+                            Frameworks
+                    </span>
+                    </DarkGrayDiv>
+                    <div>
+                        <div>
+                            <img width="35" height="35" src={`../../images/java.svg`} alt='java.svg' />
+                        </div>
+                    </div>
+                </PanelDiv>
+            </div>
+
         </Grid>
     </>
 }
