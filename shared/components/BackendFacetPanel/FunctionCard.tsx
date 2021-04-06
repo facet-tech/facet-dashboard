@@ -14,17 +14,17 @@ const FunctionCard = ({ parameter, returnType, signature }) => {
         <div>
             <div>
                 <div>
-                    <FacetLabel color={color.black} text={`Parameter: ${parameter}`} />
+                    <FacetLabel color={color.grayB4} text={`Parameter: ${parameter}`} />
                 </div>
                 <div>
                     {/* <FacetLabel text={parameter} /> */}
                     {parameter?.map(e => {
                         return <StyledDiv>
                             <div>
-                                <FacetLabel color={color.black} text="Name:" />
+                                <FacetLabel color={color.grayB4} text="Name:" />
                             </div>
                             <div>
-                                <FacetLabel color={color.black} text={e.name} />
+                                <FacetLabel color={color.grayB4} text={e.name} />
                             </div>
                         </StyledDiv>
                     })}
@@ -32,18 +32,18 @@ const FunctionCard = ({ parameter, returnType, signature }) => {
             </div>
             <StyledDiv>
                 <div>
-                    <FacetLabel color={color.black} text="Return Type: " />
+                    <FacetLabel color={color.grayB4} text="Return Type: " />
                 </div>
                 <div>
-                    <FacetLabel color={color.black} text={returnType} />
+                    <FacetLabel color={color.grayB4} text={returnType} />
                 </div>
             </StyledDiv>
             <StyledDiv>
                 <div>
-                    <FacetLabel color={color.black} text="Signature: " />
+                    <FacetLabel color={color.grayB4} text="Signature: " />
                 </div>
                 <div>
-                    <FacetLabel color={color.black} text={signature} />
+                    <FacetLabel color={color.grayB4} text={signature} />
                 </div>
             </StyledDiv>
         </div>

@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AppContext from '../../../context/AppContext';
 import styled from 'styled-components';
 import Checkbox from '@material-ui/core/Checkbox';
-import { color } from '../../constant';
+import { color, dashboardColor } from '../../constant';
 import FunctionCard from './FunctionCard';
 import ParserBackendService from '../../../services/ParserBackendService';
 import Icon from '../Icon';
@@ -40,6 +40,16 @@ const SubInnerDiv = styled.div`
     grid-template-columns: 95% 2%;
  `
 
+const StyledAccordion = styled(Accordion)`
+    background-color: ${color.grayB3};
+    color: ${color.grayB};
+`;
+
+const StyledAccordionSummary = styled(AccordionSummary)`
+    background-color: ${color.grayB3};
+    color: ${color.grayB},
+`
+
 const BackendFacetCarousel = () => {
     const { backendFacets, handleEnabledChange } = useContext(AppContext);
     const classes = useStyles();
@@ -50,42 +60,58 @@ const BackendFacetCarousel = () => {
                 const innerElement = value.map(element => {
                     const containsEndpoints = ParserBackendService.containsEndpoints(element?.annotation)
                     const pathName = containsEndpoints ? ParserBackendService.getPathName(element?.annotation) : null;
-                    return <Accordion
-                            style={{
-                             }}
-                            >
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
+                    return <StyledAccordion style={{
+                        backgroundColor: color.grayB3,
+                        color: color.grayB
+                    }}>
+                        <StyledAccordionSummary
+                            expandIcon={<ExpandMoreIcon style={{
+                                color: color.grayB4,
+                            }} />}
                             aria-controls={element.fullyQualifiedName + "-content"}
                             id={element.fullyQualifiedName + "-header"}
+                            style={{
+                                backgroundColor: color.grayB3,
+                                color: color.grayB
+                            }}
                         >
                             <Typography className={classes.heading}>
                                 {element.fullyQualifiedName}
                                 {containsEndpoints ? <>
                                     <br />
-                                    <b style={{ color: 'black' }}>
+                                    <b>
                                         <Icon iconWidth="20"
                                             iconHeight="15"
-                                            fill={color.black}
+                                            fill={color.grayB4}
                                             name="settings-outline"
                                             title="settings-outline" /> {pathName}</b>
                                 </> : null}
                             </Typography>
-                        </AccordionSummary>
+                        </StyledAccordionSummary>
                         <AccordionDetails classes={{
                             root: classes.accordionDetails
-                        }}>
+                        }}
+                            style={{
+                                backgroundColor: color.grayB3,
+                                color: color.grayB
+                            }}>
                             <StyledGrid>
                                 {element?.signature?.map(sig => {
                                     const sigPathName = containsEndpoints ? ParserBackendService.getPathName(sig?.annotation) : undefined;
                                     const endpointType = containsEndpoints ? ` - ${ParserBackendService.getEndpointType(sig?.annotation)}` : undefined;
                                     return <SubInnerDiv>
                                         <div>
-                                            <Accordion>
-                                                <AccordionSummary
-                                                    expandIcon={<ExpandMoreIcon />}
+                                            <StyledAccordion>
+                                                <StyledAccordionSummary
+                                                    expandIcon={<ExpandMoreIcon style={{
+                                                        color: color.grayB4,
+                                                    }} />}
                                                     aria-controls={element.fullyQualifiedName + "--content"}
                                                     id={element.fullyQualifiedName + "--header"}
+                                                    style={{
+                                                        backgroundColor: color.grayB3,
+                                                        color: color.grayB
+                                                    }}
                                                 >
                                                     <Typography>
                                                         {sig.name}
@@ -93,14 +119,18 @@ const BackendFacetCarousel = () => {
                                                         <span>{pathName}{sigPathName}</span>{' '}
                                                         <span>{endpointType}</span>
                                                     </Typography>
-                                                </AccordionSummary>
-                                                <AccordionDetails>
+                                                </StyledAccordionSummary>
+                                                <AccordionDetails style={{
+                                                    backgroundColor: color.grayB3,
+                                                    color: color.grayB
+                                                }}>
                                                     <FunctionCard parameter={sig.parameter} returnType={sig.returnType} signature={sig.signature} />
                                                 </AccordionDetails>
-                                            </Accordion>
+                                            </StyledAccordion>
                                         </div>
                                         <div>
                                             <Checkbox
+                                                style={{ color: dashboardColor.green }}
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
                                                 checked={sig.enabled}
                                                 onChange={() => { handleEnabledChange(sig, element) }}
@@ -110,7 +140,7 @@ const BackendFacetCarousel = () => {
                                 })}
                             </StyledGrid>
                         </AccordionDetails>
-                    </Accordion>
+                    </StyledAccordion>
                 })
                 return innerElement
             })}

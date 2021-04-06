@@ -8,6 +8,8 @@ const color = {
     grayA: '#4A4E59',
     grayB: '#BABABA',
     grayB2: '#272D37',
+    grayB3: '#23262D',
+    grayB4: '#C4C4C4',
     darkGray: '#181D26',
     darkestGray: '#13171E',
     black: '#000000',
