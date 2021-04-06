@@ -1,5 +1,5 @@
 import { Input, withStyles } from '@material-ui/core';
-import { color } from '../constant';
+import { color, dashboardColor } from '../constant';
 
 const CustomInput = withStyles(
     {
@@ -30,8 +30,8 @@ const CustomInput = withStyles(
 
 const defaultColor = {
     color: color.white,
-    backgroundColor: color.grayA,
-    border: `.124rem solid ${color.black}`
+    backgroundColor: dashboardColor.darkGray2,
+    border: `.124rem solid ${dashboardColor.darkGray2}`
 };
 
 export const electricColor = {
@@ -67,6 +67,7 @@ const FacetInput = ({
             aria-describedby="standard-weight-helper-text"
             inputProps={{
                 'aria-label': 'weight',
+                maxLength: 40
             }}
             {...other}
         />

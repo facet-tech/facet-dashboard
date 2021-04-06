@@ -46,7 +46,13 @@ const dashboardColor = {
     gray: '#2A2A2A',
     black: '#181818',
     green: '#B3E07A',
-    cyan: '#80CAE1'
+    cyan: '#80CAE1',
+    lightGray: '#CCCCCC',
+    darkGray: '#656565',
+    darkGreen: '#57827A',
+    bgGray: '#373737',
+    purple: '#949BDC',
+    darkGray2: '#161618',
 };
 
 const applicationStack = {

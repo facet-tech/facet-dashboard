@@ -105,7 +105,7 @@ export default function Sidebar(props) {
   var brand = (
     <div className={classes.logo}>
       <div className={classes.logoImage}>
-        <img src='../images/facet_logo_combo.svg' alt="logo" className={classes.img} />
+        <img src='../../images/facet_logo_combo.svg' alt="logo" className={classes.img} />
       </div>
       {logoText}
     </div>
