@@ -67,6 +67,7 @@ const FacetInput = ({
             aria-describedby="standard-weight-helper-text"
             inputProps={{
                 'aria-label': 'weight',
+                maxLength: 40
             }}
             {...other}
         />

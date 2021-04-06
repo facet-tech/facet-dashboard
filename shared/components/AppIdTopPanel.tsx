@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import AppContext from '../../context/AppContext';
 import { getApp, postApp } from '../../services/facetApiService';
@@ -6,6 +6,7 @@ import ParserBackendService from '../../services/ParserBackendService';
 import { dashboardColor } from '../constant';
 import FacetInput from './FacetInput';
 import FacetLabel from './FacetLabel';
+import MultilineFacetInput from './MultilineFacetInput';
 
 const Grid = styled.div`
     display: grid;
@@ -19,7 +20,7 @@ const Row = styled.div`
 `
 
 const LightGrayDiv = styled.div`
-    color: ${dashboardColor.lightGray};
+    color: white;
 `
 
 const DarkGrayDiv = styled.div`
@@ -32,11 +33,22 @@ const PanelDiv = styled.div`
     height: 6rem;
 `
 
+const StyledA = styled.a`
+    cursor: pointer;
+`;
+
 const AppIdTopPanel = () => {
     const { apiKey, appId } = useContext(AppContext);
-
     const [edditingDescription, setEdditingDescription] = useState(false);
     const [description, setDescription] = useState('');
+    useEffect(() => {
+        (async () => {
+            const getAppResponse = await getApp(apiKey);
+            const wantedApp = ParserBackendService.getAppByName(appId, getAppResponse);
+            const descr = ParserBackendService.getDescription(wantedApp);
+            setDescription(descr);
+        })();
+    }, []);
 
     return <>
         <Grid>
@@ -90,35 +102,46 @@ const AppIdTopPanel = () => {
                         Description
                 </DarkGrayDiv>
                     <LightGrayDiv>
-                        {
-                            !edditingDescription && description === '' ? <i>
-                                <FacetLabel color={dashboardColor.lightGray} text="Add description here" />
-                            </i> : <FacetInput onChange={(e) => {
+                        <FacetInput maxLength="10"
+                            disabled={!edditingDescription} value={description}
+                            placeholder='Add description here' onChange={(e) => {
                                 setDescription(e.target.value);
                             }} />
-                        }
                     </LightGrayDiv>
                 </PanelDiv>
                 <div style={{
                     textAlign: 'end'
                 }}>
-                    <a onClick={async () => {
-                        setEdditingDescription(!edditingDescription);
-                        if (!edditingDescription) {
-                            const getAppResponse = await getApp(apiKey);
-                            let wantedApp = ParserBackendService.getAppByName(appId, getAppResponse);
-                            wantedApp.attribute = {
-                                description
-                            }
-                            const ff = await postApp(wantedApp, apiKey);
-                            console.log('FF!', ff);
-                        }
-                    }}>
-                        Edit
-                    </a>
+                    {
+                        !edditingDescription ?
+                            <StyledA onClick={async () => {
+                                setEdditingDescription(!edditingDescription);
+                            }}>
+                                Edit
+                        </StyledA>
+                            : <>
+                                <StyledA onClick={async () => {
+                                    setEdditingDescription(false);
+                                }} style={{
+                                    marginRight: '1rem'
+                                }}>
+                                    Cancel
+                                </StyledA>
+                                <StyledA onClick={async () => {
+                                    setEdditingDescription(!edditingDescription);
+                                    const getAppResponse = await getApp(apiKey);
+                                    let wantedApp = ParserBackendService.getAppByName(appId, getAppResponse);
+                                    wantedApp.attribute = {
+                                        description
+                                    }
+                                    const ff = await postApp(wantedApp, apiKey);
+                                }}>
+                                    Done
+                                </StyledA>
+                            </>
+                    }
                 </div>
             </div>
-
             <div>
                 <PanelDiv>
                     <DarkGrayDiv>

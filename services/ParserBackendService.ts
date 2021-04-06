@@ -50,7 +50,7 @@ class ParserBackendService {
     }
 
     static getAppByName = (name, getAppResponse) => {
-        const wantedApp = getAppResponse.response.find(e => e.name === name);
+        const wantedApp = getAppResponse?.response?.find(e => e.name === name);
         return wantedApp;
     }
 
@@ -60,7 +60,7 @@ class ParserBackendService {
     }
 
     static getDescription = (getAppResponse) => {
-        const result = getAppResponse?.response?.attribute?.description;
+        const result = getAppResponse?.attribute?.description;
         return result;
     }
 }

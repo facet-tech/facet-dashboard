@@ -102,5 +102,3 @@ export default function AppProvider({ children }) {
         </SnackbarProvider>
     </AppContext.Provider >
 }
-
-
