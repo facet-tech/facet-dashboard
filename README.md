@@ -1,3 +1,1 @@
 # Facet-Dashboard
-
-Facet dashboard
