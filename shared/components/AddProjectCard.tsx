@@ -13,6 +13,7 @@ const MainGrid = styled.div`
     border-radius: 6px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 `
 
 
