@@ -5,8 +5,6 @@ import { getApp, postApp } from '../../services/facetApiService';
 import ParserBackendService from '../../services/ParserBackendService';
 import { dashboardColor } from '../constant';
 import FacetInput from './FacetInput';
-import FacetLabel from './FacetLabel';
-import MultilineFacetInput from './MultilineFacetInput';
 
 const Grid = styled.div`
     display: grid;
