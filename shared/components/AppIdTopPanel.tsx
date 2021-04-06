@@ -5,6 +5,7 @@ import { getApp, postApp } from '../../services/facetApiService';
 import ParserBackendService from '../../services/ParserBackendService';
 import { dashboardColor } from '../constant';
 import FacetInput from './FacetInput';
+import { Auth } from "aws-amplify";
 
 const Grid = styled.div`
     display: grid;
@@ -36,11 +37,14 @@ const StyledA = styled.a`
 `;
 
 const AppIdTopPanel = () => {
-    const { apiKey, appId } = useContext(AppContext);
+    const { apiKey, appId, authObject } = useContext(AppContext);
     const [edditingDescription, setEdditingDescription] = useState(false);
     const [description, setDescription] = useState('');
+    const [creator, setCreator] = useState('');
     useEffect(() => {
         (async () => {
+            let authenticatedUser = await Auth.currentAuthenticatedUser();
+            setCreator(authenticatedUser?.username);
             const getAppResponse = await getApp(apiKey);
             const wantedApp = ParserBackendService.getAppByName(appId, getAppResponse);
             const descr = ParserBackendService.getDescription(wantedApp);
@@ -61,7 +65,7 @@ const AppIdTopPanel = () => {
                                     Name:
                                  </DarkGrayDiv>
                                 <LightGrayDiv>
-                                    ServiceA
+                                    {appId}
                                 </LightGrayDiv>
                             </Row>
                             <Row>
@@ -69,23 +73,7 @@ const AppIdTopPanel = () => {
                                     Creator:
                                 </DarkGrayDiv>
                                 <LightGrayDiv>
-                                    Johan
-                                </LightGrayDiv>
-                            </Row>
-                            <Row>
-                                <DarkGrayDiv>
-                                    Date Created:
-                                </DarkGrayDiv>
-                                <LightGrayDiv>
-                                    2020/12/28
-                                </LightGrayDiv>
-                            </Row>
-                            <Row>
-                                <DarkGrayDiv>
-                                    Date Modified:
-                                </DarkGrayDiv>
-                                <LightGrayDiv>
-                                    Just now
+                                    {creator}
                                 </LightGrayDiv>
                             </Row>
                         </PanelDiv>
