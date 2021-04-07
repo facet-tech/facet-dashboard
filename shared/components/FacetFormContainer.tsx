@@ -19,7 +19,7 @@ const BorderDiv = styled.div`
   border: 2px solid ${color.ice};
   padding: 1rem;
   width: 60%;
-  max-width: 50rem;
+  max-width: 40rem;
 `;
 
 const useStyles = makeStyles(() => ({
@@ -35,7 +35,7 @@ export default ({ children }) => {
         <StyledDiv>
             <MarginTop value="2rem" />
             <div style={{ textAlign: 'center' }}>
-                <FacetImage title="facet" fill={color.ice} src='../images/facet_ice_logo.svg' />
+                <FacetImage title="facet" fill={color.ice} src='../images/facet_white.svg' />
             </div>
             <br />
             <BorderDiv>

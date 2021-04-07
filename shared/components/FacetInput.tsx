@@ -29,8 +29,8 @@ const CustomInput = withStyles(
 )(Input);
 
 const defaultColor = {
-    color: color.white,
-    backgroundColor: dashboardColor.darkGray2,
+    color: color.black,
+    backgroundColor: color.ice,
     border: `.124rem solid ${dashboardColor.darkGray2}`
 };
 

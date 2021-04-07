@@ -7,8 +7,8 @@ import styled from 'styled-components';
 const useStyles = makeStyles(() => ({ root: {} }));
 
 const defaultColorBtnStyle = {
-    color: color.black,
-    backgroundColor: color.ice,
+    color: color.white,
+    backgroundColor: color.darkIce,
     hoverBgColor: color.electricB,
     border: 'none'
 };

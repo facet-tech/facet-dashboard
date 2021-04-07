@@ -4,6 +4,7 @@ const color = {
     electricA: '#5979D9',
     electricB: '#758EBF',
     ice: '#C4DDF2',
+    darkIce: '#3C455B',
     lightGray: '#8B8E93',
     grayA: '#4A4E59',
     grayB: '#BABABA',

@@ -29,7 +29,6 @@ export default () => {
             setSubmitting(true);
             const { confirmationCode } = data;
             await Auth.confirmSignUp(authObject.email, confirmationCode);
-            await getOrCreateWorkspace(authObject.email);
             setCurrAuthState(authStateConstant.signedIn);
             setSubmitting(false);
         } catch (error) {
