@@ -298,6 +298,7 @@ const saveFacets = async (facetMap, nonRolledOutFacets, enqueueSnackbar, globalF
 }
 
 const getApp = async (apiKey) => {
+    
     const headers = {
         apiKey
     }
