@@ -29,10 +29,16 @@ const CustomInput = withStyles(
 )(Input);
 
 const defaultColor = {
-    color: color.white,
-    backgroundColor: dashboardColor.darkGray2,
+    color: color.black,
+    backgroundColor: dashboardColor.lightGray,
     border: `.124rem solid ${dashboardColor.darkGray2}`
 };
+
+export const secondaryColor = {
+    color: dashboardColor.lightGray,
+    backgroundColor: dashboardColor.darkGray2,
+    border: `none`
+}
 
 export const electricColor = {
     color: color.black,

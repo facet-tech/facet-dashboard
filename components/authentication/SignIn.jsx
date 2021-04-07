@@ -14,6 +14,7 @@ import FacetLink from '../../shared/components/FacetLink';
 import FacetFormError from '../../shared/components/FacetFormError';
 import FacetFormContainer from '../../shared/components/FacetFormContainer';
 import MarginTop from '../../shared/components/MarginTop';
+import { getOrCreateWorkspace } from '../../services/facetApiService';
 
 const useStyles = makeStyles(() => ({
   center: {
@@ -37,6 +38,7 @@ export default () => {
     try {
       await Auth.signIn(email, password);
       setCurrAuthState(authStateConstant.signedIn);
+      await getOrCreateWorkspace(email);
       setSubmitting(false);
     } catch (error) {
       console.log('[ERROR]][SignIn]', error);
@@ -105,7 +107,8 @@ export default () => {
               </b>
               <br />
               <br />
-              <FacetLabel width="100%" text="By logging into Facet you agree to the terms of use and conditions of you and the privacy policy." />
+              <FacetLabel width="100%" text="By logging into Facet you agree to the terms of use" />
+              <FacetLabel width="100%" text="and conditions of you and the privacy policy." />
             </Typography>
           </div>
         </form>

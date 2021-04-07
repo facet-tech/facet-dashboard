@@ -50,7 +50,7 @@ const triggerApiCall = async (method, urlSuffix = '', body, HTTPHeaders = undefi
         };
         return result;
     } catch (e) {
-        console.log('[API][Error]', e)
+        console.log('[triggerApiCall][API][Error]', e)
     }
 }
 
@@ -166,7 +166,7 @@ const getOrCreateWorkspace = async (email) => {
         let suffix = `/user?email=${email}`;
         const getUserResponse = await triggerApiCall(HTTPMethods.GET, suffix);
         // create new user
-        if (getUserResponse && getUserResponse.status >= 400 && getUserResponse.status <= 500) {
+        if (!getUserResponse || (getUserResponse && getUserResponse.status >= 400 && getUserResponse.status <= 500)) {
             // post workspace
             const createWorkspaceResponse = await triggerApiCall(HTTPMethods.POST, '/workspace');
             // post user
@@ -174,6 +174,7 @@ const getOrCreateWorkspace = async (email) => {
                 email,
                 workspaceId: createWorkspaceResponse.response.id
             }
+
             await triggerApiCall(HTTPMethods.POST, '/user', createUserBody);
             return createWorkspaceResponse;
         }
