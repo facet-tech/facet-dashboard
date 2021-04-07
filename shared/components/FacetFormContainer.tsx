@@ -43,7 +43,7 @@ export default ({ children }) => {
             </BorderDiv>
             <br />
             <div className={classes.center}>
-                <FacetImage title="facet" src='../images/facet_typography.svg' />
+                <FacetImage title="facet" src='../images/facet_typography_white.svg' />
             </div>
             <MarginTop value="2rem" />
         </StyledDiv>

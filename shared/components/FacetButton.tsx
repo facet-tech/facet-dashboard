@@ -54,7 +54,7 @@ const StyledButton = styled(Button)`
     width: ${props => props.width ? props.width : '100%'};
 `;
 
-const FacetButton = ({ onClick = () => { }, text, maxWidth = "100%", disabled = false, colorButtonStyle = defaultColorBtnStyle, minWidth = '7rem', ...props }) => {
+const FacetButton = ({ onClick = () => { }, text, maxWidth = "100%", disabled = false, colorButtonStyle = defaultColorBtnStyle, minWidth = '7rem', size = "large", ...props }) => {
 
     const classes = useStyles();
     return <div className={classes.root}>
@@ -67,7 +67,7 @@ const FacetButton = ({ onClick = () => { }, text, maxWidth = "100%", disabled = 
             variant="contained"
             disabled={disabled}
             onClick={() => { if (onClick) { onClick() } }}
-            size="small"
+            size={size}
             {...props}>
             {text}
         </StyledButton>

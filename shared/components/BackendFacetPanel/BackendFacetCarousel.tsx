@@ -84,7 +84,9 @@ const BackendFacetCarousel = () => {
                                             iconHeight="15"
                                             fill={color.grayB4}
                                             name="settings-outline"
-                                            title="settings-outline" /> {pathName}</b>
+                                            title="settings-outline" />
+                                        {pathName}
+                                    </b>
                                 </> : null}
                             </Typography>
                         </StyledAccordionSummary>
