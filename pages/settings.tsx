@@ -75,6 +75,25 @@ const Backend = () => {
             </div>
         </AsideDiv>
 
+        <AsideDiv>
+            <div>
+                <FacetInput value={addedListItem} onChange={(e) => { setAddedListItem(e.target.value) }} />
+            </div>
+            <div style={{
+                marginLeft: '1rem'
+            }}>
+                <FacetButton onClick={() => {
+                    signature.push(addedListItem)
+                    //@ts-ignore
+                    requestResponse.attribute.signature = signature;
+                    updateConfiguration(requestResponse, apiKey);
+                    // @ts-ignore
+                    setSignature(signature);
+                    setAddedListItem('')
+                }} style={{ width: "2rem", height: "2rem" }} text="add" />
+            </div>
+        </AsideDiv>
+
         {/* @ts-ignore */}
         {signature && signature?.map((e, index) => {
             return <StyledDiv>
@@ -95,22 +114,9 @@ const Backend = () => {
                 <FacetLabel text={e} />
             </StyledDiv>
         })}
-        <AsideDiv>
-            <div>
-                <FacetInput value={addedListItem} onChange={(e) => { setAddedListItem(e.target.value) }} />
-            </div>
-            <div>
-                <FacetButton onClick={() => {
-                    signature.push(addedListItem)
-                    //@ts-ignore
-                    requestResponse.attribute.signature = signature;
-                    updateConfiguration(requestResponse, apiKey);
-                    // @ts-ignore
-                    setSignature(signature);
-                    setAddedListItem('')
-                }} style={{ width: "2rem", height: "2rem" }} text="add" />
-            </div>
-        </AsideDiv>
+        {/* get around weird bug */}
+        <div></div>
+
     </div>
 }
 

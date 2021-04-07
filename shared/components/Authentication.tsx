@@ -7,13 +7,14 @@ import ForgotPassword from '../../components/authentication/ForgotPassword';
 import PasswordReset from '../../components/authentication/PasswordReset';
 import AppContext from '../../context/AppContext';
 import { useRouter } from 'next/router';
+import { pathRoutes } from '../../routes';
 
 const Authentication = () => {
     const router = useRouter();
     const { currAuthState } = useContext(AppContext);
     let displayElement;
     if (currAuthState === authStateConstant.signedIn) {
-        router.push('/dashboard')
+        router.push(pathRoutes.applications.path)
     } else if (currAuthState === authStateConstant.signingIn) {
         displayElement = <SignIn />;
     } else if (currAuthState === authStateConstant.signingUp) {
