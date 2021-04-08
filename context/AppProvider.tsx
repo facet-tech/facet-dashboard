@@ -40,7 +40,6 @@ export default function AppProvider({ children }) {
         setOpenModal(false);
     };
 
-
     useEffect(() => {
         (async () => {
             const userResponse = await getUser();

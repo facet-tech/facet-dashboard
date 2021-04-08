@@ -119,7 +119,7 @@ const BackendFacetCarousel = () => {
                                                         {sig.name}
                                                         <br />
                                                         <span>{pathName}{sigPathName}</span>{' '}
-                                                        <span>{endpointType}</span>
+                                                        {/* <span>{endpointType}</span> */}
                                                     </Typography>
                                                 </StyledAccordionSummary>
                                                 <AccordionDetails style={{
