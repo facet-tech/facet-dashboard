@@ -111,7 +111,7 @@ const BackendFacetCarousel = () => {
                                                     aria-controls={element.fullyQualifiedName + "--content"}
                                                     id={element.fullyQualifiedName + "--header"}
                                                     style={{
-                                                        backgroundColor: color.grayB3,
+                                                        backgroundColor: '#3E4249',
                                                         color: color.grayB
                                                     }}
                                                 >
@@ -123,7 +123,7 @@ const BackendFacetCarousel = () => {
                                                     </Typography>
                                                 </StyledAccordionSummary>
                                                 <AccordionDetails style={{
-                                                    backgroundColor: color.grayB3,
+                                                    backgroundColor: '#3E4249',
                                                     color: color.grayB
                                                 }}>
                                                     <FunctionCard parameter={sig.parameter} returnType={sig.returnType} signature={sig.signature} />
