@@ -32,7 +32,7 @@ const TopBar = () => {
     const [notificationAnchorEl, setNotificationAnchorEl] = React.useState(null);
     const [settingsAnchorEl, setSettingsAnchorEl] = React.useState(null);
     const { currRoute } = useContext(AppContext);
-
+    console.log('currroute', currRoute);
     const accountClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
