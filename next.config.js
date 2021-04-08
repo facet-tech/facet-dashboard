@@ -11,6 +11,7 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS], [
       defaultPathMap, { dev, dir, outDir, distDir, buildId }
     ) {
       return {
+        '/': { page: '/applications' },
         '/authentication': { page: '/authentication' },
         '/dashboard': { page: '/dashboard' },
         '/applications': { page: '/applications' },
