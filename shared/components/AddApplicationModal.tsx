@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -73,9 +73,12 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
 });
 
 const YMLCode = () => {
-    const facetYmlString = `workspaceId: WORKSPACE~ID
+    const { apiKey, workspaceId } = useContext(AppContext);
+    const facetYmlString = `workspaceId: ${workspaceId}
 name: My-Application
-environment: dev`
+environment: dev
+apiKey: ${apiKey}`
+
     return (
         <SyntaxHighlighter showLineNumbers language="language-markup" style={atomDark}>
             {facetYmlString}
