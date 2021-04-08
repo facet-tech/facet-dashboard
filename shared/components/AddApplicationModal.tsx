@@ -8,8 +8,6 @@ import FacetH1 from './FacetH1';
 import FacetParagraph from './FacetParagraph';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import FacetLightboxImage from './FacetLightboxImage';
-import styled from 'styled-components';
 import { color } from '../constant';
 
 const MVNCodeBlock = () => {
