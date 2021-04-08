@@ -59,9 +59,7 @@ const pathRoutes = {
 const getByPath = (path) => {
   const val = Object.keys(pathRoutes)?.find(key => pathRoutes[key].path === path);
   // default case
-  console.log('VAL!', val);
   if (!val || !pathRoutes[val]) {
-    console.log('GIRNAW')
     return pathRoutes.applications
   }
   return pathRoutes[val];

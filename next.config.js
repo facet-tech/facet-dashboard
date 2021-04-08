@@ -19,7 +19,6 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS], [
       }
     },
     trailingSlash: true,
-
   }
 ]],
   {

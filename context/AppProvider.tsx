@@ -50,7 +50,6 @@ export default function AppProvider({ children }) {
             const getDomainsResponse = await getDomains(workspaceId);
             setDomains(getDomainsResponse?.response);
             const val = getByPath(window.location.pathname.slice(0, -1));
-            console.log('PGG', val);
             setCurrRoute(val);
         })();
 
