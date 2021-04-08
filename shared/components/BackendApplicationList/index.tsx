@@ -3,10 +3,12 @@ import AppContext from '../../../context/AppContext';
 import ApplicationCard from '../ApplicationCard';
 import styled from 'styled-components';
 import FacetParagraph from '../FacetParagraph';
-import { color, dashboardColor } from '../../constant';
+import { color, dashboardColor, snackbar } from '../../constant';
 import FacetIcon from '../Icon';
 import FacetIconButton from '../FacetIconButton';
 import AddProjectCard from '../AddProjectCard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useSnackbar } from 'notistack';
 
 const Grid = styled.div`
     display: grid;
@@ -25,13 +27,37 @@ const StyledGrid = styled.div`
 `
 
 const BackendApplicationList = () => {
-    const { backendFacetNames, apiKey } = useContext(AppContext);
+    const { enqueueSnackbar } = useSnackbar();
+    const { backendFacetNames, apiKey, workspaceId } = useContext(AppContext);
     return <>
         <FacetParagraph width='unset' color={color.grayB}>
-            API Key:{' '}
+            <b>APIKey:{' '}</b>
         </FacetParagraph>
         <FacetParagraph width='unset' color={color.grayB}>
             {apiKey}
+            <CopyToClipboard text={apiKey}>
+                <FacetIconButton hoverColor={color.skyBlue} fill={color.skyBlue} onClick={() => {
+                    enqueueSnackbar({
+                        message: `Copied API_KEY to clipboard!`,
+                        variant: snackbar.success.text
+                    });
+                }} customHeight="1.2rem" name="clipboard" />
+            </CopyToClipboard>
+        </FacetParagraph>
+        <br />
+        <FacetParagraph width='unset' color={color.grayB}>
+            <b>WorkspaceId:{' '}</b>
+        </FacetParagraph>
+        <FacetParagraph width='unset' color={color.grayB}>
+            {workspaceId}
+            <CopyToClipboard text={workspaceId}>
+                <FacetIconButton hoverColor={color.skyBlue} fill={color.skyBlue} onClick={() => {
+                    enqueueSnackbar({
+                        message: `Copied WorkspaceId to clipboard!`,
+                        variant: snackbar.success.text
+                    });
+                }} customHeight="1.2rem" name="clipboard" />
+            </CopyToClipboard>
         </FacetParagraph>
         <br />
         <FacetParagraph width='unset' color={color.grayB}>
@@ -46,7 +72,7 @@ const BackendApplicationList = () => {
                     <ApplicationCard name={backendFacet} href={`applications/${backendFacet}/`} />
                 </>
             })}
-            <AddProjectCard/>
+            <AddProjectCard />
         </Grid>
     </>
 }

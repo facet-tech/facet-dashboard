@@ -20,7 +20,7 @@ class ParserBackendService {
     }
 
     static getPathName = (annotationArr) => {
-        const obj = annotationArr?.find(e => e.name === APIEndpoint.requestMapping);
+        const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping);
         if (!obj || obj.length === 0) {
             return '';
         }
@@ -28,11 +28,11 @@ class ParserBackendService {
     }
 
     static containsEndpoints = (annotationArr) => {
-        return annotationArr?.some(e => e.name === APIEndpoint.restController);
+        return annotationArr?.some(e => e.className === APIEndpoint.restController);
     }
 
     static getEndpointType = (annotationArr) => {
-        const obj = annotationArr?.find(e => e.name === APIEndpoint.requestMapping);
+        const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping);
         if (!obj || obj.length === 0) {
             return '';
         }

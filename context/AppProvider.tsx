@@ -30,6 +30,7 @@ export default function AppProvider({ children }) {
     const isMounted = useIsMounted();
     const [domains, setDomains] = useState([]);
     const [appId, setAppId] = useState('');
+    const [workspaceId, setWorkspaceId] = useState('');
 
     const handleModalOpen = () => {
         setOpenModal(true);
@@ -45,6 +46,7 @@ export default function AppProvider({ children }) {
             const userResponse = await getUser();
             const workspaceId = userResponse?.response?.workspaceId;
             const apiKey = userResponse?.response?.apiKey;
+            setWorkspaceId(workspaceId);
             setApiKey(apiKey);
             const getDomainsResponse = await getDomains(workspaceId);
             setDomains(getDomainsResponse?.response);
@@ -78,7 +80,7 @@ export default function AppProvider({ children }) {
         currRoute, setCurrRoute, getAppResponse, setGetAppResponse,
         favoriteList, setFavoriteList, apiKey, setApiKey,
         openModal, setOpenModal, handleModalOpen, handleModalClose,
-        appId, setAppId
+        appId, setAppId, workspaceId, setWorkspaceId
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider
