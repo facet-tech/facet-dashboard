@@ -63,6 +63,15 @@ class ParserBackendService {
         const result = getAppResponse?.attribute?.description;
         return result;
     }
+
+    static parseParameters = (parameterArr) => {
+        if (!parameterArr || parameterArr.length === 0) {
+            return []
+        }
+        return parameterArr.map(e => {
+            return e?.type;
+        })
+    }
 }
 
 export default ParserBackendService;

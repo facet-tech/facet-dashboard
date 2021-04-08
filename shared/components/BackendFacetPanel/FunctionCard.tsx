@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import ParserBackendService from '../../../services/ParserBackendService'
 import { color } from '../../constant'
 import FacetLabel from '../FacetLabel'
 
@@ -14,17 +15,16 @@ const FunctionCard = ({ parameter, returnType, signature }) => {
         <div>
             <div>
                 <div>
-                    <FacetLabel color={color.grayB4} text={`Parameter: ${parameter}`} />
+                    <FacetLabel width="60rem" color={color.grayB4} text={`Parameters: ${ParserBackendService.parseParameters(parameter)}`} />
                 </div>
                 <div>
-                    {/* <FacetLabel text={parameter} /> */}
                     {parameter?.map(e => {
                         return <StyledDiv>
                             <div>
                                 <FacetLabel color={color.grayB4} text="Name:" />
                             </div>
                             <div>
-                                <FacetLabel color={color.grayB4} text={e.name} />
+                                <FacetLabel color={color.grayB4} text={e.type} />
                             </div>
                         </StyledDiv>
                     })}
