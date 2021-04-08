@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
+            maxWidth: '80rem'
         },
         heading: {
             fontSize: theme.typography.pxToRem(15),
