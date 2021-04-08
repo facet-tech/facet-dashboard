@@ -58,6 +58,7 @@ const pathRoutes = {
 
 const getByPath = (path) => {
   const val = Object.keys(pathRoutes)?.find(key => pathRoutes[key].path === path);
+  console.log('ELA MAN', val);
   // default case
   if (!pathRoutes[val]) {
     return pathRoutes.applications
