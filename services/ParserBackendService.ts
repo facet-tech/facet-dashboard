@@ -21,10 +21,12 @@ class ParserBackendService {
 
     static getPathName = (annotationArr) => {
         const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping);
-        if (!obj || obj.length === 0) {
+        console.log('@getPathName', obj);
+        if (!obj || obj?.parameters?.length === 0) {
             return '';
         }
-        return obj?.parameters?.value?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
+        const param = obj?.parameters?.find(paramObj => paramObj.name === 'value');
+        return param?.value?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
     }
 
     static containsEndpoints = (annotationArr) => {
@@ -33,7 +35,7 @@ class ParserBackendService {
 
     static getEndpointType = (annotationArr) => {
         const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping && e?.parameters?.some(paramObj => paramObj.name === 'method'))
-        if (!obj) {
+        if (!obj || obj?.parameters?.length === 0) {
             return '';
         }
         const param = obj?.parameters?.find(paramObj => paramObj.name === 'method');
