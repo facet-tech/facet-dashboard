@@ -13,7 +13,6 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS], [
       return {
         '/': { page: '/applications' },
         '/authentication': { page: '/authentication' },
-        '/dashboard': { page: '/dashboard' },
         '/applications': { page: '/applications' },
         '/settings': { page: '/settings' },
       }
