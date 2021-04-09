@@ -514,17 +514,6 @@ footer ul li a:hover {
   justify-content: center;
   align-items: center;
 }
-.body-page-transition #page-transition > div:after {
-  content: "";
-  background-image: url("../img/bg7.jpg");
-  background-size: cover;
-  position: fixed;
-  z-index: 9998;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
 .body-page-transition #page-transition > div:before {
   top: 0;
   left: 0;
