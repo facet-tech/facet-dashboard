@@ -21,10 +21,12 @@ class ParserBackendService {
 
     static getPathName = (annotationArr) => {
         const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping);
-        if (!obj || obj.length === 0) {
+        console.log('@getPathName', obj);
+        if (!obj || obj?.parameters?.length === 0) {
             return '';
         }
-        return obj?.parameters?.value?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
+        const param = obj?.parameters?.find(paramObj => paramObj.name === 'value');
+        return param?.value?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
     }
 
     static containsEndpoints = (annotationArr) => {
@@ -32,11 +34,12 @@ class ParserBackendService {
     }
 
     static getEndpointType = (annotationArr) => {
-        const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping);
-        if (!obj || obj.length === 0) {
+        const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping && e?.parameters?.some(paramObj => paramObj.name === 'method'))
+        if (!obj || obj?.parameters?.length === 0) {
             return '';
         }
-        const typeStr = obj?.parameters?.method?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
+        const param = obj?.parameters?.find(paramObj => paramObj.name === 'method');
+        const typeStr = param?.value?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
         if (typeStr?.includes(HTTPMethods.GET)) {
             return HTTPMethods.GET;
         } else if (typeStr?.includes(HTTPMethods.POST)) {
