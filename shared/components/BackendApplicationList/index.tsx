@@ -4,11 +4,12 @@ import ApplicationCard from '../ApplicationCard';
 import styled from 'styled-components';
 import FacetParagraph from '../FacetParagraph';
 import { color, dashboardColor, snackbar } from '../../constant';
-import FacetIcon from '../Icon';
 import FacetIconButton from '../FacetIconButton';
 import AddProjectCard from '../AddProjectCard';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useSnackbar } from 'notistack';
+import { getApp } from '../../../services/facetApiService';
+import ParserBackendService from '../../../services/ParserBackendService';
 
 const Grid = styled.div`
     display: grid;
@@ -24,11 +25,12 @@ const StyledGrid = styled.div`
     justify-content: center;
     align-items: center;
     max-width: 30rem;
+    
 `
 
 const BackendApplicationList = () => {
     const { enqueueSnackbar } = useSnackbar();
-    const { backendFacetNames, apiKey, workspaceId } = useContext(AppContext);
+    const { backendFacetNames, apiKey, workspaceId, setGetAppResponse, setBackendFacetNames, setFavoriteList } = useContext(AppContext);
     return <>
         <FacetParagraph width='unset' color={color.grayB}>
             <b>APIKey:{' '}</b>
@@ -66,14 +68,25 @@ const BackendApplicationList = () => {
         <FacetIconButton onClick={() => {
             window.open('https://facet.run/documentation', '_blank');
         }} fill={dashboardColor.cyan} name='external-link-outline' />
-        <Grid>
-            {backendFacetNames?.map(backendFacet => {
-                return <>
-                    <ApplicationCard name={backendFacet} href={`applications/${backendFacet}/`} />
-                </>
-            })}
-            <AddProjectCard />
-        </Grid>
+        <br/>
+        <>
+            <FacetIconButton onClick={async() => {
+                 const getAppResponse = await getApp(apiKey);
+                 setGetAppResponse(getAppResponse);
+                 const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
+                 setBackendFacetNames(backendFacetNames);
+                 const favoriteList = ParserBackendService.getFavoriteApps(getAppResponse);
+                 setFavoriteList(favoriteList);
+            }} fill={dashboardColor.cyan} name='refresh' />
+            <Grid>
+                {backendFacetNames?.map(backendFacet => {
+                    return <>
+                        <ApplicationCard name={backendFacet} href={`applications/${backendFacet}/`} />
+                    </>
+                })}
+                <AddProjectCard />
+            </Grid>
+        </>
     </>
 }
 
