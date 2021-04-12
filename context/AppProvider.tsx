@@ -29,27 +29,27 @@ export default function AppProvider({ children }) {
     const isMounted = useIsMounted();
     const [domains, setDomains] = useState([]);
 
-    useEffect(() => {
-        (async () => {
-            const userResponse = await getUser();
-            const workspaceId = userResponse?.response?.workspaceId;
-            const getDomainsResponse = await getDomains(workspaceId);
-            setDomains(getDomainsResponse?.response);
-            const val = getByPath(window.location.pathname.slice(0, -1));
-            setCurrRoute(val);
-        })();
+    // useEffect(() => {
+    //     (async () => {
+    //         const userResponse = await getUser();
+    //         const workspaceId = userResponse?.response?.workspaceId;
+    //         const getDomainsResponse = await getDomains(workspaceId);
+    //         setDomains(getDomainsResponse?.response);
+    //         const val = getByPath(window.location.pathname.slice(0, -1));
+    //         setCurrRoute(val);
+    //     })();
 
-        if (isMounted.current) {
-            (async () => {
-                const loggedIn = await Auth.currentUserInfo();
-                const loggedInVal = Boolean(loggedIn);
-                if (!loggedInVal && window.location.pathname !== '/authentication/') {
-                    router.push('/authentication/')
-                }
-                setIsCurrentlyLoggedIn(loggedInVal);
-            })()
-        }
-    }, []);
+    //     if (isMounted.current) {
+    //         (async () => {
+    //             const loggedIn = await Auth.currentUserInfo();
+    //             const loggedInVal = Boolean(loggedIn);
+    //             if (!loggedInVal && window.location.pathname !== '/authentication/') {
+    //                 router.push('/authentication/')
+    //             }
+    //             setIsCurrentlyLoggedIn(loggedInVal);
+    //         })()
+    //     }
+    // }, []);
 
     const handleEnabledChange = (sig, element) => {
         sig.enabled = !sig.enabled;
