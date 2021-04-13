@@ -12,6 +12,7 @@ import FacetFormError from "../../shared/components/FacetFormError";
 import MarginTop from "../../shared/components/MarginTop";
 import AppContext from "../../context/AppContext";
 
+
 export default () => {
 
   const { authObject, setAuthObject } = useContext(AppContext);
@@ -48,6 +49,7 @@ export default () => {
 
   return (
     <>
+
       <FacetFormContainer>
         <h3 style={{ color: color.ice }}>Sign up</h3>
         <form onSubmit={e => e.preventDefault()}>

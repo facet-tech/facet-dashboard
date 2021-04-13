@@ -11,14 +11,13 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS], [
       defaultPathMap, { dev, dir, outDir, distDir, buildId }
     ) {
       return {
+        '/': { page: '/authentication' },
         '/authentication': { page: '/authentication' },
-        '/dashboard': { page: '/dashboard' },
         '/applications': { page: '/applications' },
         '/settings': { page: '/settings' },
       }
     },
     trailingSlash: true,
-
   }
 ]],
   {

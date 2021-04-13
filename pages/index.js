@@ -8,13 +8,13 @@ export default function Index() {
   async function checkUser() {
     return Auth.currentAuthenticatedUser()
       .then(user => {
-        // console.log("BIKA1")
-        // console.log({ user });
+        console.log("BIKA1")
+        console.log({ user });
         return true;
       })
       .catch(err => {
-        // console.log("BIKA2")
-        // console.log(err);
+        console.log("BIKA2")
+        console.log(err);
         return false;
       })
   }
@@ -23,6 +23,7 @@ export default function Index() {
   React.useEffect(async () => {
     const val = window.location.pathname.slice(0, -1);
     const userExists = await checkUser();
+    console.log('VAL', val, userExists);
     if (userExists) {
       Router.push("/applications");
     } else if (!val.includes('authentication')) {

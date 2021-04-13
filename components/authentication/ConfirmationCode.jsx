@@ -29,7 +29,6 @@ export default () => {
             setSubmitting(true);
             const { confirmationCode } = data;
             await Auth.confirmSignUp(authObject.email, confirmationCode);
-            await getOrCreateWorkspace(authObject.email);
             setCurrAuthState(authStateConstant.signedIn);
             setSubmitting(false);
         } catch (error) {
@@ -56,8 +55,6 @@ export default () => {
                 <h3 style={{ color: color.ice }}>Authorization Key</h3>
                 <MarginTop value='.5rem' />
                 <FacetLabel text="An authorization key was sent to your email." />
-                <br />
-                <br />
                 <form onSubmit={e => e.preventDefault()}>
                     <br />
                     <FacetLabel />

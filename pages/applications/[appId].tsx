@@ -10,6 +10,8 @@ import StyledH2 from '../../components/StyledH2';
 import FacetIconButton from '../../shared/components/FacetIconButton';
 import { color } from '../../shared/constant';
 import styled from 'styled-components';
+import AppIdTopPanel from '../../shared/components/AppIdTopPanel';
+import FacetDropdown from '../../shared/components/FacetDropdown';
 
 const StyledDiv = styled.div`
     padding: 1rem;
@@ -24,19 +26,29 @@ const GridDiv = styled.div`
 
 const Backend = () => {
 
-    const { setBackendFacets } = useContext(AppContext);
+    const { setBackendFacets, apiKey, setAppId } = useContext(AppContext);
     const router = useRouter();
     const { appId } = router.query
 
     useEffect(() => {
         (async () => {
-            const getBackendFacetsResponse = await getBackendFacet(appId);
+            setAppId(appId);
+            const getBackendFacetsResponse = await getBackendFacet(appId, apiKey);
             const parsedBackendResponse = ParserBackendService.ParseBackendResponse(getBackendFacetsResponse);
             setBackendFacets(parsedBackendResponse);
         })();
     }, []);
 
+    const options = [
+        { value: 'development', label: 'Development' },
+        { value: 'production', label: 'Production' },
+    ];
+
     return <StyledDiv>
+        <AppIdTopPanel />
+        <br />
+        <br />
+        <FacetDropdown options={options} />
         <GridDiv>
             <div>
                 <Link href={`/applications`}>

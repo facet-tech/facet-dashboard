@@ -59,8 +59,8 @@ const pathRoutes = {
 const getByPath = (path) => {
   const val = Object.keys(pathRoutes)?.find(key => pathRoutes[key].path === path);
   // default case
-  if (!pathRoutes[val]) {
-    return pathRoutes.frontend
+  if (!val || !pathRoutes[val]) {
+    return pathRoutes.applications
   }
   return pathRoutes[val];
 }

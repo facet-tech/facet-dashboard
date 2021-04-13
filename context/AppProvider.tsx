@@ -8,6 +8,7 @@ import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
 import { postBackendFacets, getUser, getDomains } from '../services/facetApiService';
 import { getByPath } from '../routes';
+import Router from "next/router";
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -16,7 +17,9 @@ const snackbarConfig = {
 }
 
 export default function AppProvider({ children }) {
+    const router = useRouter();
     const [currAuthState, setCurrAuthState] = useState(authStateConstant.signingIn);
+    const [openModal, setOpenModal] = useState(false);
     const [isCurrentlyLoggedIn, setIsCurrentlyLoggedIn] = useState(false);
     const [authObject, setAuthObject] = useState({ email: '', password: '' });
     const [backendFacets, setBackendFacets] = useState([]);
@@ -24,10 +27,19 @@ export default function AppProvider({ children }) {
     const [getAppResponse, setGetAppResponse] = useState({});
     const [currRoute, setCurrRoute] = useState(''); // TODO BE SET FROM useEffect
     const [favoriteList, setFavoriteList] = useState([]);
-
-    const router = useRouter();
+    const [apiKey, setApiKey] = useState('');
     const isMounted = useIsMounted();
     const [domains, setDomains] = useState([]);
+    const [appId, setAppId] = useState('');
+    const [workspaceId, setWorkspaceId] = useState('');
+
+    const handleModalOpen = () => {
+        setOpenModal(true);
+    };
+
+    const handleModalClose = () => {
+        setOpenModal(false);
+    };
 
     // useEffect(() => {
     //     (async () => {
@@ -39,30 +51,85 @@ export default function AppProvider({ children }) {
     //         setCurrRoute(val);
     //     })();
 
-    //     if (isMounted.current) {
-    //         (async () => {
-    //             const loggedIn = await Auth.currentUserInfo();
-    //             const loggedInVal = Boolean(loggedIn);
-    //             if (!loggedInVal && window.location.pathname !== '/authentication/') {
-    //                 router.push('/authentication/')
-    //             }
-    //             setIsCurrentlyLoggedIn(loggedInVal);
-    //         })()
-    //     }
+    // if (isMounted.current) {
+    //     (async () => {
+    //         const loggedIn = await Auth.currentUserInfo();
+    //         const loggedInVal = Boolean(loggedIn);
+    //         if (!loggedInVal && window.location.pathname !== '/authentication/') {
+    //             router.push('/authentication/')
+    //         }
+    //         setIsCurrentlyLoggedIn(loggedInVal);
+    //     })()
+    // }
     // }, []);
+
+    useEffect(() => {
+        (async () => {
+            const userResponse = await getUser();
+            const workspaceId = userResponse?.response?.workspaceId;
+            const apiKey = userResponse?.response?.apiKey;
+            setWorkspaceId(workspaceId);
+            setApiKey(apiKey);
+            const getDomainsResponse = await getDomains(workspaceId);
+            setDomains(getDomainsResponse?.response);
+            const val = getByPath(window.location.pathname.slice(0, -1));
+            setCurrRoute(val);
+
+            if (isMounted.current) {
+                (async () => {
+                    const loggedIn = await Auth.currentUserInfo();
+                    const loggedInVal = Boolean(loggedIn);
+                    if (!loggedInVal && window.location.pathname !== '/authentication/') {
+                        router.push('/authentication/')
+                    }
+                    setIsCurrentlyLoggedIn(loggedInVal);
+                })()
+            }
+        })();
+    }, []);
+    console.log('APIKEY', apiKey);
+
+
+    async function checkUser() {
+        return Auth.currentAuthenticatedUser()
+            .then(user => {
+                console.log("BIKA1")
+                console.log({ user });
+                return true;
+            })
+            .catch(err => {
+                console.log("BIKA2")
+                console.log(err);
+                return false;
+            })
+    }
+
+    useEffect(async () => {
+        const val = window.location.pathname.slice(0, -1);
+        const userExists = await checkUser();
+        console.log('VAL', val, userExists);
+        if (userExists) {
+            Router.push("/applications");
+        } else if (!val.includes('authentication')) {
+            Router.push("/authentication");
+        }
+    }, []);
 
     const handleEnabledChange = (sig, element) => {
         sig.enabled = !sig.enabled;
         setBackendFacets([...backendFacets]);
-        postBackendFacets(element)
+        postBackendFacets(element, apiKey)
     };
+
     return <AppContext.Provider value={{
         currAuthState, setCurrAuthState,
         isCurrentlyLoggedIn, setIsCurrentlyLoggedIn, handleEnabledChange,
         authObject, setAuthObject, backendFacets, setBackendFacets,
         backendFacetNames, setBackendFacetNames, domains, setDomains,
         currRoute, setCurrRoute, getAppResponse, setGetAppResponse,
-        favoriteList, setFavoriteList
+        favoriteList, setFavoriteList, apiKey, setApiKey,
+        openModal, setOpenModal, handleModalOpen, handleModalClose,
+        appId, setAppId, workspaceId, setWorkspaceId
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider
@@ -86,5 +153,3 @@ export default function AppProvider({ children }) {
         </SnackbarProvider>
     </AppContext.Provider >
 }
-
-

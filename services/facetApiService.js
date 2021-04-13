@@ -28,12 +28,12 @@ const constructPayload = (domainId = '', urlPath = '', path = []) => {
  * @param {urlSuffix} urlSuffix default empty value = ''
  * @param {body} body the body of the request
  */
-const triggerApiCall = async (method, urlSuffix = '', body) => {
+const triggerApiCall = async (method, urlSuffix = '', body, HTTPHeaders = undefined) => {
     try {
         let jwt = await AmplifyService.getCurrentUserJTW();
-        let headers = {
+        let headers = !HTTPHeaders ? {
             AccessToken: jwt,
-        };
+        } : HTTPHeaders;
         const url = `${APIUrl.activeBaseURL}${urlSuffix}`;
         let obj = HTTPMethods.GET === method ? { method, headers } : { headers, method, body: JSON.stringify(body) };
         const res = await fetch(url, obj);
@@ -50,7 +50,7 @@ const triggerApiCall = async (method, urlSuffix = '', body) => {
         };
         return result;
     } catch (e) {
-        console.log('[API][Error]', e)
+        console.log('[triggerApiCall][API][Error]', e)
     }
 }
 
@@ -126,7 +126,7 @@ const getOrPostDomain = async (workspaceId) => {
 
 const getUser = async () => {
     const currentUserInfo = await Auth.currentUserInfo();
-    const email = currentUserInfo?.attributes?.username;
+    const email = currentUserInfo?.attributes?.email;
     if (!email) {
         return;
     }
@@ -166,7 +166,7 @@ const getOrCreateWorkspace = async (email) => {
         let suffix = `/user?email=${email}`;
         const getUserResponse = await triggerApiCall(HTTPMethods.GET, suffix);
         // create new user
-        if (getUserResponse && getUserResponse.status >= 400 && getUserResponse.status <= 500) {
+        if (!getUserResponse || (getUserResponse && getUserResponse.status >= 400 && getUserResponse.status <= 500)) {
             // post workspace
             const createWorkspaceResponse = await triggerApiCall(HTTPMethods.POST, '/workspace');
             // post user
@@ -174,6 +174,7 @@ const getOrCreateWorkspace = async (email) => {
                 email,
                 workspaceId: createWorkspaceResponse.response.id
             }
+
             await triggerApiCall(HTTPMethods.POST, '/user', createUserBody);
             return createWorkspaceResponse;
         }
@@ -296,55 +297,75 @@ const saveFacets = async (facetMap, nonRolledOutFacets, enqueueSnackbar, globalF
     }
 }
 
-// http://localhost:3000/app?workspaceId=WORKSPACE~N2IzODAyNzQtZGY5OC00OTE4LWEwM2UtZGVjYmRmZTkyMTA4&id=APP~BackedTestPoc
-// facet/backend?appId={}
-const getApp = async () => {
+const getApp = async (apiKey) => {
+    
+    const headers = {
+        apiKey
+    }
     const currentUserInfo = await Auth.currentUserInfo();
     console.log('ELA MAN', currentUserInfo);
-    const email = currentUserInfo?.attributes?.username;
+    const email = currentUserInfo?.attributes?.email;
     if (!email) {
         return;
     }
     const getUserResponse = await getUser(email);
     const workspaceId = getUserResponse?.response?.workspaceId;
     let suffix = `/app?workspaceId=${workspaceId}`;
-    const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    const getAppResponse = await triggerApiCall(HTTPMethods.GET, suffix, undefined, headers);
     return getAppResponse;
 }
 
-const postApp = async (body) => {
+const postApp = async (body, apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/app?workspaceId=${body.workspaceId}`;
-    const postAppResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    const postAppResponse = await triggerApiCall(HTTPMethods.POST, suffix, body, headers);
     return postAppResponse;
 }
 
-const getConfigurationResponse = async () => {
+const getConfigurationResponse = async (apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/configuration?property=BLOCK_LIST~&id=JAVA_PACKAGE_PREFIX~`;
-    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix, undefined, headers);
     return getBackendFacetResponse;
 }
 
-const getDefaultConfiguration = async () => {
+const getDefaultConfiguration = async (apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/configuration?property=DEFAULT_BLOCK_LIST~&id=JAVA_PACKAGE_PREFIX~`;
-    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix, undefined, headers);
     return getBackendFacetResponse;
 }
 
-const updateConfiguration = async (body) => {
+const updateConfiguration = async (body, apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/configuration?property=BLOCK_LIST~&id=JAVA_PACKAGE_PREFIX~`;
-    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.POST, suffix, body, headers);
     return getBackendFacetResponse;
 }
 
-const getBackendFacet = async (name) => {
+const getBackendFacet = async (name, apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/backend?appId=${name}`;
-    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix);
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix, undefined, headers);
     return getBackendFacetResponse;
 }
 
-const postBackendFacets = async (body) => {
+const postBackendFacets = async (body, apiKey) => {
+    const headers = {
+        apiKey
+    }
     const suffix = `/facet/backend`;
-    const postBackendFacetsResponse = await triggerApiCall(HTTPMethods.POST, suffix, body);
+    const postBackendFacetsResponse = await triggerApiCall(HTTPMethods.POST, suffix, body, headers);
     return postBackendFacetsResponse;
 }
 

@@ -20,23 +20,26 @@ class ParserBackendService {
     }
 
     static getPathName = (annotationArr) => {
-        const obj = annotationArr?.find(e => e.name === APIEndpoint.requestMapping);
-        if (!obj || obj.length === 0) {
+        const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping);
+        console.log('@getPathName', obj);
+        if (!obj || obj?.parameters?.length === 0) {
             return '';
         }
-        return obj?.parameters?.value?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
+        const param = obj?.parameters?.find(paramObj => paramObj.name === 'value');
+        return param?.value?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
     }
 
     static containsEndpoints = (annotationArr) => {
-        return annotationArr?.some(e => e.name === APIEndpoint.restController);
+        return annotationArr?.some(e => e.className === APIEndpoint.restController);
     }
 
     static getEndpointType = (annotationArr) => {
-        const obj = annotationArr?.find(e => e.name === APIEndpoint.requestMapping);
-        if (!obj || obj.length === 0) {
+        const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping && e?.parameters?.some(paramObj => paramObj.name === 'method'))
+        if (!obj || obj?.parameters?.length === 0) {
             return '';
         }
-        const typeStr = obj?.parameters?.method?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
+        const param = obj?.parameters?.find(paramObj => paramObj.name === 'method');
+        const typeStr = param?.value?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
         if (typeStr?.includes(HTTPMethods.GET)) {
             return HTTPMethods.GET;
         } else if (typeStr?.includes(HTTPMethods.POST)) {
@@ -50,13 +53,27 @@ class ParserBackendService {
     }
 
     static getAppByName = (name, getAppResponse) => {
-        const wantedApp = getAppResponse.response.find(e => e.name === name);
+        const wantedApp = getAppResponse?.response?.find(e => e.name === name);
         return wantedApp;
     }
 
     static getFavoriteApps = (getAppResponse) => {
-        const result = getAppResponse.response.filter(e => e.attribute?.favorite === true);
-        return result.map(e => e.name);
+        const result = getAppResponse?.response?.filter(e => e.attribute?.favorite === true);
+        return result?.map(e => e.name);
+    }
+
+    static getDescription = (getAppResponse) => {
+        const result = getAppResponse?.attribute?.description;
+        return result;
+    }
+
+    static parseParameters = (parameterArr) => {
+        if (!parameterArr || parameterArr.length === 0) {
+            return []
+        }
+        return parameterArr.map(e => {
+            return e?.type;
+        })
     }
 }
 

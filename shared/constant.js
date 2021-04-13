@@ -4,10 +4,13 @@ const color = {
     electricA: '#5979D9',
     electricB: '#758EBF',
     ice: '#C4DDF2',
+    darkIce: '#3C455B',
     lightGray: '#8B8E93',
     grayA: '#4A4E59',
     grayB: '#BABABA',
     grayB2: '#272D37',
+    grayB3: '#23262D',
+    grayB4: '#C4C4C4',
     darkGray: '#181D26',
     darkestGray: '#13171E',
     black: '#000000',
@@ -46,7 +49,13 @@ const dashboardColor = {
     gray: '#2A2A2A',
     black: '#181818',
     green: '#B3E07A',
-    cyan: '#80CAE1'
+    cyan: '#80CAE1',
+    lightGray: '#CCCCCC',
+    darkGray: '#656565',
+    darkGreen: '#57827A',
+    bgGray: '#373737',
+    purple: '#949BDC',
+    darkGray2: '#161618',
 };
 
 const applicationStack = {
