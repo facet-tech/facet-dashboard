@@ -14,6 +14,7 @@ import FacetLink from '../../shared/components/FacetLink';
 import FacetFormError from '../../shared/components/FacetFormError';
 import FacetFormContainer from '../../shared/components/FacetFormContainer';
 import MarginTop from '../../shared/components/MarginTop';
+import GoogleButton from '../GoogleButton/GoogleButton';
 
 const useStyles = makeStyles(() => ({
   center: {
@@ -115,6 +116,7 @@ export default () => {
           textAlign: 'center'
         }}>
           Or
+          <GoogleButton />
           <div>
             <button
               onClick={() => Auth.federatedSignIn({ provider: 'Google' })}>Sign In with Google
