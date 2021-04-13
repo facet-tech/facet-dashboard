@@ -31,12 +31,3 @@ export default function Index() {
     <div />
   )
 }
-
-
-// src/App.js
-
-
-// import Amplify from 'aws-amplify'
-// import config from './aws-exports'
-
-// Amplify.configure(config)
