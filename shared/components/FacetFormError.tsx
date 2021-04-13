@@ -7,12 +7,13 @@ const StyledDiv = styled.div`
 `;
 
 const ErrorSpan = styled.span`
+    margin-left: .5rem;
     color: #FF5050;
 `;
 
 const FacetFormError = ({ text, ...other }) => {
     return <StyledDiv>
-        <FacetImage src='../facet_form_error.svg' />
+        <FacetImage src='../images/facet_form_error.svg' />
         <ErrorSpan {...other}>{text}</ErrorSpan>
     </StyledDiv>
 }
