@@ -303,7 +303,6 @@ const getApp = async (apiKey) => {
         apiKey
     }
     const currentUserInfo = await Auth.currentUserInfo();
-    console.log('ELA MAN', currentUserInfo);
     const email = currentUserInfo?.attributes?.email;
     if (!email) {
         return;

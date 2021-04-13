@@ -7,7 +7,8 @@ import ParserBackendService from '../services/ParserBackendService';
 import { Auth } from 'aws-amplify'
 
 const Backend = () => {
-    const { apiKey, setBackendFacetNames, setGetAppResponse, favoriteList, setFavoriteList } = useContext(AppContext);
+    const { apiKey, setBackendFacetNames, setGetAppResponse, setFavoriteList } = useContext(AppContext);
+
     async function checkUser() {
         Auth.currentAuthenticatedUser()
             .then(user => console.log({ user }))
