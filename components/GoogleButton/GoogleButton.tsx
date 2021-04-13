@@ -1,12 +1,18 @@
-import { Button, Icon, Grid } from '@material-ui/core';
+import { Icon } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
-import { color } from '../../shared/constant';
+import { Auth } from 'aws-amplify';
+
+const StyledIconContainer = styled.div`
+    display: grid;
+    align-content: center;
+    justify-content: center;
+`
 
 const svgIcon = (
-    <Icon>
-        <img width="100" alt="Signin with Google" src='../images/Google-Logo.svg' />
-    </Icon>
+    <StyledIconContainer>
+        <img height="30" width="100" src='../images/google.svg' />
+    </StyledIconContainer>
 );
 
 const ParentGrid = styled.div`
@@ -15,21 +21,27 @@ const ParentGrid = styled.div`
     align-items: center;
     justify-content: center;
     align-content: center;
+    padding: 2rem;
+    display: grid;
+    align-content: center;
+    justify-content: center;
 `
 
 const StyledGrid = styled.div`
     display: grid;
     grid-template-columns: 95px 200px;
-    background: #3F4765;
+    background: #323B40;
     justify-content: center;
     align-content: center;
     align-items: center;
     border-radius: .5rem;
+    height: 4rem;
+    cursor: pointer;
 `;
 
 const GoogleButton = () => {
     return <>
-        <ParentGrid>
+        <ParentGrid onClick={() => Auth.federatedSignIn({ provider: 'Google' })}>
             <div>
                 <StyledGrid>
                     <div>
@@ -40,7 +52,7 @@ const GoogleButton = () => {
                         fontWeight: 'bold'
                     }}>
                         Sign in with Google
-            </div>
+                    </div>
                 </StyledGrid>
             </div>
         </ParentGrid>

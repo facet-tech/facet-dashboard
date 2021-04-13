@@ -20,12 +20,10 @@ import { getOrCreateWorkspace } from '../../services/facetApiService';
 async function checkUser() {
   return Auth.currentAuthenticatedUser()
     .then(user => {
-      console.log("BIKA1")
       console.log({ user });
       return true;
     })
     .catch(err => {
-      console.log("BIKA2")
       console.log(err);
       return false;
     })
@@ -136,11 +134,6 @@ export default () => {
         }}>
           Or
           <GoogleButton />
-          <div>
-            <button
-              onClick={() => Auth.federatedSignIn({ provider: 'Google' })}>Sign In with Google
-            </button>
-          </div>
         </div>
       </FacetFormContainer>
     </>
