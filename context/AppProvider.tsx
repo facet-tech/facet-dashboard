@@ -6,8 +6,9 @@ import { Auth } from 'aws-amplify';
 import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
-import { postBackendFacets, getUser, getDomains } from '../services/facetApiService';
+import { postBackendFacets, getUser, getDomains, getOrCreateWorkspace } from '../services/facetApiService';
 import { getByPath } from '../routes';
+import Router from "next/router";
 
 const snackbarConfig = {
     autoHideDuration: 5000,
@@ -40,9 +41,26 @@ export default function AppProvider({ children }) {
         setOpenModal(false);
     };
 
+    const retreiveApiKey = async () => {
+        if (apiKey) {
+            return apiKey;
+        }
+        let userResponse = await getUser();
+        const key = userResponse?.response?.apiKey;
+        setApiKey(key);
+        return key;
+    }
+
+
     useEffect(() => {
         (async () => {
-            const userResponse = await getUser();
+            let userResponse = await getUser();
+            if (userResponse?.status >= 400 && userResponse?.status <= 500) {
+                const currentUserInfo = await Auth.currentUserInfo();
+                const email = currentUserInfo?.attributes?.email;
+                await getOrCreateWorkspace(email);
+                userResponse = await getUser();
+            }
             const workspaceId = userResponse?.response?.workspaceId;
             const apiKey = userResponse?.response?.apiKey;
             setWorkspaceId(workspaceId);
@@ -51,17 +69,38 @@ export default function AppProvider({ children }) {
             setDomains(getDomainsResponse?.response);
             const val = getByPath(window.location.pathname.slice(0, -1));
             setCurrRoute(val);
-        })();
 
-        if (isMounted.current) {
-            (async () => {
-                const loggedIn = await Auth.currentUserInfo();
-                const loggedInVal = Boolean(loggedIn);
-                if (!loggedInVal && window.location.pathname !== '/authentication/') {
-                    router.push('/authentication/')
-                }
-                setIsCurrentlyLoggedIn(loggedInVal);
-            })()
+            if (isMounted.current) {
+                (async () => {
+                    const loggedIn = await Auth.currentUserInfo();
+                    const loggedInVal = Boolean(loggedIn);
+                    if (!loggedInVal && window.location.pathname !== '/authentication/') {
+                        router.push('/authentication/')
+                    }
+                    setIsCurrentlyLoggedIn(loggedInVal);
+                })()
+            }
+        })();
+    }, []);
+
+    async function checkUser() {
+        return Auth.currentAuthenticatedUser()
+            .then(user => {
+                return true;
+            })
+            .catch(err => {
+                return false;
+            })
+    }
+
+    // @ts-ignore
+    useEffect(async () => {
+        const val = window.location.pathname.slice(0, -1);
+        const userExists = await checkUser();
+        if (userExists) {
+            Router.push("/applications");
+        } else if (!val.includes('authentication')) {
+            Router.push("/authentication");
         }
     }, []);
 
@@ -79,7 +118,7 @@ export default function AppProvider({ children }) {
         currRoute, setCurrRoute, getAppResponse, setGetAppResponse,
         favoriteList, setFavoriteList, apiKey, setApiKey,
         openModal, setOpenModal, handleModalOpen, handleModalClose,
-        appId, setAppId, workspaceId, setWorkspaceId
+        appId, setAppId, workspaceId, setWorkspaceId, retreiveApiKey
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider

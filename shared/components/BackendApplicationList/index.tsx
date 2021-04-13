@@ -30,7 +30,7 @@ const StyledGrid = styled.div`
 
 const BackendApplicationList = () => {
     const { enqueueSnackbar } = useSnackbar();
-    const { backendFacetNames, apiKey, workspaceId, setGetAppResponse, setBackendFacetNames, setFavoriteList } = useContext(AppContext);
+    const { backendFacetNames, retreiveApiKey, apiKey, workspaceId, setGetAppResponse, setBackendFacetNames, setFavoriteList } = useContext(AppContext);
     return <>
         <FacetParagraph width='unset' color={color.grayB}>
             <b>APIKey:{' '}</b>
@@ -68,15 +68,16 @@ const BackendApplicationList = () => {
         <FacetIconButton onClick={() => {
             window.open('https://facet.run/documentation', '_blank');
         }} fill={dashboardColor.cyan} name='external-link-outline' />
-        <br/>
+        <br />
         <>
-            <FacetIconButton onClick={async() => {
-                 const getAppResponse = await getApp(apiKey);
-                 setGetAppResponse(getAppResponse);
-                 const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
-                 setBackendFacetNames(backendFacetNames);
-                 const favoriteList = ParserBackendService.getFavoriteApps(getAppResponse);
-                 setFavoriteList(favoriteList);
+            <FacetIconButton onClick={async () => {
+                const key = retreiveApiKey();
+                const getAppResponse = await getApp(key);
+                setGetAppResponse(getAppResponse);
+                const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
+                setBackendFacetNames(backendFacetNames);
+                const favoriteList = ParserBackendService.getFavoriteApps(getAppResponse);
+                setFavoriteList(favoriteList);
             }} fill={dashboardColor.cyan} name='refresh' />
             <Grid>
                 {backendFacetNames?.map(backendFacet => {

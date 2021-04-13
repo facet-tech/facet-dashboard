@@ -3,8 +3,6 @@ import App from "next/app";
 import Head from "next/head";
 import "../assets/css/nextjs-material-dashboard.css?v=1.1.0";
 import { createGlobalStyle } from 'styled-components'
-import Amplify from 'aws-amplify';
-import aws_exports from '../aws-exports';
 import AppProvider from "../context/AppProvider";
 import "../public/styles/globals.css";
 import { SnackbarProvider } from 'notistack';
@@ -12,14 +10,15 @@ import FacetSnackbar from "../shared/components/FacetSnackbar";
 import FacetHead from '../shared/components/FacetHead';
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
+import Amplify from 'aws-amplify'
+import config from '../aws-exports'
 
+Amplify.configure(config)
 const snackbarConfig = {
   autoHideDuration: 4000,
   vertical: 'bottom',
   horizontal: 'left'
 };
-
-Amplify.configure(aws_exports);
 
 Sentry.init({
   dsn: "https://096ad65e15374a91ba548f74712534c0@o460218.ingest.sentry.io/5691543",

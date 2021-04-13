@@ -15,6 +15,18 @@ import FacetFormError from '../../shared/components/FacetFormError';
 import FacetFormContainer from '../../shared/components/FacetFormContainer';
 import MarginTop from '../../shared/components/MarginTop';
 import { getOrCreateWorkspace } from '../../services/facetApiService';
+import GoogleButton from '../GoogleButton';
+import FacetLabeledDivider from '../../shared/components/FacetLabeledDivider';
+
+async function checkUser() {
+  return Auth.currentAuthenticatedUser()
+    .then(user => {
+      return true;
+    })
+    .catch(err => {
+      return false;
+    })
+}
 
 const useStyles = makeStyles(() => ({
   center: {
@@ -106,6 +118,13 @@ export default () => {
                 <FacetLink color={color.electricB} text='Sign up.' href="#" onClick={() => { setCurrAuthState(authStateConstant.signingUp) }} />
               </b>
               <br />
+              <div style={{
+                textAlign: 'center'
+              }}>
+                <br />
+                <FacetLabeledDivider />
+                <GoogleButton />
+              </div>
               <br />
               <FacetLabel width="100%" text="By logging into Facet you agree to the terms of use" />
               <FacetLabel width="100%" text="and conditions of you and the privacy policy." />

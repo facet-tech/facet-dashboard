@@ -6,24 +6,29 @@ import { Auth } from "aws-amplify";
 
 const Authentication = () => {
 
-    const [isCurrentlyLoggedIn, setIsCurrentlyLoggedIn] = useState(false);
+  const [isCurrentlyLoggedIn, setIsCurrentlyLoggedIn] = useState(false);
+  function checkUser() {
+    Auth.currentAuthenticatedUser()
+      .then(user => console.log({ user }))
+      .catch(err => console.log(err))
+  }
+  const isMounted = useIsMounted();
+  
+  useEffect(() => {
+    //@ts-ignore
+    if (isMounted.current) {
+      (async () => {
+        const loggedIn = await Auth.currentUserInfo();
+        setIsCurrentlyLoggedIn(Boolean(loggedIn));
+      })()
+    }
+  }, [])
 
-    const isMounted = useIsMounted();
-    useEffect(() => {
-        //@ts-ignore
-        if (isMounted.current) {
-            (async () => {
-                const loggedIn = await Auth.currentUserInfo();
-                setIsCurrentlyLoggedIn(Boolean(loggedIn));
-            })()
-        }
-    }, [])
-
-    return <>
-        <AppProvider>
-            <AuthenticationComponent />
-        </AppProvider>
-    </>
+  return <>
+    <AppProvider>
+      <AuthenticationComponent />
+    </AppProvider>
+  </>
 }
 
 export default Authentication;

@@ -37,15 +37,16 @@ const StyledA = styled.a`
 `;
 
 const AppIdTopPanel = () => {
-    const { apiKey, appId, authObject } = useContext(AppContext);
+    const { apiKey, appId, authObject, retreiveApiKey } = useContext(AppContext);
     const [edditingDescription, setEdditingDescription] = useState(false);
     const [description, setDescription] = useState('');
     const [creator, setCreator] = useState('');
     useEffect(() => {
         (async () => {
             let authenticatedUser = await Auth.currentAuthenticatedUser();
-            setCreator(authenticatedUser?.username);
-            const getAppResponse = await getApp(apiKey);
+            setCreator(authenticatedUser?.attributes?.email);
+            const key = await retreiveApiKey();
+            const getAppResponse = await getApp(key);
             const wantedApp = ParserBackendService.getAppByName(appId, getAppResponse);
             const descr = ParserBackendService.getDescription(wantedApp);
             setDescription(descr);

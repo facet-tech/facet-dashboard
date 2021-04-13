@@ -1,7 +1,5 @@
 import { Divider, makeStyles } from "@material-ui/core"
-import { color, dashboardColor } from "../constant";
-
-
+import { dashboardColor } from "../constant";
 
 const FacetDivider = (props) => {
 

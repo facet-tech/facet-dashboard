@@ -11,6 +11,9 @@ import FacetFormContainer from "../../shared/components/FacetFormContainer";
 import FacetFormError from "../../shared/components/FacetFormError";
 import MarginTop from "../../shared/components/MarginTop";
 import AppContext from "../../context/AppContext";
+import FacetLabeledDivider from "../../shared/components/FacetLabeledDivider";
+import GoogleButton from "../GoogleButton";
+
 
 export default () => {
 
@@ -48,6 +51,7 @@ export default () => {
 
   return (
     <>
+
       <FacetFormContainer>
         <h3 style={{ color: color.ice }}>Sign up</h3>
         <form onSubmit={e => e.preventDefault()}>
@@ -152,6 +156,13 @@ export default () => {
         <br />
         <div style={{ textAlign: 'center' }}>
           <b><FacetLink fontSize="medium" text="Sign in" color={color.electricB} onClick={() => setCurrAuthState(authStateConstant.signingIn)} /></b>
+        </div>
+        <div style={{
+          textAlign: 'center'
+        }}>
+          <br />
+          <FacetLabeledDivider />
+          <GoogleButton />
         </div>
       </FacetFormContainer>
     </ >

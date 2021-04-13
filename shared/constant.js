@@ -87,6 +87,7 @@ const localBaseURL = 'http://localhost:3002';
 const websiteURL = 'https://facet.run';
 
 const authState = {
+    initialAuth: 'INITIAL_AUTH',
     notSignedIn: 'NOT_LOGGED_IN',
     signedIn: 'LOGGED_IN',
     signingIn: 'SIGNING_IN',

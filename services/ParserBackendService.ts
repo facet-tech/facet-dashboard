@@ -21,7 +21,6 @@ class ParserBackendService {
 
     static getPathName = (annotationArr) => {
         const obj = annotationArr?.find(e => e.className === APIEndpoint.requestMapping);
-        console.log('@getPathName', obj);
         if (!obj || obj?.parameters?.length === 0) {
             return '';
         }
