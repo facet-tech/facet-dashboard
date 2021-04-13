@@ -111,6 +111,16 @@ export default () => {
         </form>
         {serverError && <Alert severity="error">{serverError}</Alert>}
         <br />
+        <div style={{
+          textAlign: 'center'
+        }}>
+          Or
+          <div>
+            <button
+              onClick={() => Auth.federatedSignIn({ provider: 'Google' })}>Sign In with Google
+            </button>
+          </div>
+        </div>
       </FacetFormContainer>
     </>
   );

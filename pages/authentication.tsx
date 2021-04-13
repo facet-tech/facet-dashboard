@@ -13,6 +13,7 @@ const Authentication = () => {
       .catch(err => console.log(err))
   }
   const isMounted = useIsMounted();
+  
   useEffect(() => {
     //@ts-ignore
     if (isMounted.current) {

@@ -153,6 +153,16 @@ export default () => {
         <div style={{ textAlign: 'center' }}>
           <b><FacetLink fontSize="medium" text="Sign in" color={color.electricB} onClick={() => setCurrAuthState(authStateConstant.signingIn)} /></b>
         </div>
+        <div style={{
+          textAlign: 'center'
+        }}>
+          Or
+          <div>
+            <button
+              onClick={() => Auth.federatedSignIn({ provider: 'Google' })}>Sign In with Google
+            </button>
+          </div>
+        </div>
       </FacetFormContainer>
     </ >
   );
