@@ -55,7 +55,6 @@ export default function AppProvider({ children }) {
     useEffect(() => {
         (async () => {
             let userResponse = await getUser();
-            console.log('USERRESPOSNE', userResponse);
             if (userResponse?.status >= 400 && userResponse?.status <= 500) {
                 const currentUserInfo = await Auth.currentUserInfo();
                 const email = currentUserInfo?.attributes?.email;
@@ -83,17 +82,13 @@ export default function AppProvider({ children }) {
             }
         })();
     }, []);
-    console.log('APIKEY', apiKey);
-
 
     async function checkUser() {
         return Auth.currentAuthenticatedUser()
             .then(user => {
-                console.log({ user });
                 return true;
             })
             .catch(err => {
-                console.log(err);
                 return false;
             })
     }

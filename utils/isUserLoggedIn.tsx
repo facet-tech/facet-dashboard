@@ -3,7 +3,6 @@ import { Auth } from 'aws-amplify';
 const isUserLoggedIn = async () => {
     const loggedIn = await Auth.currentAuthenticatedUser()
         .then(user => {
-            console.log({ user });
             return true;
         })
         .catch(err => {

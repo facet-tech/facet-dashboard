@@ -21,11 +21,9 @@ import FacetLabeledDivider from '../../shared/components/FacetLabeledDivider';
 async function checkUser() {
   return Auth.currentAuthenticatedUser()
     .then(user => {
-      console.log({ user });
       return true;
     })
     .catch(err => {
-      console.log(err);
       return false;
     })
 }
