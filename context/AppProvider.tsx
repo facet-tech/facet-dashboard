@@ -6,7 +6,7 @@ import { Auth } from 'aws-amplify';
 import { authState as authStateConstant } from '../shared/constant';
 import useIsMounted from '../shared/hooks/useIsMounted';
 import { useRouter } from 'next/router';
-import { postBackendFacets, getUser, getDomains } from '../services/facetApiService';
+import { postBackendFacets, getUser, getDomains, getOrCreateWorkspace } from '../services/facetApiService';
 import { getByPath } from '../routes';
 import Router from "next/router";
 
@@ -65,7 +65,14 @@ export default function AppProvider({ children }) {
 
     useEffect(() => {
         (async () => {
-            const userResponse = await getUser();
+            let userResponse = await getUser();
+            console.log('USERRESPOSNE', userResponse);
+            if (userResponse?.status >= 400 && userResponse?.status <= 500) {
+                const currentUserInfo = await Auth.currentUserInfo();
+                const email = currentUserInfo?.attributes?.email;
+                await getOrCreateWorkspace(email);
+                userResponse = await getUser();
+            }
             const workspaceId = userResponse?.response?.workspaceId;
             const apiKey = userResponse?.response?.apiKey;
             setWorkspaceId(workspaceId);
@@ -104,6 +111,7 @@ export default function AppProvider({ children }) {
             })
     }
 
+    // @ts-ignore
     useEffect(async () => {
         const val = window.location.pathname.slice(0, -1);
         const userExists = await checkUser();

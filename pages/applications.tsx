@@ -14,7 +14,6 @@ const Backend = () => {
             .catch(err => console.log(err))
         const loggedIn = await Auth.currentUserInfo();
         const loggedInVal = Boolean(loggedIn);
-        console.log("EEE>", loggedInVal);
         return loggedInVal;
     }
 

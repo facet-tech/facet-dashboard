@@ -13,7 +13,7 @@ import FacetHead from '../shared/components/FacetHead';
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import Amplify from 'aws-amplify'
-import config from './aws-exports'
+import config from '../aws-exports'
 
 Amplify.configure(config)
 const snackbarConfig = {

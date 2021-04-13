@@ -44,7 +44,8 @@ const AppIdTopPanel = () => {
     useEffect(() => {
         (async () => {
             let authenticatedUser = await Auth.currentAuthenticatedUser();
-            setCreator(authenticatedUser?.username);
+            console.log('authenticatedUser', authenticatedUser);
+            setCreator(authenticatedUser?.attributes?.email);
             const getAppResponse = await getApp(apiKey);
             const wantedApp = ParserBackendService.getAppByName(appId, getAppResponse);
             const descr = ParserBackendService.getDescription(wantedApp);
