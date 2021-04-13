@@ -41,32 +41,9 @@ export default function AppProvider({ children }) {
         setOpenModal(false);
     };
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const userResponse = await getUser();
-    //         const workspaceId = userResponse?.response?.workspaceId;
-    //         const getDomainsResponse = await getDomains(workspaceId);
-    //         setDomains(getDomainsResponse?.response);
-    //         const val = getByPath(window.location.pathname.slice(0, -1));
-    //         setCurrRoute(val);
-    //     })();
-
-    // if (isMounted.current) {
-    //     (async () => {
-    //         const loggedIn = await Auth.currentUserInfo();
-    //         const loggedInVal = Boolean(loggedIn);
-    //         if (!loggedInVal && window.location.pathname !== '/authentication/') {
-    //             router.push('/authentication/')
-    //         }
-    //         setIsCurrentlyLoggedIn(loggedInVal);
-    //     })()
-    // }
-    // }, []);
-
     useEffect(() => {
         (async () => {
             let userResponse = await getUser();
-            console.log('USERRESPOSNE', userResponse);
             if (userResponse?.status >= 400 && userResponse?.status <= 500) {
                 const currentUserInfo = await Auth.currentUserInfo();
                 const email = currentUserInfo?.attributes?.email;
@@ -100,12 +77,10 @@ export default function AppProvider({ children }) {
     async function checkUser() {
         return Auth.currentAuthenticatedUser()
             .then(user => {
-                console.log("BIKA1")
                 console.log({ user });
                 return true;
             })
             .catch(err => {
-                console.log("BIKA2")
                 console.log(err);
                 return false;
             })
@@ -115,7 +90,6 @@ export default function AppProvider({ children }) {
     useEffect(async () => {
         const val = window.location.pathname.slice(0, -1);
         const userExists = await checkUser();
-        console.log('VAL', val, userExists);
         if (userExists) {
             Router.push("/applications");
         } else if (!val.includes('authentication')) {
