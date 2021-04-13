@@ -17,14 +17,11 @@ const svgIcon = (
 
 const ParentGrid = styled.div`
     display: grid;
-    grid-template-columns: 300px;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 100%;
     align-items: center;
-    justify-content: center;
-    align-content: center;
     padding: 2rem;
-    display: grid;
-    align-content: center;
-    justify-content: center;
 `
 
 const StyledGrid = styled.div`
@@ -41,6 +38,7 @@ const StyledGrid = styled.div`
 
 const GoogleButton = () => {
     return <>
+        {/* @ts-ignore */}
         <ParentGrid onClick={() => Auth.federatedSignIn({ provider: 'Google' })}>
             <div>
                 <StyledGrid>

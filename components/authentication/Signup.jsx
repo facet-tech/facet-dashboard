@@ -11,6 +11,8 @@ import FacetFormContainer from "../../shared/components/FacetFormContainer";
 import FacetFormError from "../../shared/components/FacetFormError";
 import MarginTop from "../../shared/components/MarginTop";
 import AppContext from "../../context/AppContext";
+import FacetLabeledDivider from "../../shared/components/FacetLabeledDivider";
+import GoogleButton from "../GoogleButton";
 
 
 export default () => {
@@ -158,12 +160,9 @@ export default () => {
         <div style={{
           textAlign: 'center'
         }}>
-          Or
-          <div>
-            <button
-              onClick={() => Auth.federatedSignIn({ provider: 'Google' })}>Sign In with Google
-            </button>
-          </div>
+          <br />
+          <FacetLabeledDivider />
+          <GoogleButton />
         </div>
       </FacetFormContainer>
     </ >

@@ -41,9 +41,11 @@ export default function AppProvider({ children }) {
         setOpenModal(false);
     };
 
+
     useEffect(() => {
         (async () => {
             let userResponse = await getUser();
+            console.log('USERRESPOSNE', userResponse);
             if (userResponse?.status >= 400 && userResponse?.status <= 500) {
                 const currentUserInfo = await Auth.currentUserInfo();
                 const email = currentUserInfo?.attributes?.email;
