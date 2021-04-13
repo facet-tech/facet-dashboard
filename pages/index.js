@@ -1,7 +1,6 @@
 import React from "react";
 import Router from "next/router";
 import { Auth } from 'aws-amplify'
-import { pathRoutes } from '../routes';
 
 export default function Index() {
 
