@@ -126,7 +126,7 @@ const getOrPostDomain = async (workspaceId) => {
 
 const getUser = async () => {
     const currentUserInfo = await Auth.currentUserInfo();
-    const email = currentUserInfo?.username;
+    const email = currentUserInfo?.attributes?.username;
     if (!email) {
         return;
     }
@@ -300,7 +300,8 @@ const saveFacets = async (facetMap, nonRolledOutFacets, enqueueSnackbar, globalF
 // facet/backend?appId={}
 const getApp = async () => {
     const currentUserInfo = await Auth.currentUserInfo();
-    const email = currentUserInfo?.username;
+    console.log('ELA MAN', currentUserInfo);
+    const email = currentUserInfo?.attributes?.username;
     if (!email) {
         return;
     }

@@ -14,24 +14,21 @@ const Backend = () => {
             .catch(err => console.log(err))
         const loggedIn = await Auth.currentUserInfo();
         const loggedInVal = Boolean(loggedIn);
-        console.log("EEE>", loggedInVal);
         return loggedInVal;
     }
 
     useEffect(() => {
         (async () => {
-            // const getAppResponse = await getApp();
-            // setGetAppResponse(getAppResponse);
-            // const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
-            // setBackendFacetNames(backendFacetNames);
-            // const favoriteList = ParserBackendService.getFavoriteApps(getAppResponse);
-            // setFavoriteList(favoriteList);
+            const getAppResponse = await getApp();
+            setGetAppResponse(getAppResponse);
+            const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
+            setBackendFacetNames(backendFacetNames);
+            const favoriteList = ParserBackendService.getFavoriteApps(getAppResponse);
+            setFavoriteList(favoriteList);
         })();
     }, []);
     return <div>
-        <button onClick={checkUser}>Check User</button>
-
-        {/* <BackendApplicationList /> */}
+        <BackendApplicationList />
     </div>
 }
 

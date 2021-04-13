@@ -26,8 +26,6 @@ const Authentication = () => {
 
   return <>
     <AppProvider>
-      <button onClick={checkUser}>Check User</button>
-
       <AuthenticationComponent />
     </AppProvider>
   </>
