@@ -28,7 +28,8 @@ export interface AppState {
     appId: string,
     setAppId: undefined,
     workspaceId: string,
-    setWorkspaceId: undefined
+    setWorkspaceId: undefined,
+    retreiveApiKey: undefined
 }
 
 const AppContext = React.createContext({
@@ -60,7 +61,8 @@ const AppContext = React.createContext({
     appId: '',
     setAppId: undefined,
     workspaceId: '',
-    setWorkspaceId: undefined
+    setWorkspaceId: undefined,
+    retreiveApiKey: undefined
 });
 
 export default AppContext;

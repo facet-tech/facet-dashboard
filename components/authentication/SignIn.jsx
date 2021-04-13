@@ -72,8 +72,6 @@ export default () => {
 
   return (
     <>
-      <button onClick={checkUser}>Check User</button>
-
       <FacetFormContainer>
         <h3 style={{ color: color.ice }}>Login</h3>
         <form onSubmit={(e) => e.preventDefault()}>

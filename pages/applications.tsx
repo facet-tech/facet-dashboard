@@ -7,7 +7,7 @@ import ParserBackendService from '../services/ParserBackendService';
 import { Auth } from 'aws-amplify'
 
 const Backend = () => {
-    const { apiKey, setBackendFacetNames, setGetAppResponse, setFavoriteList } = useContext(AppContext);
+    const { apiKey, setBackendFacetNames, setGetAppResponse, setFavoriteList, retreiveApiKey } = useContext(AppContext);
 
     async function checkUser() {
         Auth.currentAuthenticatedUser()
@@ -20,7 +20,11 @@ const Backend = () => {
 
     useEffect(() => {
         (async () => {
-            const getAppResponse = await getApp(apiKey);
+            let key;
+            if (!apiKey) {
+                key = await retreiveApiKey();
+            }
+            const getAppResponse = await getApp(apiKey || key);
             setGetAppResponse(getAppResponse);
             const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
             setBackendFacetNames(backendFacetNames);
@@ -29,8 +33,6 @@ const Backend = () => {
         })();
     }, []);
     return <div>
-        <button onClick={checkUser}>Check User</button>
-
         <BackendApplicationList />
     </div>
 }

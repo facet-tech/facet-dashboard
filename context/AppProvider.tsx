@@ -41,6 +41,16 @@ export default function AppProvider({ children }) {
         setOpenModal(false);
     };
 
+    const retreiveApiKey = async () => {
+        if (apiKey) {
+            return apiKey;
+        }
+        let userResponse = await getUser();
+        const key = userResponse?.response?.apiKey;
+        setApiKey(key);
+        return key;
+    }
+
 
     useEffect(() => {
         (async () => {
@@ -113,7 +123,7 @@ export default function AppProvider({ children }) {
         currRoute, setCurrRoute, getAppResponse, setGetAppResponse,
         favoriteList, setFavoriteList, apiKey, setApiKey,
         openModal, setOpenModal, handleModalOpen, handleModalClose,
-        appId, setAppId, workspaceId, setWorkspaceId
+        appId, setAppId, workspaceId, setWorkspaceId, retreiveApiKey
     }}>
         {/* @ts-ignore */}
         <SnackbarProvider
