@@ -12,8 +12,15 @@ import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
 import Amplify from 'aws-amplify'
 import config from '../aws-exports'
+import isDevelopment from "../utils/isDevelopment";
 
-Amplify.configure(config)
+if (!isDevelopment()) {
+  config.oauth.redirectSignIn = `https://app.facet.run`;
+  config.oauth.redirectSignOut = `https://app.facet.run`;
+}
+
+Amplify.configure(config);
+
 const snackbarConfig = {
   autoHideDuration: 4000,
   vertical: 'bottom',

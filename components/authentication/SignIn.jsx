@@ -17,25 +17,13 @@ import MarginTop from '../../shared/components/MarginTop';
 import { getOrCreateWorkspace } from '../../services/facetApiService';
 import GoogleButton from '../GoogleButton';
 import FacetLabeledDivider from '../../shared/components/FacetLabeledDivider';
+import styled from 'styled-components';
 
-async function checkUser() {
-  return Auth.currentAuthenticatedUser()
-    .then(user => {
-      return true;
-    })
-    .catch(err => {
-      return false;
-    })
-}
-
-const useStyles = makeStyles(() => ({
-  center: {
-    textAlign: 'center',
-  },
-}));
+const CenterContainer = styled.div`
+    text-align: center;
+`
 
 export default () => {
-  const classes = useStyles();
   const { setCurrAuthState } = React.useContext(AppContext);
   const { register, errors, handleSubmit, watch } = useForm({});
   const [submitting, setSubmitting] = useState(false);
@@ -107,7 +95,7 @@ export default () => {
             <FacetButton disabled={submitting} style={{ width: '100%' }} variant="contained" color="primary" type="submit" onClick={handleSubmit(onSubmit)} text="Login"></FacetButton>
           </div>
           <br />
-          <div className={classes.center}>
+          <CenterContainer>
             <div>
               <FacetLink underline='hover' text='RESET PASSWORD' onClick={() => setCurrAuthState(authStateConstant.onForgotPassword)} />
             </div>
@@ -129,7 +117,7 @@ export default () => {
               <FacetLabel width="100%" text="By logging into Facet you agree to the terms of use" />
               <FacetLabel width="100%" text="and conditions of you and the privacy policy." />
             </Typography>
-          </div>
+          </CenterContainer>
         </form>
         {serverError && <Alert severity="error">{serverError}</Alert>}
         <br />

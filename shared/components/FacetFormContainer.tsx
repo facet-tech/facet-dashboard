@@ -28,8 +28,11 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
+const CenterContainer = styled.div`
+    text-align: center;
+`
+
 export default ({ children }) => {
-    const classes = useStyles();
 
     return <>
         <StyledDiv>
@@ -42,9 +45,9 @@ export default ({ children }) => {
                 {children}
             </BorderDiv>
             <br />
-            <div className={classes.center}>
+            <CenterContainer>
                 <FacetImage title="facet" src='../images/facet_typography_white.svg' />
-            </div>
+            </CenterContainer>
             <MarginTop value="2rem" />
         </StyledDiv>
     </>;
