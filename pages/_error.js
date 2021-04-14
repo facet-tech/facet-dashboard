@@ -9,7 +9,7 @@ export default function _error() {
       if (!isUserLoggedInVal) {
         Router.push("/authentication");
       } else {
-        Router.push("/dashboard");
+        Router.push("/applications");
       }
     })()
   });
