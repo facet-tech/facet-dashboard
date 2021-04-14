@@ -15,8 +15,8 @@ import config from '../aws-exports'
 import isDevelopment from "../utils/isDevelopment";
 
 if (!isDevelopment()) {
-  config.oauth.redirectSignIn = `https://app.facet.run/applications`;
-  config.oauth.redirectSignOut = `https://app.facet.run/applications`;
+  config.oauth.redirectSignIn = `https://app.facet.run/`;
+  config.oauth.redirectSignOut = `https://app.facet.run/`;
 }
 
 Amplify.configure(config);
