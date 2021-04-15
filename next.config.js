@@ -12,7 +12,7 @@ module.exports = withPlugins([[withSass], [withImages], [withCSS], [
     ) {
       return {
         '/': { page: '/authentication' },
-        '/java': { page: '/java' },
+        '/documentation': { page: '/documentation' },
         '/authentication': { page: '/authentication' },
         '/applications': { page: '/applications' },
         '/settings': { page: '/settings' },
