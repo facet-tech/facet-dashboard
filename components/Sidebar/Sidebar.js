@@ -18,7 +18,6 @@ const StyledListItem = styled(ListItem)`
 `;
 
 const StyledList = styled(List)`
-    margin-top: 20px;
     padding-left: 0;
     padding-top: 0;
     padding-bottom: 0;
@@ -31,14 +30,13 @@ const StyledDrawer = styled(Drawer)`
     box-shadow: none;
     position: absolute;
     height: 100%;
-    width: 100%;
     display: block;
     top: 0;
     left: 0;
     background-size: cover;
     background-position: center center;
     color: ${colorConstant.white};
-    
+
     & > div {
       background-color: ${colorConstant.blackDashboard};
       ${'' /* color: ${color.white}; */}
@@ -47,7 +45,6 @@ const StyledDrawer = styled(Drawer)`
     &:after: {
       position: absolute;
       z-index: 3;
-      width: 100%;
       height: 100%;
       content: "";
       display: block;
@@ -105,7 +102,7 @@ export default function Sidebar(props) {
   var brand = (
     <div className={classes.logo}>
       <div className={classes.logoImage}>
-        <img src='../../images/facet_logo_combo.svg' alt="logo" className={classes.img} />
+        <img src='../images/facet_logo_combo.svg' alt="logo" className={classes.img} />
       </div>
       {logoText}
     </div>
@@ -114,13 +111,16 @@ export default function Sidebar(props) {
   return (
     <CoreDiv >
       <StyledDrawer
-        anchor={props.rtlActive ? "right" : "left"}
         variant="permanent"
         open
       >
-        {brand}
-        <br />
-        <div>{links}</div>
+        <div style={{
+          width: '15rem'
+        }}>
+          {brand}
+          <br />
+          <div>{links}</div>
+        </div>
       </StyledDrawer>
     </CoreDiv>
   );
