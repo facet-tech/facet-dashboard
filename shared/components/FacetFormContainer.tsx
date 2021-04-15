@@ -22,12 +22,6 @@ const BorderDiv = styled.div`
   max-width: 40rem;
 `;
 
-const useStyles = makeStyles(() => ({
-    center: {
-        textAlign: 'center',
-    },
-}));
-
 const CenterContainer = styled.div`
     text-align: center;
 `
