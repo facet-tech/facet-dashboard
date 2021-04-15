@@ -24,6 +24,18 @@ const MVNCodeBlock = () => {
     );
 };
 
+const JavaAgent = () => {
+    const codeString = `-javaagent:{JAR_PATH_VARIABLE}`
+
+    return (
+        <SyntaxHighlighter showLineNumbers language="language-markup" style={atomDark}>
+            {codeString}
+        </SyntaxHighlighter>
+    );
+
+}
+
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         modal: {
@@ -122,8 +134,11 @@ const AddApplicationModal = () => {
                         <div>
                             <FacetH1>Verify</FacetH1>
                             <FacetParagraph>
-                                Create a <i>facet.yml</i> file in your project directory. The file contains your <i>workspaceId</i>, your project's name and your environment.
-                        You can retrieve your workspaceId by login in into the dashboard.
+                                Download and add the JAR in the VM options, prior to starting your server.
+                                <JavaAgent />
+                                Replace <i>{"JAR_PATH_VARIABLE"}</i> with the path of the JAR. This will inject the Facet agent into the application.
+                                Last but not least create a <i>facet.yml</i> {' '} file in your project directory. The file contains your <i>workspaceId</i>, your project's name and your environment.
+                                You can retrieve your workspaceId by login in into the dashboard.
                         <YMLCode />
                         Navigate into the <a href='https://app.facet.run' target='_blank'>dashboard</a>. Right after you login, select "Applications" -&gt; "My-Application". You should be able to see
                         all the live methods and endpoints, alongside with a checkbox allowing their enablement and disablement.
