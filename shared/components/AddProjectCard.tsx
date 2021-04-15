@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded'
 import AppContext from '../../context/AppContext'
 import AddApplicationModal from './AddApplicationModal'
+import { Link } from '@material-ui/core'
+import { useRouter } from 'next/router'
 
 const MainGrid = styled.div`
     display: grid;
@@ -16,18 +18,18 @@ const MainGrid = styled.div`
     cursor: pointer;
 `
 
-
-
 const AddProjectCard = () => {
-    const { setOpenModal } = React.useContext(AppContext);
+    const router = useRouter()
 
     return <>
-        <MainGrid onClick={() => { setOpenModal(true) }}>
-            <div>
-                <AddCircleRoundedIcon style={{ fontSize: 40 }} />
-            </div>
-        </MainGrid>
-        <AddApplicationModal />
+        <div onClick={() => { router.push('/documentation', undefined, { shallow: true }) }}>
+            <MainGrid  >
+                <div>
+                    <AddCircleRoundedIcon style={{ fontSize: 40 }} />
+                </div>
+            </MainGrid>
+            <AddApplicationModal />
+        </div>
     </>
 }
 
