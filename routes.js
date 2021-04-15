@@ -3,6 +3,7 @@ import Person from "@material-ui/icons/Person";
 import PaymentIcon from '@material-ui/icons/Payment';
 import DnsIcon from '@material-ui/icons/Dns';
 import SettingsIcon from '@material-ui/icons/Settings';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
 
 const dashboardRoutes = [
   {
@@ -30,11 +31,17 @@ const dashboardRoutes = [
     layout: "",
   },
   {
+    path: "/documentation",
+    name: "Documentation",
+    icon: MenuBookIcon,
+    layout: "",
+  },
+  {
     path: "/settings",
     name: "Settings",
     icon: SettingsIcon,
     layout: "",
-  },
+  }
 ];
 
 const pathRoutes = {
@@ -46,14 +53,18 @@ const pathRoutes = {
     path: '/projects',
     title: 'Projects'
   },
-  backendSettings: {
-    path: '/settings',
-    title: 'Settings'
+  documentation: {
+    path: '/documentation',
+    title: 'Documentation'
   },
   applications: {
     path: '/applications',
     title: 'Applications'
-  }
+  },
+  backendSettings: {
+    path: '/settings',
+    title: 'Settings'
+  },
 }
 
 const getByPath = (path) => {

@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 import AppContext from '../../context/AppContext';
 import FacetH1 from './FacetH1';
@@ -117,43 +115,30 @@ apiKey: ${apiKey}`
     );
 }
 
-const AddApplicationModal = () => {
-    const classes = useStyles();
-    const { openModal, setOpenModal, handleModalOpen, handleModalClose } = React.useContext(AppContext);
+const AddApplication = () => {
 
     return <>
         <div>
-            <Modal
-                aria-labelledby="spring-modal-title"
-                aria-describedby="spring-modal-description"
-                className={classes.modal}
-                open={openModal}
-                onClose={handleModalClose}
-                closeAfterTransition
-                BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                }}
-            >
-                <Fade in={openModal}>
-                    <div style={{ margin: '10rem', border: ' 2px solid white ', padding: '1rem' }}>
-                        <FacetH1>Introduction</FacetH1>
-                        <FacetParagraph>
-                            The Facet Java SDK can be used with the Spring Framework. Facet's Java-Agent allows <b>enabling</b> and <b>disabling</b> methods and endpoints in your application.
-                            When a method is disabled, a default value is returned, which is usually the minimum value of the class. On this page, you will get up and running with the Facet's SDK, and be able to automatically switch methods and endpoints to enable/disable through the dashboard.
-                        </FacetParagraph>
-                        <br />
-                        <FacetH1>Install</FacetH1>
-                        <FacetParagraph>
-                            Facet captures data by using an SDK within your application’s runtime. Facet-agent can be found in the {' '}
-                            <a target='_blank' href='https://search.maven.org/artifact/run.facet.agent.java/facet-agent'>sonatype distribution.</a>
-                            <MVNCodeBlock />
-                        </FacetParagraph>
-                        <br />
-                        <div>
-                            <FacetH1>Verify</FacetH1>
-                            <FacetParagraph>
-                                Download and add the JAR in the VM options, prior to starting your server.
+            <div>
+                <FacetH1>Introduction</FacetH1>
+                <FacetParagraph>
+                    The Facet Java SDK can be used with the Spring Framework. Facet's Java-Agent allows <b>enabling</b> and <b>disabling</b> methods and endpoints in your application.
+                    When a method is disabled, a default value is returned, which is usually the minimum value of the class. On this page, you will get up and running with the Facet's SDK,
+                    and be able to automatically switch methods and endpoints to enable/disable. This is how values are mapped:
+                    <MapCodeBlock />
+                </FacetParagraph>
+                <br />
+                <FacetH1>Install</FacetH1>
+                <FacetParagraph>
+                    Facet captures data by using an SDK within your application’s runtime. Facet-agent can be found in the {' '}
+                    <a target='_blank' href='https://search.maven.org/artifact/run.facet.agent.java/facet-agent'>sonatype distribution.</a>
+                    <MVNCodeBlock />
+                </FacetParagraph>
+                <br />
+                <div>
+                    <FacetH1>Verify</FacetH1>
+                    <FacetParagraph>
+                        Download and add the JAR in the VM options, prior to starting your server.
                                 <JavaAgent />
                                 Replace <i>{"JAR_PATH_VARIABLE"}</i> with the path of the JAR. This will inject the Facet agent into the application.
                                 Last but not least create a <i>facet.yml</i> {' '} file in your project directory. The file contains your <i>workspaceId</i>, your project's name and your environment.
@@ -163,12 +148,10 @@ const AddApplicationModal = () => {
                         all the live methods and endpoints, alongside with a checkbox allowing their enablement and disablement.
                         You should now be able to enable/disable methods and endpoints throughout the application.
                         </FacetParagraph>
-                        </div>
-                    </div>
-                </Fade>
-            </Modal>
+                </div>
+            </div>
         </div>
     </>
 }
 
-export default AddApplicationModal;
+export default AddApplication;

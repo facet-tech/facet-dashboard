@@ -19,15 +19,6 @@ const Grid = styled.div`
     margin-top: 2rem;
 `;
 
-
-const StyledGrid = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 30rem;
-    
-`
-
 const BackendApplicationList = () => {
     const { enqueueSnackbar } = useSnackbar();
     const { backendFacetNames, retreiveApiKey, apiKey, workspaceId, setGetAppResponse, setBackendFacetNames, setFavoriteList } = useContext(AppContext);
