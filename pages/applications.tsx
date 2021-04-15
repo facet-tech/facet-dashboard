@@ -9,15 +9,6 @@ import { Auth } from 'aws-amplify'
 const Backend = () => {
     const { apiKey, setBackendFacetNames, setGetAppResponse, setFavoriteList, retreiveApiKey } = useContext(AppContext);
 
-    async function checkUser() {
-        Auth.currentAuthenticatedUser()
-            .then(user => console.log({ user }))
-            .catch(err => console.log(err))
-        const loggedIn = await Auth.currentUserInfo();
-        const loggedInVal = Boolean(loggedIn);
-        return loggedInVal;
-    }
-
     useEffect(() => {
         (async () => {
             let key;
