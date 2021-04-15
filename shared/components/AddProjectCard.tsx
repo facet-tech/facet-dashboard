@@ -5,6 +5,7 @@ import AppContext from '../../context/AppContext'
 import AddApplicationModal from './AddApplicationModal'
 import { Link } from '@material-ui/core'
 import { useRouter } from 'next/router'
+import { getByPath, pathRoutes } from '../../routes'
 
 const MainGrid = styled.div`
     display: grid;
@@ -19,10 +20,15 @@ const MainGrid = styled.div`
 `
 
 const AddProjectCard = () => {
+    const { setCurrRoute } = React.useContext(AppContext);
     const router = useRouter()
 
     return <>
-        <div onClick={() => { router.push('/documentation', undefined, { shallow: true }) }}>
+        <div onClick={() => {
+            const val = getByPath(window.location.pathname.slice(0, -1));
+            setCurrRoute(pathRoutes.documentation);
+            router.push('/documentation', undefined, { shallow: true })
+        }}>
             <MainGrid  >
                 <div>
                     <AddCircleRoundedIcon style={{ fontSize: 40 }} />
