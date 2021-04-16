@@ -62,7 +62,7 @@ const BackendApplicationList = () => {
         <br />
         <>
             <FacetIconButton onClick={async () => {
-                const key = retreiveApiKey();
+                const key = await retreiveApiKey();
                 const getAppResponse = await getApp(key);
                 setGetAppResponse(getAppResponse);
                 const backendFacetNames = getAppResponse?.response?.map(e => e?.name);
