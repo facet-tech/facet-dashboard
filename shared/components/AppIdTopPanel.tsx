@@ -89,7 +89,7 @@ const AppIdTopPanel = () => {
                         Description
                 </DarkGrayDiv>
                     <LightGrayDiv>
-                        <FacetInput colorStyle={secondaryColor} maxLength="10"
+                        <FacetInput colorStyle={secondaryColor} maxLength={200}
                             disabled={!edditingDescription} value={description}
                             placeholder='Add description here' onChange={(e) => {
                                 setDescription(e.target.value);
