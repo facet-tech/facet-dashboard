@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -12,6 +12,7 @@ import { color, dashboardColor } from '../../constant';
 import FunctionCard from './FunctionCard';
 import ParserBackendService from '../../../services/ParserBackendService';
 import Icon from '../Icon';
+import { getFramework } from '../../../services/facetApiService';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -52,7 +53,17 @@ const StyledAccordionSummary = styled(AccordionSummary)`
 `
 
 const BackendFacetCarousel = () => {
-    const { backendFacets, handleEnabledChange } = useContext(AppContext);
+    const { backendFacets, handleEnabledChange, apiKey } = useContext(AppContext);
+    const [frameworkResponse, setFrameworkResponse] = useState(AppContext);
+
+    useEffect(() => {
+        (async () => {
+            const frameworkResponse = await getFramework(apiKey);
+            console.log('@USEEFFECR', frameworkResponse);
+            setFrameworkResponse(frameworkResponse);
+        })();
+    }, []);
+
     const classes = useStyles();
     return <div>
         <div className={classes.root}>
@@ -60,7 +71,7 @@ const BackendFacetCarousel = () => {
                 const value = backendFacet.value;
                 const innerElement = value.map(element => {
                     const containsEndpoints = ParserBackendService.containsEndpoints(element?.annotation)
-                    const pathName = containsEndpoints ? ParserBackendService.getPathName(element?.annotation) : null;
+                    const pathName = containsEndpoints ? ParserBackendService.getPathName(element?.annotation, frameworkResponse) : '/';
                     return <StyledAccordion style={{
                         backgroundColor: color.grayB3,
                         color: color.grayB
@@ -100,8 +111,8 @@ const BackendFacetCarousel = () => {
                             }}>
                             <StyledGrid>
                                 {element?.signature?.map(sig => {
-                                    const sigPathName = containsEndpoints ? ParserBackendService.getPathName(sig?.annotation) : undefined;
-                                    const endpointType = containsEndpoints ? ` - ${ParserBackendService.getEndpointType(sig?.annotation)}` : undefined;
+                                    const sigPathName = containsEndpoints ? ParserBackendService.getPathName(sig?.annotation, frameworkResponse) : undefined;
+                                    const endpointType = containsEndpoints ? ` - ${ParserBackendService.getEndpointType(sig?.annotation, frameworkResponse)}` : undefined;
                                     return <SubInnerDiv>
                                         <div>
                                             <StyledAccordion>

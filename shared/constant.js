@@ -118,8 +118,9 @@ const snackbar = {
 
 const APIEndpoint = {
     restController: 'org.springframework.web.bind.annotation.RestController',
+    controller: 'org.springframework.stereotype.Controller',
     requestMapping: 'org.springframework.web.bind.annotation.RequestMapping'
-}
+};
 
 const documentationIds = {
     download: 'facet-download',

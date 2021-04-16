@@ -11,8 +11,6 @@ const FacetDivider = (props) => {
 
     const classes = useStyles();
 
-
-
     return <Divider className={classes.divider} {...props} />
 }
 

@@ -53,6 +53,7 @@ const FacetInput = ({
     isMountainWalkWebsite = true,
     colorStyle = defaultColor,
     extraStyle = {},
+    maxLength = 40,
     ...other }) => {
 
     const innerElement = <div>
@@ -73,7 +74,7 @@ const FacetInput = ({
             aria-describedby="standard-weight-helper-text"
             inputProps={{
                 'aria-label': 'weight',
-                maxLength: 40
+                maxLength
             }}
             {...other}
         />
