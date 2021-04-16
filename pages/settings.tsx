@@ -77,7 +77,7 @@ const Backend = () => {
 
         <AsideDiv>
             <div>
-                <FacetInput value={addedListItem} onChange={(e) => { setAddedListItem(e.target.value) }} />
+                <FacetInput maxLength={200} value={addedListItem} onChange={(e) => { setAddedListItem(e.target.value) }} />
             </div>
             <div style={{
                 marginLeft: '1rem'

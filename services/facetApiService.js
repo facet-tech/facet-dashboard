@@ -332,6 +332,20 @@ const getConfigurationResponse = async (apiKey) => {
     return getBackendFacetResponse;
 }
 
+let getFrameworkResponse;
+const getFramework = async (apiKey) => {
+    if (getFrameworkResponse) {
+        return getFrameworkResponse;
+    }
+    const headers = {
+        apiKey
+    }
+    const suffix = `/facet/configuration?property=FRAMEWORK~&id=JAVA~1`;
+    const getBackendFacetResponse = await triggerApiCall(HTTPMethods.GET, suffix, undefined, headers);
+    getFrameworkResponse = getBackendFacetResponse;
+    return getBackendFacetResponse;
+}
+
 const getDefaultConfiguration = async (apiKey) => {
     const headers = {
         apiKey
@@ -374,5 +388,5 @@ export {
     getOrCreateWorkspace, deleteUser, postUser, postBackendFacets,
     saveFacets, convertGetFacetResponseToMap, addWhiteListedDomain,
     hasWhitelistedDomain, removeWhitelistedDomain, getGlobalArrayFromFacetResponse,
-    getBackendFacet, updateConfiguration, getDefaultConfiguration, postApp
+    getBackendFacet, updateConfiguration, getDefaultConfiguration, postApp, getFramework
 };
