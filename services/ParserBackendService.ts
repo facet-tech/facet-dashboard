@@ -49,7 +49,6 @@ class ParserBackendService {
         }
     }
 
-
     static getParamType = (param) => {
         const typeStr = param?.replace(/[{}]/g, '').replace(/[""]/g, '').trim();
         if (typeStr?.toLowerCase()?.includes(HTTPMethods.GET.toLocaleLowerCase())) {

@@ -52,6 +52,11 @@ const StyledAccordionSummary = styled(AccordionSummary)`
     color: ${color.grayB},
 `
 
+const StyledDiv = styled.div`
+    display: grid;
+    grid-template-columns: 4rem 25rem;
+`
+
 const BackendFacetCarousel = () => {
     const { backendFacets, handleEnabledChange, apiKey } = useContext(AppContext);
     const [frameworkResponse, setFrameworkResponse] = useState(AppContext);
@@ -59,7 +64,6 @@ const BackendFacetCarousel = () => {
     useEffect(() => {
         (async () => {
             const frameworkResponse = await getFramework(apiKey);
-            console.log('@USEEFFECR', frameworkResponse);
             setFrameworkResponse(frameworkResponse);
         })();
     }, []);
@@ -70,8 +74,8 @@ const BackendFacetCarousel = () => {
             {backendFacets?.map(backendFacet => {
                 const value = backendFacet.value;
                 const innerElement = value.map(element => {
-                    const containsEndpoints = ParserBackendService.containsEndpoints(element?.annotation)
-                    const pathName = containsEndpoints ? ParserBackendService.getPathName(element?.annotation, frameworkResponse) : '/';
+                    const containsEndpoints = ParserBackendService.containsEndpoints(element?.annotation);
+                    let pathName = containsEndpoints ? ParserBackendService.getPathName(element?.annotation, frameworkResponse) : undefined;
                     return <StyledAccordion style={{
                         backgroundColor: color.grayB3,
                         color: color.grayB
@@ -97,7 +101,7 @@ const BackendFacetCarousel = () => {
                                             fill={color.grayB4}
                                             name="settings-outline"
                                             title="settings-outline" />
-                                        {pathName}
+                                        {pathName === '' && containsEndpoints ? "/" : pathName}
                                     </b>
                                 </> : null}
                             </Typography>
@@ -111,8 +115,12 @@ const BackendFacetCarousel = () => {
                             }}>
                             <StyledGrid>
                                 {element?.signature?.map(sig => {
-                                    const sigPathName = containsEndpoints ? ParserBackendService.getPathName(sig?.annotation, frameworkResponse) : undefined;
-                                    const endpointType = containsEndpoints ? ` - ${ParserBackendService.getEndpointType(sig?.annotation, frameworkResponse)}` : undefined;
+                                    const subAnnotationType = ParserBackendService.getEndpointType(sig?.annotation, frameworkResponse) ?? null;
+                                    let sigPathName = containsEndpoints ? ParserBackendService.getPathName(sig?.annotation, frameworkResponse) : undefined;
+                                    if (!sigPathName && containsEndpoints) {
+                                        sigPathName = '/';
+                                    }
+                                    const endpointType = subAnnotationType ? `${subAnnotationType} -` : null;
                                     return <SubInnerDiv>
                                         <div>
                                             <StyledAccordion>
@@ -130,8 +138,17 @@ const BackendFacetCarousel = () => {
                                                     <Typography>
                                                         {sig.name}
                                                         <br />
-                                                        <span>{pathName}{sigPathName}</span>{' '}
-                                                        <span>{endpointType}</span>
+                                                        {endpointType ? <StyledDiv>
+                                                            <div>
+                                                                <span><b>{endpointType}</b></span>
+                                                            </div>
+                                                            <div>
+                                                                <span>{pathName}{sigPathName}</span>{' '}
+                                                            </div>
+                                                        </StyledDiv> : <>
+                                                            <span><b>{endpointType}</b></span>
+                                                            <span>{pathName}{sigPathName}</span>{' '}
+                                                        </>}
                                                     </Typography>
                                                 </StyledAccordionSummary>
                                                 <AccordionDetails style={{
