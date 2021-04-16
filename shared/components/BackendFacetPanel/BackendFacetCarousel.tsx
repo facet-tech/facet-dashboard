@@ -120,7 +120,7 @@ const BackendFacetCarousel = () => {
                                     if (!sigPathName && containsEndpoints) {
                                         sigPathName = '/';
                                     }
-                                    const endpointType = subAnnotationType ? `${subAnnotationType} -` : null;
+                                    const endpointType = subAnnotationType ? `${subAnnotationType} ` : null;
                                     return <SubInnerDiv>
                                         <div>
                                             <StyledAccordion>
