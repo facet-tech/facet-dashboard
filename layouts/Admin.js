@@ -22,6 +22,7 @@ const StyledDiv = styled.div`
   maxHeight: 100%;
   width: 100%;
   overflowScrolling: touch;
+  overflow-x: hidden;
 `;
 
 let ps;

@@ -23,7 +23,7 @@ const Backend = () => {
             setFavoriteList(favoriteList);
         })();
     }, []);
-    
+
     return <div>
         <BackendApplicationList />
     </div>
