@@ -48,7 +48,6 @@ const Backend = () => {
         <AppIdTopPanel />
         <br />
         <br />
-        <FacetDropdown options={options} />
         <GridDiv>
             <div>
                 <Link href={`/applications`}>
