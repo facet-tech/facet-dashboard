@@ -28,15 +28,16 @@ const AsideDiv = styled.div`
 `;
 
 const Backend = () => {
-    const { apiKey } = useContext(AppContext);
+    const { apiKey, retreiveApiKey } = useContext(AppContext);
     const [signature, setSignature] = useState([]);
     const [requestResponse, setRequestResponse] = useState({});
     const [addedListItem, setAddedListItem] = useState('');
     const { enqueueSnackbar } = useSnackbar();
     useEffect(() => {
         (async () => {
-            const configurationResponse = await getConfigurationResponse(apiKey);
-            setRequestResponse(configurationResponse.response);
+            const key = await retreiveApiKey();
+            const configurationResponse = await getConfigurationResponse(key);
+            setRequestResponse(configurationResponse?.response);
             setSignature(configurationResponse?.response?.attribute?.signature);
         })();
     }, []);

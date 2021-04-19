@@ -93,17 +93,6 @@ export default function AppProvider({ children }) {
             })
     }
 
-    // @ts-ignore
-    useEffect(async () => {
-        const val = window.location.pathname.slice(0, -1);
-        const userExists = await checkUser();
-        if (userExists) {
-            Router.push("/applications");
-        } else if (!val.includes('authentication')) {
-            Router.push("/authentication");
-        }
-    }, []);
-
     const handleEnabledChange = (sig, element) => {
         sig.enabled = !sig.enabled;
         setBackendFacets([...backendFacets]);
