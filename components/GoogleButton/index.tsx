@@ -1,4 +1,3 @@
-import { Icon } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
 import { Auth } from 'aws-amplify';
@@ -27,7 +26,7 @@ const ParentGrid = styled.div`
 const StyledGrid = styled.div`
     display: grid;
     grid-template-columns: 95px 200px;
-    background: #323B40;
+    background: white;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -47,7 +46,8 @@ const GoogleButton = () => {
                     </div>
                     <div style={{
                         justifySelf: 'start',
-                        fontWeight: 'bold'
+                        fontWeight: 'bold',
+                        color: 'black'
                     }}>
                         Sign in with Google
                     </div>

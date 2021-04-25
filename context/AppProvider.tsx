@@ -75,9 +75,13 @@ export default function AppProvider({ children }) {
                     const loggedIn = await Auth.currentUserInfo();
                     const loggedInVal = Boolean(loggedIn);
                     if (!loggedInVal && window.location.pathname !== '/authentication/') {
-                        router.push('/authentication/')
+                        router.push('/authentication/');
+                    }
+                    if (loggedIn && (window.location.pathname === '/authentication/' || window.location.pathname === '/' || window.location.pathname === '')) {
+                        router.push('/applications/');
                     }
                     setIsCurrentlyLoggedIn(loggedInVal);
+
                 })()
             }
         })();
