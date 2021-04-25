@@ -19,6 +19,10 @@ const Grid = styled.div`
     margin-top: 2rem;
 `;
 
+const StyledParagraph = styled.div`
+    user-select: all;
+`
+
 const BackendApplicationList = () => {
     const { enqueueSnackbar } = useSnackbar();
     const { backendFacetNames, retreiveApiKey, apiKey, workspaceId, setGetAppResponse, setBackendFacetNames, setFavoriteList } = useContext(AppContext);
@@ -26,7 +30,7 @@ const BackendApplicationList = () => {
         <FacetParagraph width='unset' color={color.grayB}>
             <b>APIKey:{' '}</b>
         </FacetParagraph>
-        <FacetParagraph width='unset' color={color.grayB}>
+        <FacetParagraph width='unset' color={color.grayB} userSelect='all'>
             {apiKey}
             <CopyToClipboard text={apiKey}>
                 <FacetIconButton hoverColor={color.skyBlue} fill={color.skyBlue} onClick={() => {
@@ -41,7 +45,7 @@ const BackendApplicationList = () => {
         <FacetParagraph width='unset' color={color.grayB}>
             <b>WorkspaceId:{' '}</b>
         </FacetParagraph>
-        <FacetParagraph width='unset' color={color.grayB}>
+        <FacetParagraph width='unset' color={color.grayB} userSelect='all'>
             {workspaceId}
             <CopyToClipboard text={workspaceId}>
                 <FacetIconButton hoverColor={color.skyBlue} fill={color.skyBlue} onClick={() => {
@@ -76,7 +80,6 @@ const BackendApplicationList = () => {
                         <ApplicationCard name={backendFacet} href={`applications/${backendFacet}/`} />
                     </>
                 })}
-                <AddProjectCard />
             </Grid>
         </>
     </>
