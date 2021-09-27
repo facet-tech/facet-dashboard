@@ -20,7 +20,7 @@ jobs:
           NODE_ENV: dev
 
       - name: automerge
-        uses: actions/github-script@v3.1
+        uses: actions/github-script@v5
         with:
           script: |
             github.pullRequests.createReview({
